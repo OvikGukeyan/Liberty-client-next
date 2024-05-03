@@ -1,0 +1,91 @@
+.main_container {
+  width: 100%;
+  height: 100%;
+  
+
+ 
+
+  .window {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    
+
+    .all_pages_container {
+      height: 100%;
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+
+      
+    
+    }
+
+   
+  
+
+    .slider {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      display: flex;
+      width: 25%;
+
+      .button_left,
+      .button_right {
+          background-color: #000;
+          aspect-ratio: 1/1;
+          width: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+
+          svg{
+            stroke: #fff;
+          }
+
+          &:hover {
+              background-color: #444444;
+          }
+      }
+
+  }
+  }
+
+
+  @media (max-width: 767px) {
+
+    .window {
+      .slider {
+        width: 100%;
+        height: 100%;
+        justify-content: space-between;
+        .button_left,
+        .button_right {
+          background: none;
+          display: flex;
+          padding: 0 7px;
+
+          svg{
+            stroke: #000;
+          }
+
+          &:hover {
+            background: none;
+          }
+        }
+
+        .button_left {
+          justify-content: flex-start;
+
+        }
+
+        .button_right {
+          justify-content: flex-end
+        }
+      }
+    }
+  }
+  
+}
