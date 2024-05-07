@@ -1,9 +1,10 @@
 import styles from "./contact.module.scss";
 import { LatLngExpression } from "leaflet";
-import Map from "@/components/Map";
 import Header from "@/components/Header";
 import Image from "next/image";
 import Footer from "@/components/Footer";
+import { useMemo } from "react";
+import dynamic from "next/dynamic";
 
 export const metadata = {
   title: "Kontaktinformationen",
@@ -26,6 +27,13 @@ const markers: markersType = {
 };
 
 const Contact = () => {
+  const Map = useMemo(() => dynamic(
+    () => import('@/components/Map'),
+    { 
+      loading: () => <p>A map is loading...</p>,
+      ssr: false
+    }
+  ), [])
   return (
     <div className={styles.contact}>
       <Header />

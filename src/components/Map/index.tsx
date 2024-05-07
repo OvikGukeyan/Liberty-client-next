@@ -24,7 +24,7 @@ const Map: React.FC<MapTypes> = ({ marker }) => {
     <div className={styles.wrapper}>
       <MapContainer
         center={marker.geoCode}
-        zoom={12}
+        zoom={14}
         style={{ height: "100%", width: "100%" }}
         zoomControl={false}
       >
