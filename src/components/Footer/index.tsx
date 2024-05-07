@@ -4,25 +4,24 @@ import styles from "./Footer.module.scss";
 import Image from "next/image";
 
 type FooterType = {
-  isStatic: boolean
-}
+  isStatic: boolean;
+};
 
-const Footer: React.FC<FooterType> = ({isStatic}) => {
+const Footer: React.FC<FooterType> = ({ isStatic }) => {
   const [isVisible, setIsVisible] = useState(false);
 
-
   const toggleVisibility = () => {
-    const scrollPosition = window.scrollY + window.innerHeight;
-    const totalHeight = document.documentElement.scrollHeight;
+    if (typeof window !== "undefined") {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const totalHeight = document.documentElement.scrollHeight;
 
-    
-
-    setIsVisible(scrollPosition >= totalHeight);
+      setIsVisible(scrollPosition >= totalHeight);
+    }
   };
 
   useEffect(() => {
-    if(isStatic) {
-      return setIsVisible(true)
+    if (isStatic) {
+      return setIsVisible(true);
     }
     window.addEventListener("scroll", toggleVisibility);
     return () => {
@@ -32,12 +31,19 @@ const Footer: React.FC<FooterType> = ({isStatic}) => {
 
   return (
     <div
-      className={`${styles.footer} ${isVisible && styles.visible} ${isStatic && styles.static}`}
+      className={`${styles.footer} ${isVisible && styles.visible} ${
+        isStatic && styles.static
+      }`}
     >
       <div className={styles.wrapper}>
         <div className={styles.head}>
           <div className={styles.logo}>
-            <Image src={"/assets/logo-full.png"} alt="Logo" width={60} height={60}/>
+            <Image
+              src={"/assets/logo-full.png"}
+              alt="Logo"
+              width={60}
+              height={60}
+            />
           </div>
           <div className={styles.social_media}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
