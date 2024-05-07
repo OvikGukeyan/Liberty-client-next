@@ -3,6 +3,7 @@ import styles from "./page.module.scss";
 import Carousel from "@/components/Carousel";
 import Slide from "@/components/Slide"
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 const servicesList = [
   {
@@ -32,8 +33,8 @@ const servicesList = [
 ];
 
 export const metadata = {
-  title: "About Us",
-  description: "Info about us",
+  title: "Liberty Finance",
+  description: "Home page",
   keywords: ''
 };
 
@@ -49,36 +50,7 @@ export default function Home() {
             className={styles.video}
             src="./assets/Lingen1.mp4"
           ></video>
-          <header>
-            <img
-              // onClick={handleHamburgerClick}
-              className={styles.hamburger}
-              src="./assets/hamburger.png"
-              alt=""
-            />
-            <div className={styles.logo}>
-              <img src="./assets/logo-full.png" alt="" />
-            </div>
-            <div
-              // onClick={(e) => handleOutsideClick(e)}
-              className={`${styles.overlay} ${
-                isMenuVisiable ? styles.overlayVisible : ""
-              }`
-            }
-            >
-              <nav >
-                <img 
-                // onClick={handleHamburgerClick} 
-                className={styles.close} src="./assets/close.png" alt="" />
-                <ul>
-                  <li>home</li>
-                  <li>shope</li>
-                  <li>about</li>
-                  <li>contact</li>
-                </ul>
-              </nav>
-            </div>
-          </header>
+          <Header/>
         </div>
         <div className={styles.services}>
           <Carousel>
@@ -102,7 +74,7 @@ export default function Home() {
         </div>
         <div className={styles.photo_2}></div>
       </div>
-      <Footer/>
+      <Footer isStatic={false}/>
     </div>
   );
 }

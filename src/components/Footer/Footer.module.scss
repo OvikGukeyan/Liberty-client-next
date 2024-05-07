@@ -5,7 +5,7 @@
     bottom: -200px; /* Изначально футер скрыт */
     width: 100%;
     background-color: #fff;
-    padding: 10px 0;
+    padding: 10px 30px;
     transition: bottom 0.3s; /* Плавное появление и исчезновение */
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
 
     .wrapper {
 
-        width: 80%;
+        width: 100%;
 
         .head {
             border-bottom: 1px solid #DADADA;
@@ -21,11 +21,7 @@
             justify-content: space-between;
             align-items: center;
 
-            .logo {
-                img {
-                    width: 60px;
-                }
-            }
+            
 
             .social_media {
                 display: flex;
@@ -66,4 +62,8 @@
 
 .visible {
     bottom: 0; /* При появлении футер выезжает */
+}
+
+.static {
+    position: static;
 }

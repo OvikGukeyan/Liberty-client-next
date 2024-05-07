@@ -30,7 +30,7 @@
         background-color: #fff;
         border-radius: 15px;
         padding: 50px;
-        margin: 40px 0;
+        margin: 40px 0 200px 0;
 
 
         .header {
@@ -240,7 +240,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: hidden;
 
         .board {
             background-color: #F2F2F2;
@@ -253,9 +252,7 @@
             flex-direction: column;
             text-align: center;
 
-            img {
-                width: 300px;
-            }
+            
 
         }
 
@@ -330,17 +327,7 @@
 
 
 
-    @media (max-width: 1150px) {
-        .back {
-            width: 690px;
-        }
-
-
-
-
-
-    }
-
+   
     @media (max-width: 700px) {
         .back {
             width: 330px;

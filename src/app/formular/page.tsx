@@ -5,6 +5,7 @@ import styles from './formular.module.scss';
 import { FieldValues, useForm } from "react-hook-form";
 import axios from 'axios';
 import qs from 'qs';
+import Image from 'next/image';
 
 
 const ContactForm: React.FC = () => {
@@ -50,7 +51,6 @@ const ContactForm: React.FC = () => {
 
     const submitHandler = (values: FieldValues) => {
         setIsLoading(true)
-        console.log(values)
         axios.post(`${process.env.NEXT_PUBLIC_API_URL}/contact`, values)
             .then(response => {
                 document.body.style.overflow = 'hidden';
@@ -76,8 +76,8 @@ const ContactForm: React.FC = () => {
 
             <div className={styles.checkout_box}>
                 <div className={styles.header}>
-                    <img className={styles.logo} src="/assets/logo.png" alt="" />
-                    <img className={styles.company_name} src="/assets/name.png" alt="" />
+                    <Image className={styles.logo} alt='Logo' src={"/assets/logo.png"} width={140} height={50}/>
+                    <Image className={styles.company_name} alt='company name' src={"/assets/name.png"} width={270} height={80}/>
                 </div>
                 <h1>Kontaktformular </h1>
                 <form onSubmit={handleSubmit(submitHandler)}>
@@ -246,7 +246,7 @@ const ContactForm: React.FC = () => {
             </div>
             <div className={`${styles.overlay} ${isSubmitted ? styles.overlayVisible : ''}`}>
                 <div className={styles.board} >
-                    <img src="/assets/submited.png" alt="" />
+                    <Image src={"/assets/submited.png"} alt='submited' width={300} height={300}/>
                     <h1>Vielen Dank für Ihr Vertrauen. <br />Wir kümmern uns schnellstmöglich um Ihr Anliegen</h1>
                 </div>
             </div>
@@ -261,7 +261,8 @@ const ContactForm: React.FC = () => {
             </div>
             <div className={`${styles.overlay} ${isRejected ? styles.overlayVisible : ''}`}>
                 <div className={styles.board} >
-                    <img src="/assets/error.png" alt="" />
+                    <Image src={"/assets/error.png"} alt='error' width={300} height={300}/>
+
                     <h1>Beim Senden ist ein Fehler aufgetreten</h1>
                 </div>
             </div>

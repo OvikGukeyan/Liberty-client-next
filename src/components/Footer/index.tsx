@@ -1,21 +1,29 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import styles from "./Footer.module.scss";
+import Image from "next/image";
 
-const Footer = () => {
+type FooterType = {
+  isStatic: boolean
+}
+
+const Footer: React.FC<FooterType> = ({isStatic}) => {
   const [isVisible, setIsVisible] = useState(false);
+
 
   const toggleVisibility = () => {
     const scrollPosition = window.scrollY + window.innerHeight;
     const totalHeight = document.documentElement.scrollHeight;
 
-    console.log("Scroll Position:", scrollPosition);
-    console.log("Total Height:", totalHeight);
+    
 
     setIsVisible(scrollPosition >= totalHeight);
   };
 
   useEffect(() => {
+    if(isStatic) {
+      return setIsVisible(true)
+    }
     window.addEventListener("scroll", toggleVisibility);
     return () => {
       window.removeEventListener("scroll", toggleVisibility);
@@ -24,14 +32,12 @@ const Footer = () => {
 
   return (
     <div
-      className={
-        isVisible ? `${styles.footer} ${styles.visible}` : styles.footer
-      }
+      className={`${styles.footer} ${isVisible && styles.visible} ${isStatic && styles.static}`}
     >
       <div className={styles.wrapper}>
         <div className={styles.head}>
           <div className={styles.logo}>
-            <img src="./assets/logo-full.png" alt="" />
+            <Image src={"/assets/logo-full.png"} alt="Logo" width={60} height={60}/>
           </div>
           <div className={styles.social_media}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
