@@ -18,6 +18,7 @@
       align-items: center;
       margin-top: 50px;
 
+
       .photo {
         width: 30%;
         border-radius: 10px;
@@ -34,6 +35,33 @@
         background-color: #fdf3f0;
         border-radius: 10px;
         overflow: hidden;
+      }
+
+      &:nth-of-type(even) {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .main {
+     
+      .managers {
+        flex-direction: column;
+
+        &:nth-of-type(even) {
+          flex-direction: column;
+        }
+
+        .photo {
+          width: auto;
+          max-width: 100%;
+          margin-bottom: 20px;
+        }
+
+        .text {
+          width: auto;
+        }
       }
     }
   }

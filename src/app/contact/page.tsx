@@ -26,14 +26,15 @@ const markers: markersType = {
   },
 };
 
-const Contact = () => {
-  const Map = useMemo(() => dynamic(
-    () => import('@/components/Map'),
-    { 
-      loading: () => <p>A map is loading...</p>,
-      ssr: false
-    }
-  ), [])
+const Contact: React.FC = () => {
+  const Map = useMemo(
+    () =>
+      dynamic(() => import("@/components/Map"), {
+        loading: () => <p>A map is loading...</p>,
+        ssr: false,
+      }),
+    []
+  );
   return (
     <div className={styles.contact}>
       <Header />
@@ -43,6 +44,7 @@ const Contact = () => {
             <h2>Kontact</h2>
             <address>
               <ul>
+                
                 <li>
                   <Image
                     src={"/assets/office.png"}
@@ -51,6 +53,15 @@ const Contact = () => {
                     height={24}
                   />
                   Liberty Finance GmbH
+                </li>
+                <li>
+                  <Image
+                    src={"/assets/phone.png"}
+                    alt="office"
+                    width={24}
+                    height={24}
+                  />
+                  <a href="tel:0591 857463">0591 857463</a>
                 </li>
                 <li>
                   <Image
@@ -63,15 +74,7 @@ const Contact = () => {
                     info@libertyfinance.de
                   </a>
                 </li>
-                <li>
-                  <Image
-                    src={"/assets/phone.png"}
-                    alt="office"
-                    width={24}
-                    height={24}
-                  />
-                  <a href="tel:0591 857463">0591 857463</a>
-                </li>
+
                 <li>
                   <Image
                     src={"/assets/adress.png"}

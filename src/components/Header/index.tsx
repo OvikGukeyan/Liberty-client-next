@@ -43,8 +43,8 @@ const Header = () => {
           <Image
             src={"/assets/logo-full.png"}
             alt="Logo"
-            width={160}
-            height={160}
+            width={250}
+            height={250}
           />
         </Link>
       </div>
@@ -70,7 +70,7 @@ const Header = () => {
             <Link href={"/about"}>
               <li>about</li>
             </Link>
-            <Link href={"/"}>
+            <Link href={"/career"}>
               <li>karriere</li>
             </Link>
             <Link href={"/"}>

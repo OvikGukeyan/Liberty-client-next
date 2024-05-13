@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
 import Carousel from "@/components/Carousel";
-import Slide from "@/components/Slide"
+import Slide from "@/components/Slide";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
@@ -35,11 +35,11 @@ const servicesList = [
 export const metadata = {
   title: "Liberty Finance",
   description: "Home page",
-  keywords: ''
+  keywords: "",
 };
 
 export default function Home() {
-  const isMenuVisiable = false
+  const isMenuVisiable = false;
   return (
     <div className={styles.wrapper}>
       <div className={styles.box_1}>
@@ -49,15 +49,15 @@ export default function Home() {
             autoPlay
             className={styles.video}
             src="./assets/Lingen1.mp4"
-          ></video>
-          <Header/>
+          />
+          <Header />
         </div>
         <div className={styles.services}>
           <Carousel>
-          {servicesList.map((item) => (
-            <Slide item={item} />
-          ))}
-        </Carousel>
+            {servicesList.map((item) => (
+              <Slide item={item} />
+            ))}
+          </Carousel>
         </div>
       </div>
       <div className={styles.box_2}>
@@ -74,7 +74,7 @@ export default function Home() {
         </div>
         <div className={styles.photo_2}></div>
       </div>
-      <Footer isStatic={false}/>
+      <Footer isStatic={false} />
     </div>
   );
 }

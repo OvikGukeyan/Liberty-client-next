@@ -59,13 +59,17 @@
     .window {
       .slider {
         width: 100%;
-        height: 100%;
+        height: 50px;
         justify-content: space-between;
+        position: absolute;
+        top: calc(50% - 25px);
+
         .button_left,
         .button_right {
           background: none;
           display: flex;
           padding: 0 7px;
+          min-width: 14px;
 
           svg{
             stroke: #000;

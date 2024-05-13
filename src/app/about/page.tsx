@@ -9,14 +9,20 @@ export const metadata = {
   keywords: "",
 };
 
-const About = () => {
+const About: React.FC = () => {
   return (
     <div className={styles.about}>
       <Header />
       <div className={styles.main}>
         <h2>Führungskräfte unseres Unternehmens</h2>
         <div className={styles.managers}>
-          
+          <Image
+            className={styles.photo}
+            src={"/assets/2.jpeg"}
+            alt="manager"
+            width={500}
+            height={500}
+          />
           <div className={styles.text}>
             <h3>Roman Skibner und Mathias Alberg – Geschäftsführer.</h3>
 
@@ -35,14 +41,6 @@ const About = () => {
               stets an der Spitze des Marktes zu stehen.
             </p>
           </div>
-
-          <Image
-            className={styles.photo}
-            src={"/assets/2.jpeg"}
-            alt="manager"
-            width={500}
-            height={500}
-          />
         </div>
         <h2>Unser Team</h2>
 
@@ -83,6 +81,13 @@ const About = () => {
           </div>
         </div>
         <div className={styles.managers}>
+          <Image
+            className={styles.photo}
+            src={"/assets/4.jpeg"}
+            alt="manager"
+            width={500}
+            height={500}
+          />
           <div className={styles.text}>
             <h3>David Zgibnev – Ihr Experte für Kreditlösungen</h3>
             <p>
@@ -110,16 +115,9 @@ const About = () => {
               sicher und informiert vorzugehen.
             </p>
           </div>
-          <Image
-            className={styles.photo}
-            src={"/assets/4.jpeg"}
-            alt="manager"
-            width={500}
-            height={500}
-          />
         </div>
       </div>
-      <Footer isStatic={false}/>
+      <Footer isStatic={false} />
     </div>
   );
 };
