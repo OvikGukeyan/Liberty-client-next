@@ -1,0 +1,68 @@
+/* MyCalendar.module.scss */
+
+.myCalendarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  background-color: #fff;
+  height: 450px;
+  border-radius: 25px;
+  padding: 30px;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  .picker {
+    display: flex;
+    margin-bottom: 30px;
+    .calendar_wrapper {
+      display: flex;
+      flex-direction: column;
+
+      .calendar {
+        overflow: hidden;
+        height: 250px;
+        width: 300px;
+      }
+    }
+
+    .time_wrapper {
+      margin-left: 20px;
+      width: 300px;
+      height: 250px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3px;
+
+      .time {
+        border: 1px solid #fdf3f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 5px;
+
+
+        &:hover {
+          background-color: #e7816b;
+          color: #fff;
+          transform: scale(1.05);
+
+        }
+
+        &:active {
+          transform: scale(0.95);
+        }
+
+        
+      }
+
+      .activeTime {
+        background-color: #e7816b;
+        color: #fff;
+      }
+    }
+  }
+}

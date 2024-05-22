@@ -1,9 +1,14 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./ApplicationForm.module.scss";
 import { FieldValues, useForm } from "react-hook-form";
+import axios from "axios";
 
 const ApplicationForm = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isRejected, setIsRejected] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  
   const {
     register,
     formState: { errors, isValid },
@@ -23,8 +28,28 @@ const ApplicationForm = () => {
     mode: "onBlur",
   });
 
+
+  const submitHandler = (values: FieldValues) => {
+    // setIsLoading(true);
+    axios
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/job`, values)
+      .then((response) => {
+        // document.body.style.overflow = "hidden";
+        // setIsRejected(false);
+        // setIsSubmitted(true);
+        // setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+        // setIsLoading(false);
+        // setIsSubmitted(false);
+        // setIsRejected(true);
+      });
+    reset();
+  };
+
   return (
-    <form className={styles.form}>
+    <form onSubmit={handleSubmit(submitHandler)} className={styles.form}>
       <h2 className={styles.title}>BEWERBUNGS­FORMULAR</h2>
       <div className={styles.input_box}>
         <label>

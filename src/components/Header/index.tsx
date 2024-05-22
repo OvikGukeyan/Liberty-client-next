@@ -73,7 +73,7 @@ const Header = () => {
             <Link href={"/career"}>
               <li>karriere</li>
             </Link>
-            <Link href={"/"}>
+            <Link href={"/coworking"}>
               <li>coworking</li>
             </Link>
             <Link href={"/contact"}>

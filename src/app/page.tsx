@@ -32,11 +32,7 @@ const servicesList = [
   },
 ];
 
-export const metadata = {
-  title: "Liberty Finance",
-  description: "Home page",
-  keywords: "",
-};
+
 
 export default function Home() {
   const isMenuVisiable = false;
