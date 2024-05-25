@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import CoworkingZone from "@/components/CoworkingZone";
 
 
-export const coworkingZones = [
+const coworkingZones = [
   {
     name: "Konferenzraum (nur an Wochenenden verfügbar)",
     description:
