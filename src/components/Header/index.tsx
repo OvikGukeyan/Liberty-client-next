@@ -29,6 +29,7 @@ const Header = () => {
   };
   return (
     <header className={styles.header}>
+
       <Image
         onClick={handleHamburgerClick}
         src={"/assets/hamburger.png"}
@@ -43,16 +44,16 @@ const Header = () => {
           <Image
             src={"/assets/logo-full.png"}
             alt="Logo"
-            width={250}
-            height={250}
+            width={200}
+            height={200}
           />
         </Link>
       </div>
+
       <div
         onClick={(e) => handleOutsideClick(e)}
-        className={`${styles.overlay} ${
-          isMenuVisiable ? styles.overlayVisible : ""
-        }`}
+        className={`${styles.overlay} ${isMenuVisiable ? styles.overlayVisible : ""
+          }`}
       >
         <nav ref={menuRef}>
           <Image
@@ -79,9 +80,13 @@ const Header = () => {
             <Link href={"/contact"}>
               <li>contact</li>
             </Link>
+
           </ul>
+          {/* <Image className={styles.auth} src={"/assets/auth.png"} alt="auth" width={25} height={25} /> */}
+
         </nav>
       </div>
+
     </header>
   );
 };

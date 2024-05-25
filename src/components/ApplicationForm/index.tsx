@@ -5,9 +5,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import axios from "axios";
 
 const ApplicationForm = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isRejected, setIsRejected] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  
   
   const {
     register,

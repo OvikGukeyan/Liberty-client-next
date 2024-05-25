@@ -36,19 +36,19 @@
         
     }
 
-    .conf1_img {
+    .conf1 {
         background-image: url(../../../public//assets/conf1.jpeg);
     }
 
-    .sonf2_img {
+    .sonf2 {
         background-image: url(../../../public//assets/conf2.jpg);
     }
 
-    .work_space_img {
+    .work_space {
         background-image: url(../../../public//assets/work-space.jpeg);
     }
 
-    .conf1_img, .sonf2_img, .work_space_img {
+    .conf1, .sonf2, .work_space {
         width: 35%;
         aspect-ratio: 1/1.4;
         background-size: cover;

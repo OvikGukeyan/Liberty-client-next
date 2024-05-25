@@ -46,14 +46,15 @@
 
 
         &:hover {
-          background-color: #e7816b;
-          color: #fff;
           transform: scale(1.05);
 
         }
 
         &:active {
-          transform: scale(0.95);
+          transform: scale(1.1);
+          background-color: #e7816b;
+          color: #fff;
+
         }
 
         

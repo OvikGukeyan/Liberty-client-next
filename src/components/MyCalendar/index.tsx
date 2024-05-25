@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./MyCalendar.module.scss";
 import Button from "../Button";
+import { useRouter } from "next/navigation";
 
 interface MyCalendarTypes {
     item: {
@@ -28,8 +29,19 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({item}) => {
             setSelectedHours(prev => [...prev, time])
         }
     }
+    const router = useRouter(); 
+
+    const handleSubmitClick = () => {
+        const dateString = selectedDate ? selectedDate.toISOString().split('T')[0]: '';
+        localStorage.setItem('selectedDate', dateString);
+        localStorage.setItem('selectedHours', JSON.stringify(selectedHours));
+        localStorage.setItem('room', JSON.stringify(item));
 
 
+        router.push('/checkout');
+        document.body.style.overflow = "";
+        // window.localStorage.setItem('bokking', )
+    }
     
 
 
@@ -51,7 +63,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({item}) => {
                     {times.map(item => <div onClick={() => handleTimeClick(item)} className={`${styles.time} ${selectedHours.includes(item) && styles.activeTime}`}>{item}</div>)}
                 </div>
             </div>
-            <Button onClick={() => { console.log({date: selectedDate, hours: selectedHours, item: item.id}) }}>Submit</Button>
+            <Button onClick={handleSubmitClick}>Submit</Button>
         </div>
 
     );
