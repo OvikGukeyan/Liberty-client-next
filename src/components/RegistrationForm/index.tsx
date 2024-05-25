@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import styles from "./RegistrationForm.module.scss";
 import { FieldValues, useForm } from "react-hook-form";
 import axios from "axios";
@@ -18,14 +18,7 @@ const RegistrationForm = () => {
 
     const password = watch('password', '');
 
-    const roomJSON = localStorage.getItem('room')
-    const hoursJSON = localStorage.getItem('selectedHours')
-
-    const booking = {
-        room: roomJSON ? JSON.parse(roomJSON) : '',
-        date: localStorage.getItem('selectedDate'),
-        hours: hoursJSON ? JSON.parse(hoursJSON) : '',
-    }
+    
 
 
 
@@ -38,16 +31,7 @@ const RegistrationForm = () => {
     };
     return (
         <div className={styles.checkout}>
-            <div className={styles.bookedItem}>
-                <div className={styles[booking.room ? booking.room.img : '']}></div>
-                <div className={styles.description}>
-                    <h2>{booking.room.name}</h2>
-                    <p>Date: {booking.date}</p>
-                    <p>Hours: {booking.hours.map((i: any) => <span>{i}, </span>)} </p>
-                    <p>Price: {booking.hours.length * 20} $</p>
-                    
-                </div>
-            </div>
+            
 
             <form onSubmit={handleSubmit(submitHandler)} className={styles.form}>
                 <h2 className={styles.title}>REGISTRATION</h2>
