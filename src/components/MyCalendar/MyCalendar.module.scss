@@ -37,6 +37,7 @@
       gap: 3px;
 
       .time {
+        background-color: #fff;
         border: 1px solid #fdf3f0;
         display: flex;
         justify-content: center;
@@ -55,6 +56,14 @@
           background-color: #e7816b;
           color: #fff;
 
+        }
+
+        &:disabled {
+          background-color: #cac5c4;
+
+          &:hover {
+            transform: none;
+          }
         }
 
         
