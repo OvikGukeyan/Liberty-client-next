@@ -2,11 +2,12 @@ import $api from "../http";
 import axios, { AxiosResponse } from "axios";
 import { AuthResponse } from "../models/response/AuthResponse";
 import { RegistrationValues } from "@/components/RegistrationForm";
+import { LoginValues } from "@/components/LoginForm";
 
 
 export default class AuthService {
-    static async login(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
-        return $api.post<AuthResponse>('/login', {email, password})
+    static async login(values: LoginValues): Promise<AxiosResponse<AuthResponse>> {
+        return $api.post<AuthResponse>('/login', {...values})
     }
 
     static async registration (values: RegistrationValues): Promise<AxiosResponse<AuthResponse>> {

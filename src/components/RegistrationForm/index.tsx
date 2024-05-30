@@ -35,13 +35,7 @@ const RegistrationForm = () => {
 
     const queryClient = useQueryClient()
 
-    // Fetch initial data with useQuery
-    const { data, error, isLoading: isQueryLoading } = useQuery({
-        queryKey: ["authData"],
-        queryFn: AuthService.checkAuth,
-        
-        select: (data) => data
-    });
+    
     const mutation = useMutation({
         mutationFn: async (values: RegistrationValues) => {
             return AuthService.registration(values);
@@ -63,13 +57,10 @@ const RegistrationForm = () => {
         mutation.mutate(values);
     };
 
-    if (isQueryLoading) {
-        return <div>Loading...</div>; // Display a loading indicator while fetching initial data
-    }
+    
 
     return (
-        <div className={styles.checkout}>
-            {!data &&
+        <div className={styles.registration_form}>
                 <form onSubmit={handleSubmit(submitHandler)} className={styles.form}>
                     <h2 className={styles.title}>REGISTRATION</h2>
                     <div className={styles.input_box}>
@@ -284,10 +275,10 @@ const RegistrationForm = () => {
                         className={styles.submit_button}
                         type="submit"
                     >
-                        Buchen
+                        Submit
                     </button>
                 </form>
-            }
+
 
         </div>
 

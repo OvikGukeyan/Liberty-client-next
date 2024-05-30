@@ -1,0 +1,103 @@
+import React from 'react';
+import styles from './LoginForm.module.scss';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import AuthService from '@/services/authService';
+
+
+export interface LoginValues {
+    email: string
+    password: string
+}
+
+const LoginForm = () => {
+
+    const {
+        register,
+        formState: { errors, isValid },
+        handleSubmit,
+        reset,
+    } = useForm<LoginValues>({ mode: "onBlur" });
+
+    const queryClient = useQueryClient()
+
+    
+    
+    const mutation = useMutation({
+        mutationFn: async (values: LoginValues) => {
+            return AuthService.login(values);
+        },
+        onSuccess: (response) => {
+            // Handle success
+            console.log("Login successful", response.data);
+            queryClient.setQueryData(["authData"], response.data);
+            localStorage.setItem('token', response.data.accessToken)
+            reset();
+        },
+        onError: (error) => {
+            // Handle error
+            console.error("Login failed", error);
+        },
+    });
+
+    const submitHandler: SubmitHandler<LoginValues> = (values) => {
+        mutation.mutate(values);
+    };
+
+
+
+    return (
+        <div className={styles.login_form}>
+            <form onSubmit={handleSubmit(submitHandler)}>
+                <h2 className={styles.title}>Login</h2>
+                <div className={styles.input_box}>
+                    <label>
+                        Email:
+                        {errors?.email && (
+                            <p>
+                                {errors?.email?.message?.toString() || "Wrong format!"}
+                            </p>
+                        )}
+                        <input
+                            className={`${errors?.email && styles.input_error} ${styles.input
+                                }`}
+                            {...register("email", {
+                                required: "Required field",
+                                pattern: {
+                                    value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/,
+                                    message: "Wrong E-mail format!",
+                                },
+                            })}
+                            type="email"
+                        />
+                    </label>
+
+                    <label>Password
+                        {errors?.password && (
+                            <p>{errors?.password?.message?.toString() || "Wrong format!"}</p>
+                        )}
+                        <input
+                            className={`${errors?.password && styles.input_error} ${styles.input}`}
+                            type="password"
+                            {...register('password', {
+                                required: 'Password is required', pattern: {
+                                    value: /^[A-Za-z0-9!@#$%^&*]{6,}$/,
+                                    message: 'Password must contain at least six characters including letters, numbers, or special characters',
+                                },
+                            })}
+                        />
+                    </label>
+                </div>
+                <button
+                    disabled={!isValid}
+                    className={styles.submit_button}
+                    type="submit"
+                >
+                    Submit
+                </button>
+            </form>
+        </div>
+    )
+}
+
+export default LoginForm;

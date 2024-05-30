@@ -3,21 +3,26 @@ import React, { useEffect, useState } from 'react';
 import styles from './checkout.module.scss'
 import Header from '@/components/Header';
 import RegistrationForm from '@/components/RegistrationForm';
+import AuthService from '@/services/authService';
+import { useQuery } from '@tanstack/react-query';
+import LoginForm from '@/components/LoginForm';
+
+interface Room {
+  name: string;
+  description: string;
+  img: string;
+  id: number;
+}
+
+interface BookingType {
+  room: Room | null;
+  date: string;
+  hours: string[];
+}
 
 const Checkout = () => {
 
-  interface Room {
-    name: string;
-    description: string;
-    img: string;
-    id: number;
-  }
-
-  interface BookingType {
-    room: Room | null;
-    date: string;
-    hours: string[];
-  }
+  const authMethods = [{name: 'Registration'}, {name: 'Login'}]
 
   const [booking, setBooking] = useState<BookingType>({
     room: null,
@@ -25,7 +30,14 @@ const Checkout = () => {
     hours: []
   });
 
+  const [authMethod, setAuthMethod] = useState({name: 'Registration'})
 
+  const { data, error, isLoading: isQueryLoading } = useQuery({
+    queryKey: ["authData"],
+    queryFn: AuthService.checkAuth,
+
+    select: (data) => data
+  });
 
   useEffect(() => {
     const roomJSON = localStorage.getItem('room');
@@ -53,7 +65,18 @@ const Checkout = () => {
 
           </div>
         </div>
-        <RegistrationForm />
+        <div className={styles.auth}>
+          <h1>Authorization</h1>
+          <div className={styles.switch}>
+            {authMethods.map(item => <button onClick={() => setAuthMethod(item)} key={item.name} className={`${styles.auth_switch} ${authMethod.name === item.name && styles.active}`}>{item.name}</button>)}
+          </div>
+          {authMethod.name === 'Registration' ?
+          <RegistrationForm />
+          :
+          <LoginForm/>
+        }
+          
+        </div>
       </div>
 
     </div>
