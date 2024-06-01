@@ -3,16 +3,12 @@ import React, { useRef, useState } from "react";
 import styles from "./CoworkingZone.module.scss";
 import Button from "../Button";
 import MyCalendar from "@/components/MyCalendar";
+import { Room } from "@/app/checkout/page";
 
 
 
 interface CoworkingZoneTypes {
-    item: {
-        name: string;
-        description: string;
-        img: string;
-        id: number;
-    };
+    item: Room
 }
 
 const CoworkingZone: React.FC<CoworkingZoneTypes> = ({ item }) => {

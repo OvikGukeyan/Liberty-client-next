@@ -8,20 +8,16 @@ import { useRouter } from "next/navigation";
 import $api from "@/http";
 import BookingService from "@/services/bookingService";
 import { Booking } from "@/models/Booking";
+import { useQuery } from "@tanstack/react-query";
+import { Room } from "@/app/checkout/page";
 
 interface MyCalendarTypes {
-    item: {
-        name: string;
-        description: string;
-        img: string;
-        id: number;
-    };
+    item: Room
 }
 
 const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [selectedHours, setSelectedHours] = useState<string[]>([]);
-    const [bookings, setBookings] = useState<Booking[] | null>(null)
 
     const hours = [
         {
@@ -86,30 +82,45 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
         },
     ]
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const { data } = await BookingService.fetchBookings()
-            setBookings(data)
-        }
-        fetchData();
-        checkBookings();
+    const { data, error, isLoading: isQueryLoading } = useQuery({
+        queryKey: ["bookings"],
+        queryFn: BookingService.fetchBookings,
 
-    }, []);
+        select: (data) => data?.data
+    });
 
     const checkBookings = () => {
+        
         const formatedSelectedDate = selectedDate && selectedDate.toISOString().split('T')[0];
-        const res = bookings?.find(booking => {
+        data?.forEach(booking => {
             const bookingDate = new Date(booking.date);
-            return bookingDate.toISOString().split('T')[0] === formatedSelectedDate && booking.room === item.id + "";
+            if(bookingDate.toISOString().split('T')[0] === formatedSelectedDate && booking.room === item.id) {
+                booking.hours.forEach(hour => {
+                    const ind = hours.findIndex(item => item.value === hour)
+                    if (ind >= 0) {
+                        hours[ind].booked = true
+                    }
+                })
+            } ;
         });
-
-        res?.hours.forEach(hour => {
-            const ind = hours.findIndex(item => item.value === hour)
-            if (ind >= 0) {
-                hours[ind].booked = true
-            }
-        })
+        
     }
+
+    // const checkBookings = () => {
+        
+    //     const formatedSelectedDate = selectedDate && selectedDate.toISOString().split('T')[0];
+    //     const res = data?.find(booking => {
+    //         const bookingDate = new Date(booking.date);
+    //         return bookingDate.toISOString().split('T')[0] === formatedSelectedDate && booking.room === item.id;
+    //     });
+    //     console.log(res)
+    //     res?.hours.forEach(hour => {
+    //         const ind = hours.findIndex(item => item.value === hour)
+    //         if (ind >= 0) {
+    //             hours[ind].booked = true
+    //         }
+    //     })
+    // }
 
     const handleTimeClick = (time: string) => {
         if (selectedHours.includes(time)) {
@@ -132,7 +143,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
         document.body.style.overflow = "";
     }
 
-
+    checkBookings()
 
     return (
         <div className={styles.myCalendarContainer}>

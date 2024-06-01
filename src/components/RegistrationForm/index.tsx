@@ -44,6 +44,7 @@ const RegistrationForm = () => {
             // Handle success
             console.log("Registration successful", response.data);
             queryClient.setQueryData(["authData"], response.data);
+            queryClient.invalidateQueries({queryKey: ['authData']});
             localStorage.setItem('token', response.data.accessToken)
             reset();
         },

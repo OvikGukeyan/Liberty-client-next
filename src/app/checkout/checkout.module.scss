@@ -1,4 +1,5 @@
 .checkout {
+  margin-bottom: 230px;
   .main {
     padding: 0 30px;
     max-width: 900px;
@@ -52,28 +53,15 @@
       }
     }
 
-    .auth {
-      h1 {
-        margin: 30px 0;
-        font-size: 30px;
-        text-align: center;
-      }
-      .switch {
-        width: 100%;
-        margin-bottom: 30px;
+    .book {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      .userInfo {
         display: flex;
-
-        .auth_switch {
-          width: 50%;
-          height: 60px;
-          background-color: #fff;
-          border: none;
-          font-size: 23px;
-          cursor: pointer;
-        }
-        .active {
-          border-bottom: 1px solid #000;
-        }
+        flex-direction: column;
+        margin-bottom: 50px;
       }
     }
   }

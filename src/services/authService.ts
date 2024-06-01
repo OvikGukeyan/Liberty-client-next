@@ -19,8 +19,8 @@ export default class AuthService {
         return $api.post('/logout')
     }
 
-    static async checkAuth() {
-        return localStorage.getItem('token') && axios.get(`${process.env.NEXT_PUBLIC_API_URL}/refresh`, {withCredentials: true})
+    static async checkAuth(): Promise<AxiosResponse<AuthResponse>> {
+        return $api.get(`${process.env.NEXT_PUBLIC_API_URL}/refresh`, {withCredentials: true})
     }
 };
 

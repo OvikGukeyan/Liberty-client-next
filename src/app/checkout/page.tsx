@@ -2,53 +2,87 @@
 import React, { useEffect, useState } from 'react';
 import styles from './checkout.module.scss'
 import Header from '@/components/Header';
-import RegistrationForm from '@/components/RegistrationForm';
 import AuthService from '@/services/authService';
-import { useQuery } from '@tanstack/react-query';
-import LoginForm from '@/components/LoginForm';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import Auth from '@/components/Auth';
+import Button from '@/components/Button';
+import Footer from '@/components/Footer';
+import BookingService from '@/services/bookingService';
 
-interface Room {
+export interface Room {
   name: string;
   description: string;
   img: string;
-  id: number;
+  id: string;
 }
 
-interface BookingType {
+export interface BookingType {
   room: Room | null;
   date: string;
   hours: string[];
+  userId: string
 }
 
 const Checkout = () => {
 
-  const authMethods = [{name: 'Registration'}, {name: 'Login'}]
-
   const [booking, setBooking] = useState<BookingType>({
     room: null,
     date: '',
-    hours: []
+    hours: [],
+    userId: ''
   });
 
-  const [authMethod, setAuthMethod] = useState({name: 'Registration'})
 
   const { data, error, isLoading: isQueryLoading } = useQuery({
     queryKey: ["authData"],
     queryFn: AuthService.checkAuth,
 
-    select: (data) => data
+    select: (data) => data?.data
   });
 
   useEffect(() => {
+    if (data) {
+      console.log('Data received:', data);
+    }
+
     const roomJSON = localStorage.getItem('room');
     const hoursJSON = localStorage.getItem('selectedHours');
-
     setBooking({
-      room: roomJSON ? JSON.parse(roomJSON) : '',
+      room: roomJSON ? JSON.parse(roomJSON).id  : '',
       date: localStorage.getItem('selectedDate') || '',
-      hours: hoursJSON ? JSON.parse(hoursJSON) : []
+      hours: hoursJSON ? JSON.parse(hoursJSON) : [],
+      userId: data?.user.id || ''
     });
-  }, []);
+
+  }, [data]);
+
+
+
+  const queryClient = useQueryClient()
+
+
+  const mutation = useMutation({
+    mutationFn: async (values: BookingType) => {
+      return BookingService.newBooking(values);
+    },
+    onSuccess: (response) => {
+      // Handle success
+      console.log("Booking successful", response.data);
+      queryClient.setQueryData(["booking"], response.data);
+      queryClient.invalidateQueries({ queryKey: ['booking'] });
+      // localStorage.setItem('myBooking', response.data)
+    },
+    onError: (error) => {
+      // Handle error
+      console.error("Registration failed", error);
+    },
+  });
+
+  const bookingHandler = (values: BookingType) => {
+    console.log(values)
+    mutation.mutate(values);
+  };
+
 
   return (
 
@@ -65,19 +99,31 @@ const Checkout = () => {
 
           </div>
         </div>
-        <div className={styles.auth}>
-          <h1>Authorization</h1>
-          <div className={styles.switch}>
-            {authMethods.map(item => <button onClick={() => setAuthMethod(item)} key={item.name} className={`${styles.auth_switch} ${authMethod.name === item.name && styles.active}`}>{item.name}</button>)}
-          </div>
-          {authMethod.name === 'Registration' ?
-          <RegistrationForm />
-          :
-          <LoginForm/>
+        {
+          (data?.user && !data.user.isActivated) &&
+          <p>check your email</p>
         }
-          
-        </div>
+
+        {
+          (data?.user && data.user.isActivated) &&
+          <div className={styles.book}>
+            <div className={styles.userInfo}>
+              <h3>User Info</h3>
+              <span>email: {data.user.email}</span>
+              <span>Name: {data.user.firstName} {data.user.lastName}</span>
+            </div>
+            <Button onClick={() => bookingHandler(booking)}>Buchen</Button>
+          </div>
+
+        }
+        {
+          !data?.user &&
+          <Auth />
+        }
+
       </div>
+
+      <Footer isStatic={false} />
 
     </div>
   )
