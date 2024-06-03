@@ -7,4 +7,8 @@
     cursor: pointer;
     border-radius: 5px;
     font-size: 18px;
+
+    &:disabled {
+        background-color: rgb(192, 186, 186);
+    }
 }

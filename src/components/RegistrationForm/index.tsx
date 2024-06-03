@@ -36,7 +36,7 @@ const RegistrationForm = () => {
     const queryClient = useQueryClient()
 
     
-    const mutation = useMutation({
+    const {mutate, isPending} = useMutation({
         mutationFn: async (values: RegistrationValues) => {
             return AuthService.registration(values);
         },
@@ -55,7 +55,7 @@ const RegistrationForm = () => {
     });
 
     const submitHandler: SubmitHandler<RegistrationValues> = (values) => {
-        mutation.mutate(values);
+        mutate(values);
     };
 
     
@@ -278,6 +278,7 @@ const RegistrationForm = () => {
                     >
                         Submit
                     </button>
+                    {isPending && <h2>Loading</h2>}
                 </form>
 
 

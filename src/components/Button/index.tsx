@@ -4,11 +4,12 @@ import styles from './Button.module.scss';
 interface ButtonTypes {
     children: string
     onClick: () => void
+    disabled?: boolean
 }
 
-const Button: React.FC<ButtonTypes> = ({children, onClick}) => {
+const Button: React.FC<ButtonTypes> = ({children, onClick, disabled}) => {
   return (
-    <button onClick={onClick} className={styles.button}>{children}</button>
+    <button disabled={disabled} onClick={onClick} className={styles.button}>{children}</button>
   )
 }
 

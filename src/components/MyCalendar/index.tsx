@@ -1,13 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./MyCalendar.module.scss";
 import Button from "../Button";
 import { useRouter } from "next/navigation";
-import $api from "@/http";
 import BookingService from "@/services/bookingService";
-import { Booking } from "@/models/Booking";
 import { useQuery } from "@tanstack/react-query";
 import { Room } from "@/app/checkout/page";
 
@@ -90,24 +88,24 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
     });
 
     const checkBookings = () => {
-        
+
         const formatedSelectedDate = selectedDate && selectedDate.toISOString().split('T')[0];
         data?.forEach(booking => {
             const bookingDate = new Date(booking.date);
-            if(bookingDate.toISOString().split('T')[0] === formatedSelectedDate && booking.room === item.id) {
+            if (bookingDate.toISOString().split('T')[0] === formatedSelectedDate && booking.room === item.id) {
                 booking.hours.forEach(hour => {
                     const ind = hours.findIndex(item => item.value === hour)
                     if (ind >= 0) {
                         hours[ind].booked = true
                     }
                 })
-            } ;
+            };
         });
-        
+
     }
 
     // const checkBookings = () => {
-        
+
     //     const formatedSelectedDate = selectedDate && selectedDate.toISOString().split('T')[0];
     //     const res = data?.find(booking => {
     //         const bookingDate = new Date(booking.date);
@@ -138,9 +136,12 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
         localStorage.setItem('selectedHours', JSON.stringify(selectedHours));
         localStorage.setItem('room', JSON.stringify(item));
 
+        if (selectedHours.length) {
+            router.push('/checkout');
+            document.body.style.overflow = "";
+        }
 
-        router.push('/checkout');
-        document.body.style.overflow = "";
+
     }
 
     checkBookings()
@@ -163,7 +164,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
                     {hours.map((item, ind) => <button disabled={item.booked === true} key={ind} onClick={() => handleTimeClick(item.value)} className={`${styles.time} ${selectedHours.includes(item.value) && styles.activeTime} `}>{item.value}</button>)}
                 </div>
             </div>
-            <Button onClick={handleSubmitClick}>Submit</Button>
+            <Button disabled={!selectedHours.length} onClick={handleSubmitClick}>Submit</Button>
         </div>
 
     );

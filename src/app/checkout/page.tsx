@@ -8,6 +8,7 @@ import Auth from '@/components/Auth';
 import Button from '@/components/Button';
 import Footer from '@/components/Footer';
 import BookingService from '@/services/bookingService';
+import { Http2ServerRequest } from 'http2';
 
 export interface Room {
   name: string;
@@ -17,7 +18,7 @@ export interface Room {
 }
 
 export interface BookingType {
-  room: Room | null;
+  room: string | null;
   date: string;
   hours: string[];
   userId: string
@@ -31,6 +32,7 @@ const Checkout = () => {
     hours: [],
     userId: ''
   });
+  const [room, setRoom] = useState<Room>()
 
 
   const { data, error, isLoading: isQueryLoading } = useQuery({
@@ -45,10 +47,12 @@ const Checkout = () => {
       console.log('Data received:', data);
     }
 
+
     const roomJSON = localStorage.getItem('room');
     const hoursJSON = localStorage.getItem('selectedHours');
+    roomJSON && setRoom(JSON.parse(roomJSON))
     setBooking({
-      room: roomJSON ? JSON.parse(roomJSON).id  : '',
+      room: roomJSON ? JSON.parse(roomJSON).id : '',
       date: localStorage.getItem('selectedDate') || '',
       hours: hoursJSON ? JSON.parse(hoursJSON) : [],
       userId: data?.user.id || ''
@@ -61,7 +65,7 @@ const Checkout = () => {
   const queryClient = useQueryClient()
 
 
-  const mutation = useMutation({
+  const {mutate, isPending} = useMutation({
     mutationFn: async (values: BookingType) => {
       return BookingService.newBooking(values);
     },
@@ -80,9 +84,10 @@ const Checkout = () => {
 
   const bookingHandler = (values: BookingType) => {
     console.log(values)
-    mutation.mutate(values);
+    mutate(values);
   };
 
+  
 
   return (
 
@@ -90,36 +95,42 @@ const Checkout = () => {
       <Header />
       <div className={styles.main}>
         <div className={styles.bookedItem}>
-          <div className={styles[booking.room ? booking.room.img : '']}></div>
+          <div className={styles[room ? room.img : '']}></div>
           <div className={styles.description}>
-            <h2>{booking.room && booking.room.name}</h2>
+            <h2>{room && room.name}</h2>
             <p>Date: {booking.date}</p>
             <p>Hours: {booking.hours.map((i: string, index) => <span key={index}>{i}, </span>)} </p>
             <p>Price: {booking.hours.length * 20} $</p>
 
           </div>
         </div>
-        {
-          (data?.user && !data.user.isActivated) &&
-          <p>check your email</p>
-        }
+        {isQueryLoading ? <h1>Loading...</h1> :
+          <>
+            {
+              (data?.user && !data.user.isActivated) &&
+              <p>check your email</p>
+            }
 
-        {
-          (data?.user && data.user.isActivated) &&
-          <div className={styles.book}>
-            <div className={styles.userInfo}>
-              <h3>User Info</h3>
-              <span>email: {data.user.email}</span>
-              <span>Name: {data.user.firstName} {data.user.lastName}</span>
-            </div>
-            <Button onClick={() => bookingHandler(booking)}>Buchen</Button>
-          </div>
+            {
+              (data?.user && data.user.isActivated) &&
+              <div className={styles.book}>
+                <div className={styles.userInfo}>
+                  <h3>User Info</h3>
+                  <span>email: {data.user.email}</span>
+                  <span>Name: {data.user.firstName} {data.user.lastName}</span>
+                </div>
+                <Button onClick={() => bookingHandler(booking)}>Buchen</Button>
+                {isPending && <h2>Loading</h2>}
+              </div>
 
-        }
-        {
-          !data?.user &&
-          <Auth />
-        }
+            }
+            {
+              !data?.user &&
+              <Auth />
+            }
+          </>}
+
+
 
       </div>
 
