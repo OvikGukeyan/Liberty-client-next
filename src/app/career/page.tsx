@@ -17,7 +17,7 @@ const Career: React.FC = () => {
       <Header />
       <div className={styles.main}>
         <h1>
-          Karriere bei Liberty Finance: Zukunft gestalten, <br />
+          Ihre Karriere bei der Liberty Finance GmbH:<br /> Zukunft gestalten, 
           Erfolg sichern
         </h1>
         <div className={styles.what}>

@@ -4,6 +4,7 @@ import styles from "./RegistrationForm.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import AuthService from "@/services/authService";
+import Loader from "../Loader";
 
 export interface RegistrationValues {
     firstName: string;
@@ -46,7 +47,6 @@ const RegistrationForm = () => {
             queryClient.setQueryData(["authData"], response.data);
             queryClient.invalidateQueries({queryKey: ['authData']});
             localStorage.setItem('token', response.data.accessToken)
-            reset();
         },
         onError: (error) => {
             // Handle error
@@ -278,7 +278,8 @@ const RegistrationForm = () => {
                     >
                         Submit
                     </button>
-                    {isPending && <h2>Loading</h2>}
+                    
+                    {isPending && <Loader isLoading={isPending}/>}
                 </form>
 
 

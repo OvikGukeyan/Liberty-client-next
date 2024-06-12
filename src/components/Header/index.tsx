@@ -3,10 +3,21 @@ import React, { useRef, useState } from "react";
 import styles from "./Header.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const headerItems = [
+  { name: 'home', href: '/' },
+  { name: 'about', href: '/about' },
+  { name: 'karriere', href: '/career' },
+  { name: 'coworking', href: '/coworking' },
+  { name: 'contact', href: '/contact' },
+
+]
 
 const Header = () => {
   const [isMenuVisiable, setIsMenuVisible] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const pathName = usePathname()
 
   const handleOutsideClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -65,25 +76,12 @@ const Header = () => {
             className={styles.close}
           />
           <ul>
-            <Link href={"/"}>
-              <li>home</li>
-            </Link>
-            <Link href={"/about"}>
-              <li>about</li>
-            </Link>
-            <Link href={"/career"}>
-              <li>karriere</li>
-            </Link>
-            <Link href={"/coworking"}>
-              <li>coworking</li>
-            </Link>
-            <Link href={"/contact"}>
-              <li>contact</li>
-            </Link>
-
+            {headerItems.map(item => (
+              <Link key={item.name} className={`${styles.header_item} ${pathName === item.href && styles.invisible}`} href={item.href}>
+                <li>{item.name}</li>
+              </Link>
+            ))}
           </ul>
-          {/* <Image className={styles.auth} src={"/assets/auth.png"} alt="auth" width={25} height={25} /> */}
-
         </nav>
       </div>
 

@@ -3,6 +3,7 @@ import styles from './LoginForm.module.scss';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import AuthService from '@/services/authService';
+import Loader from '../Loader';
 
 
 export interface LoginValues {
@@ -23,7 +24,7 @@ const LoginForm = () => {
 
     
     
-    const mutation = useMutation({
+    const {isPending, mutate} = useMutation({
         mutationFn: async (values: LoginValues) => {
             return AuthService.login(values);
         },
@@ -31,8 +32,8 @@ const LoginForm = () => {
             // Handle success
             console.log("Login successful", response.data);
             queryClient.setQueryData(["authData"], response.data);
+            queryClient.invalidateQueries({queryKey: ['authData']});
             localStorage.setItem('token', response.data.accessToken)
-            reset();
         },
         onError: (error) => {
             // Handle error
@@ -41,7 +42,7 @@ const LoginForm = () => {
     });
 
     const submitHandler: SubmitHandler<LoginValues> = (values) => {
-        mutation.mutate(values);
+        mutate(values);
     };
 
 
@@ -88,6 +89,7 @@ const LoginForm = () => {
                         />
                     </label>
                 </div>
+                <Loader isLoading={isPending}/>
                 <button
                     disabled={!isValid}
                     className={styles.submit_button}

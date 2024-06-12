@@ -8,7 +8,8 @@ import Auth from '@/components/Auth';
 import Button from '@/components/Button';
 import Footer from '@/components/Footer';
 import BookingService from '@/services/bookingService';
-import { Http2ServerRequest } from 'http2';
+import Loader from '@/components/Loader';
+import InfoBoard from '@/components/InfoBoard';
 
 export interface Room {
   name: string;
@@ -24,7 +25,7 @@ export interface BookingType {
   userId: string
 }
 
-const Checkout = () => {
+const Checkout: React.FC = () => {
 
   const [booking, setBooking] = useState<BookingType>({
     room: null,
@@ -65,7 +66,7 @@ const Checkout = () => {
   const queryClient = useQueryClient()
 
 
-  const {mutate, isPending} = useMutation({
+  const { mutate, isPending, isSuccess } = useMutation({
     mutationFn: async (values: BookingType) => {
       return BookingService.newBooking(values);
     },
@@ -87,7 +88,7 @@ const Checkout = () => {
     mutate(values);
   };
 
-  
+
 
   return (
 
@@ -99,17 +100,15 @@ const Checkout = () => {
           <div className={styles.description}>
             <h2>{room && room.name}</h2>
             <p>Date: {booking.date}</p>
-            <p>Hours: {booking.hours.map((i: string, index) => <span key={index}>{i}, </span>)} </p>
+            <p>Hours: {booking.hours.map((item: string, index) => <span key={index}>{item + ':00'}, </span>)} </p>
             <p>Price: {booking.hours.length * 20} $</p>
 
           </div>
         </div>
-        {isQueryLoading ? <h1>Loading...</h1> :
+        {isQueryLoading ? <Loader isLoading={isQueryLoading} /> :
           <>
-            {
-              (data?.user && !data.user.isActivated) &&
-              <p>check your email</p>
-            }
+
+            <InfoBoard text={'We have sent you an email to activate your account. Check your E-mail'} condition={!!(data?.user && !data.user.isActivated)} />
 
             {
               (data?.user && data.user.isActivated) &&
@@ -120,7 +119,8 @@ const Checkout = () => {
                   <span>Name: {data.user.firstName} {data.user.lastName}</span>
                 </div>
                 <Button onClick={() => bookingHandler(booking)}>Buchen</Button>
-                {isPending && <h2>Loading</h2>}
+                <Loader isLoading={isPending} />
+                <InfoBoard text='Booking successful' condition={isSuccess} />
               </div>
 
             }
@@ -133,7 +133,6 @@ const Checkout = () => {
 
 
       </div>
-
       <Footer isStatic={false} />
 
     </div>

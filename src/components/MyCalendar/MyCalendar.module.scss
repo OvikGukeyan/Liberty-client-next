@@ -58,6 +58,8 @@
 
         }
 
+        
+
         &:disabled {
           background-color: #cac5c4;
 
@@ -69,7 +71,16 @@
         
       }
 
+      .notAvailable {
+        background-color: rgb(242, 37, 37) !important;
+      }
+
       .activeTime {
+        background-color: #ebe8e7;
+        color: #fff;
+      }
+
+      .start_end {
         background-color: #e7816b;
         color: #fff;
       }

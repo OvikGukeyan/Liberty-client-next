@@ -6,6 +6,8 @@ import { FieldValues, useForm } from "react-hook-form";
 import axios from "axios";
 import qs from "qs";
 import Image from "next/image";
+import InfoBoard from "@/components/InfoBoard";
+import Loader from "@/components/Loader";
 
 const ContactForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -116,9 +118,8 @@ const ContactForm: React.FC = () => {
                 <p>{errors?.titel?.message?.toString() || "Wrong format!"}</p>
               )}
               <input
-                className={`${errors?.titel && styles.input_error} ${
-                  styles.input
-                }`}
+                className={`${errors?.titel && styles.input_error} ${styles.input
+                  }`}
                 {...register("titel", {
                   required: false,
                   pattern: {
@@ -140,9 +141,8 @@ const ContactForm: React.FC = () => {
                 </p>
               )}
               <input
-                className={`${errors?.firstName && styles.input_error} ${
-                  styles.input
-                }`}
+                className={`${errors?.firstName && styles.input_error} ${styles.input
+                  }`}
                 {...register("firstName", {
                   required: "Required field",
                   pattern: {
@@ -161,9 +161,8 @@ const ContactForm: React.FC = () => {
                 </p>
               )}
               <input
-                className={`${errors?.lastName && styles.input_error} ${
-                  styles.input
-                }`}
+                className={`${errors?.lastName && styles.input_error} ${styles.input
+                  }`}
                 {...register("lastName", {
                   required: "Required field",
                   pattern: {
@@ -182,9 +181,8 @@ const ContactForm: React.FC = () => {
                 </p>
               )}
               <input
-                className={`${errors?.emailAddress && styles.input_error} ${
-                  styles.input
-                }`}
+                className={`${errors?.emailAddress && styles.input_error} ${styles.input
+                  }`}
                 {...register("emailAddress", {
                   required: "Required field",
                   pattern: {
@@ -203,9 +201,8 @@ const ContactForm: React.FC = () => {
                 </p>
               )}
               <input
-                className={`${errors?.phoneNumber && styles.input_error} ${
-                  styles.input
-                }`}
+                className={`${errors?.phoneNumber && styles.input_error} ${styles.input
+                  }`}
                 {...register("phoneNumber", {
                   required: "Required field",
                   pattern: {
@@ -227,9 +224,8 @@ const ContactForm: React.FC = () => {
                 <p>{errors?.address?.message?.toString() || "Wrong format!"}</p>
               )}
               <input
-                className={`${errors?.address && styles.input_error} ${
-                  styles.input
-                }`}
+                className={`${errors?.address && styles.input_error} ${styles.input
+                  }`}
                 {...register("address", {
                   required: "Required field",
                   pattern: {
@@ -246,9 +242,8 @@ const ContactForm: React.FC = () => {
                 <p>{errors?.zipCode?.message?.toString() || "Wrong format!"}</p>
               )}
               <input
-                className={`${errors?.zipCode && styles.input_error} ${
-                  styles.input
-                }`}
+                className={`${errors?.zipCode && styles.input_error} ${styles.input
+                  }`}
                 {...register("zipCode", {
                   required: "Required field",
                   pattern: {
@@ -265,9 +260,8 @@ const ContactForm: React.FC = () => {
                 <p>{errors?.city?.message?.toString() || "Wrong format!"}</p>
               )}
               <input
-                className={`${errors?.city && styles.input_error} ${
-                  styles.input
-                }`}
+                className={`${errors?.city && styles.input_error} ${styles.input
+                  }`}
                 {...register("city", {
                   required: "Required field",
                   pattern: {
@@ -283,9 +277,8 @@ const ContactForm: React.FC = () => {
                 <p>{errors?.country?.message?.toString() || "Wrong format!"}</p>
               )}
               <input
-                className={`${errors?.country && styles.input_error} ${
-                  styles.input
-                }`}
+                className={`${errors?.country && styles.input_error} ${styles.input
+                  }`}
                 {...register("country", {
                   required: "Required field",
                   pattern: {
@@ -397,59 +390,15 @@ const ContactForm: React.FC = () => {
           <button
             disabled={!isValid}
             className={styles.submit_button}
-            type="submit"
-          >
+            type="submit">
             Abschicken
           </button>
         </form>
       </div>
-      <div
-        className={`${styles.overlay} ${
-          isSubmitted ? styles.overlayVisible : ""
-        }`}
-      >
-        <div className={styles.board}>
-          <Image
-            src={"/assets/submited.png"}
-            alt="submited"
-            width={300}
-            height={300}
-          />
-          <h1>
-            Vielen Dank für Ihr Vertrauen. <br />
-            Wir kümmern uns schnellstmöglich um Ihr Anliegen
-          </h1>
-        </div>
-      </div>
 
-      <div
-        className={`${styles.overlay} ${
-          isLoading ? styles.overlayVisible : ""
-        }`}
-      >
-        <div className={styles.loader}>
-          <div className={styles.circle}></div>
-          <div className={styles.circle}></div>
-          <div className={styles.circle}></div>
-          <div className={styles.circle}></div>
-        </div>
-      </div>
-      <div
-        className={`${styles.overlay} ${
-          isRejected ? styles.overlayVisible : ""
-        }`}
-      >
-        <div className={styles.board}>
-          <Image
-            src={"/assets/error.png"}
-            alt="error"
-            width={300}
-            height={300}
-          />
-
-          <h1>Beim Senden ist ein Fehler aufgetreten</h1>
-        </div>
-      </div>
+      <InfoBoard text={'Vielen Dank für Ihr Vertrauen. Wir kümmern uns schnellstmöglich um Ihr Anliegen'} condition={isSubmitted}/>
+      <Loader isLoading={isLoading}/>
+      <InfoBoard text="Beim Senden ist ein Fehler aufgetreten" condition={isRejected}/>
     </div>
   );
 };

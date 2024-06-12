@@ -59,7 +59,7 @@
         width: 100%;
         justify-content: space-around;
 
-        a {
+        .header_item {
           text-decoration: none;
           color: #000;
           li {
@@ -87,6 +87,10 @@
               transition: all 0.2s ease-in-out;
             }
           }
+        }
+
+        .invisible {
+          display: none;
         }
 
         

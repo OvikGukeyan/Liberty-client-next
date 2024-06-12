@@ -41,11 +41,15 @@ const CoworkingZone: React.FC<CoworkingZoneTypes> = ({ item }) => {
                 </div>
             </div>
             <div className={styles[item.img]}></div>
-            <div onClick={(e) => handleOutsideClick(e)} className={`${styles.overlay} ${isCalendarOpen && styles.overlayVisible}`}>
-                <div ref={calendarRef}>
-                    <MyCalendar item={item}/>
+            {
+                isCalendarOpen &&
+                <div onClick={(e) => handleOutsideClick(e)} className={`${styles.overlay} ${isCalendarOpen && styles.overlayVisible}`}>
+                    <div ref={calendarRef}>
+                        <MyCalendar item={item} />
+                    </div>
                 </div>
-            </div>
+            }
+
         </div>
     );
 };
