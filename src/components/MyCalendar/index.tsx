@@ -20,7 +20,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
     const [endHour, setEndHour] = useState<number | null>(null);
     const [hours, setHours] = useState([
         { value: 7, booked: false, available: true },
-        { value: 8, booked: false ,available: true },
+        { value: 8, booked: false, available: true },
         { value: 9, booked: false, available: true },
         { value: 10, booked: false, available: true },
         { value: 11, booked: false, available: true },
@@ -35,7 +35,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
         { value: 20, booked: false, available: true },
         { value: 21, booked: false, available: true },
     ])
-   
+
 
     const { data, error, isLoading: isQueryLoading } = useQuery({
         queryKey: ["bookings"],
@@ -130,7 +130,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
                         minDate={new Date()}
                         dateFormat="MMMM d, yyyy"
                         inline
-                        
+
                     />
                 </div>
                 <div className={styles.time_wrapper}>
@@ -145,6 +145,11 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
                         </button>
                     ))}
                 </div>
+            </div>
+            <div className={styles.selected}>
+                <h3>Selected time</h3>
+                <span>Date: {selectedDate && selectedDate.toISOString().split('T')[0]}</span>
+                <div className={styles.selected_hours}>Hours:  {selectedHours.length && selectedHours[0] + ':00'} {selectedHours.length > 1 && <span>  {" -" + selectedHours.at(-1) + ':00'} {'( ' + selectedHours.length + ' hours )'}</span> } </div>
             </div>
             <Button disabled={!selectedHours.length} onClick={handleSubmitClick}>Submit</Button>
         </div>

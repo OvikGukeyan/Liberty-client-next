@@ -6,7 +6,7 @@
   justify-content: space-around;
   flex-direction: column;
   background-color: #fff;
-  height: 450px;
+  height: 90vh;
   border-radius: 25px;
   padding: 30px;
 
@@ -84,6 +84,21 @@
         background-color: #e7816b;
         color: #fff;
       }
+    }
+  }
+
+  .selected {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    .selected_hours {
+      display: flex;
     }
   }
 }

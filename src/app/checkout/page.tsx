@@ -22,7 +22,12 @@ export interface BookingType {
   room: string | null;
   date: string;
   hours: string[];
-  userId: string
+  userId: string;
+  additions: {
+    coffe: boolean;
+    girls: boolean;
+    music: boolean;
+  }
 }
 
 const Checkout: React.FC = () => {
@@ -31,9 +36,21 @@ const Checkout: React.FC = () => {
     room: null,
     date: '',
     hours: [],
-    userId: ''
+    userId: '',
+    additions: {
+      coffe: false,
+      girls: false,
+      music: false
+    }
   });
-  const [room, setRoom] = useState<Room>()
+  const [room, setRoom] = useState<Room>();
+  
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    const newBooking = {...booking, additions: {...booking.additions, [name]: checked}}
+    setBooking(newBooking)
+  };
 
 
   const { data, error, isLoading: isQueryLoading } = useQuery({
@@ -48,16 +65,17 @@ const Checkout: React.FC = () => {
       console.log('Data received:', data);
     }
 
-
     const roomJSON = localStorage.getItem('room');
     const hoursJSON = localStorage.getItem('selectedHours');
     roomJSON && setRoom(JSON.parse(roomJSON))
-    setBooking({
+    const newBooking = {
+      ...booking,
       room: roomJSON ? JSON.parse(roomJSON).id : '',
       date: localStorage.getItem('selectedDate') || '',
       hours: hoursJSON ? JSON.parse(hoursJSON) : [],
-      userId: data?.user.id || ''
-    });
+      userId: data?.user.id || '',
+    }
+    setBooking(newBooking);
 
   }, [data]);
 
@@ -89,7 +107,6 @@ const Checkout: React.FC = () => {
   };
 
 
-
   return (
 
     <div className={styles.checkout}>
@@ -100,8 +117,27 @@ const Checkout: React.FC = () => {
           <div className={styles.description}>
             <h2>{room && room.name}</h2>
             <p>Date: {booking.date}</p>
-            <p>Hours: {booking.hours.map((item: string, index) => <span key={index}>{item + ':00'}, </span>)} </p>
-            <p>Price: {booking.hours.length * 20} $</p>
+            <div> <span>Hours:  {booking.hours.length && booking.hours[0] + ':00'}</span>  {booking.hours.length > 1 && <span>  {" -" + booking.hours.at(-1) + ':00'} {'( ' + booking.hours.length + ' hours )'}</span> } </div>
+            
+            <div className={styles.additions}>
+              <h3>Additional services</h3>
+              <label>
+                <input name='coffe' checked={booking.additions.coffe} onChange={handleChange} type='checkbox'/>
+                Coffe
+              </label>
+
+              <label>
+                <input name='girls' checked={booking.additions.girls} onChange={handleChange} type='checkbox'/>
+                Girls
+              </label>
+
+              <label>
+                <input name='music' checked={booking.additions.music} onChange={handleChange} type='checkbox'/>
+                Music
+              </label>
+            </div>
+            
+            <p>Total price: {booking.hours.length * 20} $</p>
 
           </div>
         </div>

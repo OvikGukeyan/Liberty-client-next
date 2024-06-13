@@ -396,9 +396,9 @@ const ContactForm: React.FC = () => {
         </form>
       </div>
 
-      <InfoBoard text={'Vielen Dank für Ihr Vertrauen. Wir kümmern uns schnellstmöglich um Ihr Anliegen'} condition={isSubmitted}/>
-      <Loader isLoading={isLoading}/>
-      <InfoBoard text="Beim Senden ist ein Fehler aufgetreten" condition={isRejected}/>
+      <InfoBoard text={'Vielen Dank für Ihr Vertrauen. Wir kümmern uns schnellstmöglich um Ihr Anliegen'} condition={isSubmitted} />
+      <Loader isLoading={isLoading} />
+      <InfoBoard text="Beim Senden ist ein Fehler aufgetreten" condition={isRejected} />
     </div>
   );
 };
