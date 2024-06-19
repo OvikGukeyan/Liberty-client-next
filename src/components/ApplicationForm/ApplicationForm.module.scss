@@ -86,6 +86,8 @@
       }
     }
 
+    
+
     .adress_input {
       width: 100%;
     }
@@ -102,6 +104,32 @@
     }
   }
 
+  .file_box {
+    h3 {
+      span {
+        font-size: 12px;
+      }
+    }
+    .file_upload {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid #cfcfcf;
+      padding: 6px 20px;
+      cursor: pointer;
+      height: 55px;
+      border-radius: 5px;
+      width: 49%;
+      margin: 15px 0;
+      .file {
+        display: none;
+      }
+
+      &:hover {
+        border: 1px solid #d87d4a;
+      }
+    }
+  }
   .title {
     margin-bottom: 20px;
   }
@@ -154,6 +182,12 @@
     .submit_button {
       align-self: center;
       width: 100%;
+    }
+
+    .file_box {
+      .file_upload {
+        width: 100%;
+      }
     }
   }
 }

@@ -93,7 +93,6 @@ const Checkout: React.FC = () => {
       console.log("Booking successful", response.data);
       queryClient.setQueryData(["booking"], response.data);
       queryClient.invalidateQueries({ queryKey: ['booking'] });
-      // localStorage.setItem('myBooking', response.data)
     },
     onError: (error) => {
       // Handle error
