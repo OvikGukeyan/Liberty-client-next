@@ -11,6 +11,7 @@ export interface RegistrationValues {
     lastName: string;
     email: string;
     phone: string;
+    company: string;
     address: string;
     zipCode: string;
     city: string;
@@ -138,6 +139,18 @@ const RegistrationForm = () => {
                                     },
                                 })}
                                 type="tel"
+                            />
+                        </label>
+
+                        <label>
+                            Firma:
+                            {errors?.company && (
+                                <p>{errors?.company?.message?.toString() || "Wrong format!"}</p>
+                            )}
+                            <input
+                                className={`${errors?.company && styles.input_error} ${styles.input
+                                    }`}
+                                {...register("company")}
                             />
                         </label>
                     </div>

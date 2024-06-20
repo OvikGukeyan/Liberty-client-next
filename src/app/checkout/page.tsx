@@ -24,10 +24,11 @@ export interface BookingType {
   hours: string[];
   userId: string;
   additions: {
-    coffe: boolean;
+    coffee: boolean;
     girls: boolean;
     music: boolean;
-  }
+  },
+  paymentMethod: string
 }
 
 const Checkout: React.FC = () => {
@@ -38,19 +39,27 @@ const Checkout: React.FC = () => {
     hours: [],
     userId: '',
     additions: {
-      coffe: false,
+      coffee: false,
       girls: false,
       music: false
-    }
+    },
+    paymentMethod: 'bill'
   });
   const [room, setRoom] = useState<Room>();
-  
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleChangeAdditions = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
-    const newBooking = {...booking, additions: {...booking.additions, [name]: checked}}
+    const newBooking = { ...booking, additions: { ...booking.additions, [name]: checked } }
     setBooking(newBooking)
   };
+
+  const handleChangePaymentMethode = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const paymentMethod = e.target.value;
+    const newBooking = { ...booking, paymentMethod: paymentMethod }
+    setBooking(newBooking)
+    console.log(paymentMethod)
+  }
 
 
   const { data, error, isLoading: isQueryLoading } = useQuery({
@@ -116,27 +125,57 @@ const Checkout: React.FC = () => {
           <div className={styles.description}>
             <h2>{room && room.name}</h2>
             <p>Date: {booking.date}</p>
-            <div> <span>Hours:  {booking.hours.length && booking.hours[0] + ':00'}</span>  {booking.hours.length > 1 && <span>  {" -" + booking.hours.at(-1) + ':00'} {'( ' + booking.hours.length + ' hours )'}</span> } </div>
-            
+            <div> <span>Hours:  {booking.hours.length && booking.hours[0] + ':00'}</span>  {booking.hours.length > 1 && <span>  {" -" + (Number(booking.hours.at(-1)) + 1) + ':00'} {'( ' + booking.hours.length + ' hours )'}</span>} </div>
+
             <div className={styles.additions}>
               <h3>Additional services</h3>
               <label>
-                <input name='coffe' checked={booking.additions.coffe} onChange={handleChange} type='checkbox'/>
-                Coffe
+                <input name='coffee' checked={booking.additions.coffee} onChange={handleChangeAdditions} type='checkbox' />
+                coffee
               </label>
 
               <label>
-                <input name='girls' checked={booking.additions.girls} onChange={handleChange} type='checkbox'/>
+                <input name='girls' checked={booking.additions.girls} onChange={handleChangeAdditions} type='checkbox' />
                 Girls
               </label>
 
               <label>
-                <input name='music' checked={booking.additions.music} onChange={handleChange} type='checkbox'/>
+                <input name='music' checked={booking.additions.music} onChange={handleChangeAdditions} type='checkbox' />
                 Music
               </label>
             </div>
-            
+
+
+
+            <h3>Zalungsmethode</h3>
+
+            <div className={styles.payment_method}>
+              <label className={styles.radio_label}>
+                Rechnung
+                <input
+                  onChange={handleChangePaymentMethode}
+                  className={styles.radio}
+                  name='paymentMethod'
+                  type="radio"
+                  value="bill"
+                />
+              </label>
+
+              <label className={styles.radio_label}>
+                Kasse
+                <input
+                  onChange={handleChangePaymentMethode}
+                  name='paymentMethod'
+                  className={styles.radio}
+                  type="radio"
+                  value="spot"
+                />
+              </label>
+
+            </div>
+
             <p>Total price: {booking.hours.length * 20} $</p>
+
 
           </div>
         </div>
