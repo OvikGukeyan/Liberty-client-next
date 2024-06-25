@@ -82,6 +82,8 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
                 }
             });
             setSelectedHours(selected);
+
+            
         } else if (startHour === null) {
             setStartHour(hour);
             setSelectedHours([hour]);
@@ -90,13 +92,25 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
             if (firstBooking) {
                 hours.forEach((item) => (item.value > firstBooking.value ? (item.available = false) : ''));
             }
+
         } else if (startHour !== null && endHour !== null) {
             setStartHour(hour);
             setEndHour(null);
             setSelectedHours([hour]);
+
+            const firstBooking = hours.find((item) => item.booked === true && item.value > hour);
+            if (firstBooking) {
+                hours.forEach((item) => (item.value > firstBooking.value ? (item.available = false) : ''));
+            }
+
         } else if (startHour !== null && hour < startHour) {
             setStartHour(hour);
             setSelectedHours([hour]);
+
+            const firstBooking = hours.find((item) => item.booked === true && item.value > hour);
+            if (firstBooking) {
+                hours.forEach((item) => (item.value > firstBooking.value ? (item.available = false) : ''));
+            }
         }
     };
 
@@ -149,7 +163,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
             <div className={styles.selected}>
                 <h3>Selected time</h3>
                 <span>Date: {selectedDate && selectedDate.toISOString().split('T')[0]}</span>
-                <div className={styles.selected_hours}>Hours:  {selectedHours.length && selectedHours[0] + ':00'} {selectedHours.length > 1 && <span>  {" -" + selectedHours.at(-1) + ':00'} {'( ' + selectedHours.length + ' hours )'}</span> } </div>
+                <div className={styles.selected_hours}>Hours:  {selectedHours.length && selectedHours[0] + ':00'} {selectedHours.length > 1 && <span>  {" -" + (Number(selectedHours.at(-1)) + 1) + ':00'} {'( ' + selectedHours.length + ' hours )'}</span> } </div>
             </div>
             <Button disabled={!selectedHours.length} onClick={handleSubmitClick}>Submit</Button>
         </div>

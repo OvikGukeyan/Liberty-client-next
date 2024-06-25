@@ -45,11 +45,12 @@ export default function Home() {
             autoPlay
             className={styles.video}
             src="./assets/Lingen1.mp4"
+            playsInline
           />
           <Header />
         </div>
         <div className={styles.services}>
-          <Carousel>
+          <Carousel controllers>
             {servicesList.map((item) => (
               <Slide item={item} />
             ))}
@@ -68,7 +69,13 @@ export default function Home() {
             für professionelle Beratung und persönlichen Service.
           </p>
         </div>
-        <div className={styles.photo_2}></div>
+        <div className={styles.photo_2}>
+          <Carousel auto>
+            {[...Array(5)].map((item, ind) => (
+              <span style={{backgroundColor: '#000', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Slide {ind + 1}</span>
+            ))}
+          </Carousel>
+        </div>
       </div>
       <Footer isStatic={false} />
     </div>

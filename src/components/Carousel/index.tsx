@@ -12,9 +12,11 @@ import styles from "./Carousel.module.scss";
 
 type CarouselTypes = {
   children: ReactNode;
+  controllers?: boolean;
+  auto?: boolean
 };
 
-const Carousel: React.FC<CarouselTypes> = ({ children }) => {
+const Carousel: React.FC<CarouselTypes> = ({ children, controllers, auto }) => {
   const [pages, setPages] = useState<ReactNode[]>([]);
   const [offset, setOffset] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -29,6 +31,7 @@ const Carousel: React.FC<CarouselTypes> = ({ children }) => {
       return result;
     });
   };
+
   const handleRightArrowClick = () => {
     setOffset((currentOffset) => {
       const newOffset = currentOffset - sliderWidth;
@@ -76,12 +79,21 @@ const Carousel: React.FC<CarouselTypes> = ({ children }) => {
     }) as ReactElement[];
     setPages(newChildren);
 
-    
+
   }, [children]);
 
-  
+  useEffect(() => {
+    if (auto) {
+      const interval = setInterval(() => {
+        handleRightArrowClick();
+      }, 3000); // Auto-flip every 5 seconds
 
-  
+      return () => clearInterval(interval); // Clear interval on component unmount
+    }
+  }, [sliderWidth, pages.length]);
+
+
+
 
   return (
     <div className={styles.main_container}>
@@ -95,7 +107,7 @@ const Carousel: React.FC<CarouselTypes> = ({ children }) => {
           {pages}
         </div>
 
-        <div className={styles.slider}>
+        {controllers && <div className={styles.slider}>
           <div onClick={handleLeftArrowClick} className={styles.button_left}>
             <svg width="14" height="24" xmlns="http://www.w3.org/2000/svg">
               <path d="M13 0L1 12l12 12" fill="none" fillRule="evenodd" />
@@ -106,7 +118,8 @@ const Carousel: React.FC<CarouselTypes> = ({ children }) => {
               <path d="M1 0l12 12L1 24" fill="none" fillRule="evenodd" />
             </svg>
           </div>
-        </div>
+        </div>}
+
       </div>
     </div>
   );

@@ -158,6 +158,7 @@ const Checkout: React.FC = () => {
                   name='paymentMethod'
                   type="radio"
                   value="bill"
+                  checked={booking.paymentMethod === 'bill'}
                 />
               </label>
 
@@ -169,6 +170,7 @@ const Checkout: React.FC = () => {
                   className={styles.radio}
                   type="radio"
                   value="spot"
+                  checked={booking.paymentMethod === 'spot'}
                 />
               </label>
 
