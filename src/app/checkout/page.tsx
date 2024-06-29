@@ -33,34 +33,11 @@ export interface BookingType {
 
 const Checkout: React.FC = () => {
 
-  const [booking, setBooking] = useState<BookingType>({
-    room: null,
-    date: '',
-    hours: [],
-    userId: '',
-    additions: {
-      coffee: false,
-      girls: false,
-      music: false
-    },
-    paymentMethod: 'bill'
-  });
+  
   const [room, setRoom] = useState<Room>();
 
 
-  const handleChangeAdditions = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-    const newBooking = { ...booking, additions: { ...booking.additions, [name]: checked } }
-    setBooking(newBooking)
-  };
-
-  const handleChangePaymentMethode = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const paymentMethod = e.target.value;
-    const newBooking = { ...booking, paymentMethod: paymentMethod }
-    setBooking(newBooking)
-    console.log(paymentMethod)
-  }
-
+ 
 
   const { data, error, isLoading: isQueryLoading } = useQuery({
     queryKey: ["authData"],
@@ -69,24 +46,24 @@ const Checkout: React.FC = () => {
     select: (data) => data?.data
   });
 
-  useEffect(() => {
-    if (data) {
-      console.log('Data received:', data);
-    }
+  // useEffect(() => {
+  //   if (data) {
+  //     console.log('Data received:', data);
+  //   }
 
-    const roomJSON = localStorage.getItem('room');
-    const hoursJSON = localStorage.getItem('selectedHours');
-    roomJSON && setRoom(JSON.parse(roomJSON))
-    const newBooking = {
-      ...booking,
-      room: roomJSON ? JSON.parse(roomJSON).id : '',
-      date: localStorage.getItem('selectedDate') || '',
-      hours: hoursJSON ? JSON.parse(hoursJSON) : [],
-      userId: data?.user.id || '',
-    }
-    setBooking(newBooking);
+  //   const roomJSON = localStorage.getItem('room');
+  //   const hoursJSON = localStorage.getItem('selectedHours');
+  //   roomJSON && setRoom(JSON.parse(roomJSON))
+  //   const newBooking = {
+  //     ...booking,
+  //     room: roomJSON ? JSON.parse(roomJSON).id : '',
+  //     date: localStorage.getItem('selectedDate') || '',
+  //     hours: hoursJSON ? JSON.parse(hoursJSON) : [],
+  //     userId: data?.user.id || '',
+  //   }
+  //   setBooking(newBooking);
 
-  }, [data]);
+  // }, [data]);
 
 
 
@@ -124,59 +101,7 @@ const Checkout: React.FC = () => {
           <div className={styles[room ? room.img : '']}></div>
           <div className={styles.description}>
             <h2>{room && room.name}</h2>
-            <p>Date: {booking.date}</p>
-            <div> <span>Hours:  {booking.hours.length && booking.hours[0] + ':00'}</span>  {booking.hours.length > 1 && <span>  {" -" + (Number(booking.hours.at(-1)) + 1) + ':00'} {'( ' + booking.hours.length + ' hours )'}</span>} </div>
-
-            <div className={styles.additions}>
-              <h3>Additional services</h3>
-              <label>
-                <input name='coffee' checked={booking.additions.coffee} onChange={handleChangeAdditions} type='checkbox' />
-                coffee
-              </label>
-
-              <label>
-                <input name='girls' checked={booking.additions.girls} onChange={handleChangeAdditions} type='checkbox' />
-                Girls
-              </label>
-
-              <label>
-                <input name='music' checked={booking.additions.music} onChange={handleChangeAdditions} type='checkbox' />
-                Music
-              </label>
-            </div>
-
-
-
-            <h3>Zalungsmethode</h3>
-
-            <div className={styles.payment_method}>
-              <label className={styles.radio_label}>
-                Rechnung
-                <input
-                  onChange={handleChangePaymentMethode}
-                  className={styles.radio}
-                  name='paymentMethod'
-                  type="radio"
-                  value="bill"
-                  checked={booking.paymentMethod === 'bill'}
-                />
-              </label>
-
-              <label className={styles.radio_label}>
-                Kasse
-                <input
-                  onChange={handleChangePaymentMethode}
-                  name='paymentMethod'
-                  className={styles.radio}
-                  type="radio"
-                  value="spot"
-                  checked={booking.paymentMethod === 'spot'}
-                />
-              </label>
-
-            </div>
-
-            <p>Total price: {booking.hours.length * 20} $</p>
+            
 
 
           </div>
@@ -194,7 +119,7 @@ const Checkout: React.FC = () => {
                   <span>email: {data.user.email}</span>
                   <span>Name: {data.user.firstName} {data.user.lastName}</span>
                 </div>
-                <Button onClick={() => bookingHandler(booking)}>Buchen</Button>
+                {/* <Button onClick={() => bookingHandler(booking)}>Buchen</Button> */}
                 <Loader isLoading={isPending} />
                 <InfoBoard text='Booking successful' condition={isSuccess} />
               </div>

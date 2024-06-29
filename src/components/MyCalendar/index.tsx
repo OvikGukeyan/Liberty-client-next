@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./MyCalendar.module.scss";
@@ -10,14 +10,19 @@ import { useQuery } from "@tanstack/react-query";
 import { Room } from "@/app/checkout/page";
 
 interface MyCalendarTypes {
-    item: Room;
+    room: Room;
+    selectedDate: Date | null;
+    setSelectedDate: Dispatch<SetStateAction<Date | null>>;
+    selectedHours: number[];
+    setSelectedHours: Dispatch<SetStateAction<number[]>>
 }
 
-const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
-    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-    const [selectedHours, setSelectedHours] = useState<number[]>([]);
+const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelectedDate, selectedHours, setSelectedHours }) => {
+    
+
     const [startHour, setStartHour] = useState<number | null>(null);
     const [endHour, setEndHour] = useState<number | null>(null);
+
     const [hours, setHours] = useState([
         { value: 7, booked: false, available: true },
         { value: 8, booked: false, available: true },
@@ -43,7 +48,8 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
         select: (data) => data?.data,
     });
 
-
+    
+    
 
 
     const checkBookings = () => {
@@ -55,7 +61,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
         setSelectedHours([])
         data.forEach((booking) => {
             const bookingDate = new Date(booking.date);
-            if (bookingDate.toISOString().split('T')[0] === formattedSelectedDate && booking.room === item.id) {
+            if (bookingDate.toISOString().split('T')[0] === formattedSelectedDate && booking.room === room.id) {
                 booking.hours.forEach((hour) => {
                     const ind = updatedHours.findIndex((item) => item.value.toString() === hour);
                     if (ind >= 0) {
@@ -114,19 +120,26 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
         }
     };
 
+    const handleDateClick = (date: Date | null) => {
+        setSelectedDate(date);
+        setSelectedHours([]);
+        setStartHour(null);
+        setEndHour(null)
+    }
+
     const router = useRouter();
 
-    const handleSubmitClick = () => {
-        const dateString = selectedDate ? selectedDate.toISOString().split('T')[0] : '';
-        localStorage.setItem('selectedDate', dateString);
-        localStorage.setItem('selectedHours', JSON.stringify(selectedHours));
-        localStorage.setItem('room', JSON.stringify(item));
+    // const handleSubmitClick = () => {
+    //     const dateString = selectedDate ? selectedDate.toISOString().split('T')[0] : '';
+    //     localStorage.setItem('selectedDate', dateString);
+    //     localStorage.setItem('selectedHours', JSON.stringify(selectedHours));
+    //     localStorage.setItem('room', JSON.stringify(room));
 
-        if (selectedHours.length) {
-            router.push('/checkout');
-            document.body.style.overflow = "";
-        }
-    };
+    //     if (selectedHours.length) {
+    //         router.push('/checkout');
+    //         document.body.style.overflow = "";
+    //     }
+    // };
     useEffect(() => {
         checkBookings();
 
@@ -140,7 +153,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
                     <DatePicker
                         calendarClassName={styles.calendar}
                         selected={selectedDate}
-                        onChange={(date: Date | null) => setSelectedDate(date)}
+                        onChange={(date: Date | null) => {handleDateClick(date)}}
                         minDate={new Date()}
                         dateFormat="MMMM d, yyyy"
                         inline
@@ -165,7 +178,9 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ item }) => {
                 <span>Date: {selectedDate && selectedDate.toISOString().split('T')[0]}</span>
                 <div className={styles.selected_hours}>Hours:  {selectedHours.length && selectedHours[0] + ':00'} {selectedHours.length > 1 && <span>  {" -" + (Number(selectedHours.at(-1)) + 1) + ':00'} {'( ' + selectedHours.length + ' hours )'}</span> } </div>
             </div>
-            <Button disabled={!selectedHours.length} onClick={handleSubmitClick}>Submit</Button>
+
+          
+            {/* <Button disabled={!selectedHours.length} onClick={handleSubmitClick}>Submit</Button> */}
         </div>
     );
 };
