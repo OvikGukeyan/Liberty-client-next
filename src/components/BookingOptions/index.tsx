@@ -11,7 +11,7 @@ interface BookingOptionsType {
 }
 
 const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
-    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const [selectedHours, setSelectedHours] = useState<number[]>([]);
     const [additions, setAdditions] = useState({
         coffee: false,
@@ -49,7 +49,7 @@ const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
 
     const handleAddToCart = () => {
         const newBooking = {
-            date: selectedDate,
+            date: selectedDate.toISOString().split('T')[0],
             hours: selectedHours,
             additions: additions,
             paymentMethod: paymentMethod,

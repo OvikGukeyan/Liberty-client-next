@@ -11,8 +11,8 @@ import { Room } from "@/app/checkout/page";
 
 interface MyCalendarTypes {
     room: Room;
-    selectedDate: Date | null;
-    setSelectedDate: Dispatch<SetStateAction<Date | null>>;
+    selectedDate: Date;
+    setSelectedDate: Dispatch<SetStateAction<Date>>;
     selectedHours: number[];
     setSelectedHours: Dispatch<SetStateAction<number[]>>
 }
@@ -120,7 +120,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
         }
     };
 
-    const handleDateClick = (date: Date | null) => {
+    const handleDateClick = (date: Date) => {
         setSelectedDate(date);
         setSelectedHours([]);
         setStartHour(null);
@@ -153,7 +153,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
                     <DatePicker
                         calendarClassName={styles.calendar}
                         selected={selectedDate}
-                        onChange={(date: Date | null) => {handleDateClick(date)}}
+                        onChange={(date: Date ) => {handleDateClick(date)}}
                         minDate={new Date()}
                         dateFormat="MMMM d, yyyy"
                         inline

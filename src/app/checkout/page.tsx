@@ -86,7 +86,7 @@ const Checkout: React.FC = () => {
               <Image className={styles.room_image} src={'/assets/conf1.jpeg'} alt='room' width={80} height={80} />
               <div className={styles.info}>
                 <span>{item.room}</span>
-                <span>Date: {item.date && item.date.split('T')[0]}</span>
+                <span>Date: {item.date}</span>
                 <div className={styles.selected_hours}>Hours:  {item.hours.length && item.hours[0] + ':00'} {item.hours.length > 1 && <span>  {" -" + (Number(item.hours.at(-1)) + 1) + ':00'} {'( ' + item.hours.length + ' hours )'}</span>} </div>
 
               </div>

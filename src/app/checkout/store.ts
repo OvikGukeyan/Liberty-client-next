@@ -4,7 +4,7 @@ import { immer } from "zustand/middleware/immer";
 
 // Define the type for CartItem
 type CartItem = {
-    date: Date | null;
+    date: string;
     hours: number[];
     additions: {
         coffee: boolean;
