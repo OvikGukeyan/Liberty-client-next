@@ -4,6 +4,7 @@ import MyCalendar from '../MyCalendar';
 import { BookingType, Room } from '@/app/checkout/page';
 import Button from '../Button';
 import { useBookingsStore } from '@/app/checkout/store';
+import Image from 'next/image';
 
 interface BookingOptionsType {
     room: Room
@@ -22,6 +23,18 @@ const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
 
     const addBooking = useBookingsStore(store => store.addBooking)
     const bookings = useBookingsStore(store => store.bookings)
+
+    const handlePlusClick = () => {
+        if(numberOfVisitors < 15) {
+            setNumberOfVisitors(prev => prev + 1)
+        }
+    }
+
+    const handleMinusClick = () => {
+        if(numberOfVisitors > 1) {
+            setNumberOfVisitors(prev => prev - 1)
+        }
+    }
 
     const handleChangeAdditions = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, checked } = e.target;
@@ -42,9 +55,11 @@ const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
             paymentMethod: paymentMethod,
             numberOfVisitors: numberOfVisitors,
             room: room.name,
-        } 
+            id: Date.now()
+        }
         addBooking(newBooking)
         console.log(bookings)
+        
     }
 
     return (
@@ -57,61 +72,68 @@ const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
                 room={room}
             />
 
-
-            <div className={styles.additions}>
+            <div className={styles.adjustments}>
                 <h3>Additional services</h3>
-                <label>
-                    <input name='coffee' checked={additions.coffee} onChange={handleChangeAdditions} type='checkbox' />
-                    coffee
-                </label>
 
-                <label>
-                    <input name='girls' checked={additions.girls} onChange={handleChangeAdditions} type='checkbox' />
-                    Girls
-                </label>
+                <div className={styles.input_box}>
+                    <label className={styles.radio_label}>
+                        Coffee
+                        <input className={styles.radio} name='coffee' checked={additions.coffee} onChange={handleChangeAdditions} type='checkbox' />
+                    </label>
 
-                <label>
-                    <input name='music' checked={additions.music} onChange={handleChangeAdditions} type='checkbox' />
-                    Music
-                </label>
-            </div>
+                    <label className={styles.radio_label}>
+                        Girls
+                        <input className={styles.radio} name='girls' checked={additions.girls} onChange={handleChangeAdditions} type='checkbox' />
+                    </label>
+
+                    <label className={styles.radio_label}>
+                        Music
+                        <input className={styles.radio} name='music' checked={additions.music} onChange={handleChangeAdditions} type='checkbox' />
+                    </label>
+                </div>
 
 
 
-            <h3>Zalungsmethode</h3>
+                <h3>Zalungsmethode</h3>
 
-            <div className={styles.payment_method}>
-                <label className={styles.radio_label}>
-                    Rechnung
-                    <input
-                        onChange={handleChangePaymentMethode}
-                        className={styles.radio}
-                        name='paymentMethod'
-                        type="radio"
-                        value="bill"
-                        checked={paymentMethod === 'bill'}
-                    />
-                </label>
+                <div className={styles.input_box}>
+                    <label className={styles.radio_label}>
+                        Rechnung
+                        <input
+                            onChange={handleChangePaymentMethode}
+                            className={styles.radio}
+                            name='paymentMethod'
+                            type="radio"
+                            value="bill"
+                            checked={paymentMethod === 'bill'}
+                        />
+                    </label>
 
-                <label className={styles.radio_label}>
-                    Kasse
-                    <input
-                        onChange={handleChangePaymentMethode}
-                        name='paymentMethod'
-                        className={styles.radio}
-                        type="radio"
-                        value="spot"
-                        checked={paymentMethod === 'spot'}
-                    />
-                </label>
+                    <label className={styles.radio_label}>
+                        Kasse
+                        <input
+                            onChange={handleChangePaymentMethode}
+                            name='paymentMethod'
+                            className={styles.radio}
+                            type="radio"
+                            value="spot"
+                            checked={paymentMethod === 'spot'}
+                        />
+                    </label>
 
-            </div>
-
-            <div>
+                </div>
                 <h3>Besucherzahl</h3>
 
+                <div className={styles.number_of_visitors}>
+                    <Image onClick={handleMinusClick} src={'/assets/minus.png'} alt='minus' width={35} height={35}/>
+                    <span>{numberOfVisitors}</span>
+                    <Image onClick={handlePlusClick} src={'/assets/plus.png'} alt='minus' width={35} height={35}/>
 
+
+                </div>
             </div>
+
+
 
             <Button onClick={handleAddToCart}>Add to Cart</Button>
         </div>

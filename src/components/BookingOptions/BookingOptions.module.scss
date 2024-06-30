@@ -1,41 +1,68 @@
 .wrapper {
-    overflow: scroll;
-    height: 95vh;
-    padding: 60px;
-    background-color: #fff;
-    border-radius: 15px;
+  overflow: scroll;
+  height: 95vh;
+  padding: 60px;
+  background-color: #fff;
+  border-radius: 15px;
 
-    .additions {
-        margin-bottom: 15px;
-        h3 {
-          margin: 10px 0;
-        }
-        label {
-          margin-right: 15px;
+  .adjustments {
+    .input_box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 15px;
 
-          input {
-            font-size: 16px;
-            margin-right: 5px;
-          }
-        }
-      }
-     
-
-      .payment_method {
-        margin: 10px 0;
-        max-width: 200px;
+      .radio_label {
+        width: 49%;
+        height: 56px;
+        margin-bottom: 16px;
         display: flex;
-        justify-content: space-between;
-        .radio_label {
-          display: flex;
-          flex-direction: column-reverse;
-          align-items: center;
+        flex-direction: row-reverse;
+        border: 1px solid #cfcfcf;
+        border-radius: 8px;
+        justify-content: flex-end;
+        align-items: center;
+        letter-spacing: 1px;
 
-          input {
-            font-size: 16px;
-            width: 50px;
+        .radio {
+          margin: 0 20px 0 20px;
+          border: 2px solid white;
+          box-shadow: 0 0 0 1px #cfcfcf;
+          appearance: none;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          background-color: #fff;
+          transition: all ease-in 0.2s;
+          cursor: pointer;
+
+          &:hover {
+            box-shadow: 0 0 0 1px #cd2c2c;
           }
 
+          &:checked {
+            background-color: #d87d4a;
+          }
         }
       }
+    }
+
+    .number_of_visitors {
+      margin: 15px 0 25px 0;
+      width: 49%;
+      height: 56px;
+      border: 1px solid #cfcfcf;
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      span {
+        font-size: 22px;
+      }
+
+
+    }
+  }
 }

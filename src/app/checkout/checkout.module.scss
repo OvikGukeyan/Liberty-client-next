@@ -5,53 +5,31 @@
     max-width: 900px;
     margin: 0 auto;
 
-    .bookedItem {
-      margin: 50px 0 100px 0;
+    .cart {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
 
-      .conf1 {
-        background-image: url(../../../public//assets/conf1.jpeg);
+      h2 {
+        margin-bottom: 20px;
       }
 
-      .sonf2 {
-        background-image: url(../../../public//assets/conf2.jpg);
-      }
-
-      .work_space {
-        background-image: url(../../../public//assets/work-space.jpeg);
-      }
-
-      .conf1,
-      .sonf2,
-      .work_space {
-        width: 35%;
-        aspect-ratio: 1/1.4;
-        background-size: cover;
-        background-position: center;
-        border-radius: 25px;
-      }
-
-      .description {
-        width: 63%;
-        padding: 50px;
-        background-color: #fdf3f0;
-        border-radius: 25px;
+      .cart_item {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 15px;
 
-        h2 {
-          margin-bottom: 30px;
+        .room_image {
+          border-radius: 10px;
         }
 
-        p, span {
-          font-size: 20px;
-          font-weight: 500;
+        .info {
+          display: flex;
+          flex-direction: column;
         }
-
-       
       }
+
     }
 
     .book {

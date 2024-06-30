@@ -174,7 +174,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
                 </div>
             </div>
             <div className={styles.selected}>
-                <h3>Selected time</h3>
+                <h3>Selected date</h3>
                 <span>Date: {selectedDate && selectedDate.toISOString().split('T')[0]}</span>
                 <div className={styles.selected_hours}>Hours:  {selectedHours.length && selectedHours[0] + ':00'} {selectedHours.length > 1 && <span>  {" -" + (Number(selectedHours.at(-1)) + 1) + ':00'} {'( ' + selectedHours.length + ' hours )'}</span> } </div>
             </div>

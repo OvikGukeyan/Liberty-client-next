@@ -10,6 +10,10 @@ import Footer from '@/components/Footer';
 import BookingService from '@/services/bookingService';
 import Loader from '@/components/Loader';
 import InfoBoard from '@/components/InfoBoard';
+import { useBookingsStore } from './store';
+import Image from 'next/image';
+import { all } from 'axios';
+import { it } from 'node:test';
 
 export interface Room {
   name: string;
@@ -33,11 +37,8 @@ export interface BookingType {
 
 const Checkout: React.FC = () => {
 
-  
-  const [room, setRoom] = useState<Room>();
-
-
- 
+  const bookings = useBookingsStore(store => store.bookings)
+  const deleteBooking = useBookingsStore(store => store.deleteBooking)
 
   const { data, error, isLoading: isQueryLoading } = useQuery({
     queryKey: ["authData"],
@@ -45,27 +46,6 @@ const Checkout: React.FC = () => {
 
     select: (data) => data?.data
   });
-
-  // useEffect(() => {
-  //   if (data) {
-  //     console.log('Data received:', data);
-  //   }
-
-  //   const roomJSON = localStorage.getItem('room');
-  //   const hoursJSON = localStorage.getItem('selectedHours');
-  //   roomJSON && setRoom(JSON.parse(roomJSON))
-  //   const newBooking = {
-  //     ...booking,
-  //     room: roomJSON ? JSON.parse(roomJSON).id : '',
-  //     date: localStorage.getItem('selectedDate') || '',
-  //     hours: hoursJSON ? JSON.parse(hoursJSON) : [],
-  //     userId: data?.user.id || '',
-  //   }
-  //   setBooking(newBooking);
-
-  // }, [data]);
-
-
 
   const queryClient = useQueryClient()
 
@@ -86,6 +66,8 @@ const Checkout: React.FC = () => {
     },
   });
 
+  
+
   const bookingHandler = (values: BookingType) => {
     console.log(values)
     mutate(values);
@@ -97,14 +79,24 @@ const Checkout: React.FC = () => {
     <div className={styles.checkout}>
       <Header />
       <div className={styles.main}>
-        <div className={styles.bookedItem}>
-          <div className={styles[room ? room.img : '']}></div>
-          <div className={styles.description}>
-            <h2>{room && room.name}</h2>
-            
+        <div className={styles.cart}>
+          <h2>Your bookings</h2>
+          {bookings.length && bookings.map(item => (
+            <div className={styles.cart_item}>
+              <Image className={styles.room_image} src={'/assets/conf1.jpeg'} alt='room' width={80} height={80} />
+              <div className={styles.info}>
+                <span>{item.room}</span>
+                <span>Date: {item.date && item.date.split('T')[0]}</span>
+                <div className={styles.selected_hours}>Hours:  {item.hours.length && item.hours[0] + ':00'} {item.hours.length > 1 && <span>  {" -" + (Number(item.hours.at(-1)) + 1) + ':00'} {'( ' + item.hours.length + ' hours )'}</span>} </div>
+
+              </div>
+              <Image onClick={() => deleteBooking(item.id)} src={'/assets/close.png'} alt='delete' width={30} height={30} />
+            </div>
+          ))}
 
 
-          </div>
+
+
         </div>
         {isQueryLoading ? <Loader isLoading={isQueryLoading} /> :
           <>
@@ -118,6 +110,7 @@ const Checkout: React.FC = () => {
                   <h3>User Info</h3>
                   <span>email: {data.user.email}</span>
                   <span>Name: {data.user.firstName} {data.user.lastName}</span>
+
                 </div>
                 {/* <Button onClick={() => bookingHandler(booking)}>Buchen</Button> */}
                 <Loader isLoading={isPending} />
