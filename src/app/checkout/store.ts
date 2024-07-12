@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 // Define the type for CartItem
-type CartItem = {
+export type CartItem = {
     date: string;
     hours: number[];
     additions: {
@@ -14,7 +14,7 @@ type CartItem = {
     paymentMethod: string;
     numberOfVisitors: number;
     room: string;
-    id: number; // ID can be optional when creating a new item
+    id: number; 
 };
 
 // Define the interface for the state

@@ -10,10 +10,8 @@ import Footer from '@/components/Footer';
 import BookingService from '@/services/bookingService';
 import Loader from '@/components/Loader';
 import InfoBoard from '@/components/InfoBoard';
-import { useBookingsStore } from './store';
+import { CartItem, useBookingsStore } from './store';
 import Image from 'next/image';
-import { all } from 'axios';
-import { it } from 'node:test';
 
 export interface Room {
   name: string;
@@ -22,22 +20,14 @@ export interface Room {
   id: string;
 }
 
-export interface BookingType {
-  room: string | null;
-  date: string;
-  hours: string[];
+export type BookingType = Omit<CartItem, 'id'> & {
   userId: string;
-  additions: {
-    coffee: boolean;
-    girls: boolean;
-    music: boolean;
-  },
-  paymentMethod: string
-}
+};
+
 
 const Checkout: React.FC = () => {
 
-  const bookings = useBookingsStore(store => store.bookings)
+  const cartItems = useBookingsStore(store => store.bookings)
   const deleteBooking = useBookingsStore(store => store.deleteBooking)
 
   const { data, error, isLoading: isQueryLoading } = useQuery({
@@ -51,7 +41,7 @@ const Checkout: React.FC = () => {
 
 
   const { mutate, isPending, isSuccess } = useMutation({
-    mutationFn: async (values: BookingType) => {
+    mutationFn: async (values: BookingType[]) => {
       return BookingService.newBooking(values);
     },
     onSuccess: (response) => {
@@ -66,11 +56,14 @@ const Checkout: React.FC = () => {
     },
   });
 
-  
 
-  const bookingHandler = (values: BookingType) => {
-    console.log(values)
-    mutate(values);
+
+  const bookingHandler = (values: CartItem[]) => {
+    if (data?.user.id) {
+      const bookings = values.map(({ id, ...values }) => ({ userId: data?.user.id, ...values }))
+      console.log(values)
+      mutate(bookings);
+    }
   };
 
 
@@ -81,7 +74,7 @@ const Checkout: React.FC = () => {
       <div className={styles.main}>
         <div className={styles.cart}>
           <h2>Your bookings</h2>
-          {bookings.length && bookings.map(item => (
+          {cartItems.length && cartItems.map(item => (
             <div className={styles.cart_item}>
               <Image className={styles.room_image} src={'/assets/conf1.jpeg'} alt='room' width={80} height={80} />
               <div className={styles.info}>
@@ -112,7 +105,7 @@ const Checkout: React.FC = () => {
                   <span>Name: {data.user.firstName} {data.user.lastName}</span>
 
                 </div>
-                {/* <Button onClick={() => bookingHandler(booking)}>Buchen</Button> */}
+                <Button onClick={() => bookingHandler(cartItems)}>Buchen</Button>
                 <Loader isLoading={isPending} />
                 <InfoBoard text='Booking successful' condition={isSuccess} />
               </div>

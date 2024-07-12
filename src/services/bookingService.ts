@@ -8,7 +8,7 @@ export default class BookingService {
         return $api.get('/bookings')
     }
 
-    static async newBooking (booking: BookingType): Promise<AxiosResponse<Booking>> {
+    static async newBooking (booking: BookingType[]): Promise<AxiosResponse<Booking>> {
         return $api.post('/book', booking)
     }
 }
