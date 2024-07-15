@@ -3,13 +3,16 @@ import styles from './Button.module.scss';
 
 interface ButtonTypes {
     children: string
-    onClick: () => void
+    onClick?: () => void
     disabled?: boolean
+    type?: "button" | "submit" | "reset" | undefined
+    className: 'pink_button' | 'black_button'
+
 }
 
-const Button: React.FC<ButtonTypes> = ({children, onClick, disabled}) => {
+const Button: React.FC<ButtonTypes> = ({children, onClick, disabled, type, className}) => {
   return (
-    <button disabled={disabled} onClick={onClick} className={styles.button}>{children}</button>
+    <button type={type ? type : "button"} disabled={disabled} onClick={onClick} className={styles[className]}>{children}</button>
   )
 }
 

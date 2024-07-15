@@ -38,7 +38,7 @@ const CoworkingZone: React.FC<CoworkingZoneTypes> = ({ item }) => {
                 <h2>{item.name}</h2>
                 <p>{item.description}</p>
                 <div className={styles.button_boix}>
-                    <Button onClick={handleBookingClick}>Buchen</Button>
+                    <Button className={'pink_button'} onClick={handleBookingClick}>Buchen</Button>
                 </div>
             </div>
             <div className={styles[item.img]}></div>

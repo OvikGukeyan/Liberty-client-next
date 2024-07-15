@@ -8,6 +8,7 @@ import qs from "qs";
 import Image from "next/image";
 import InfoBoard from "@/components/InfoBoard";
 import Loader from "@/components/Loader";
+import Button from "@/components/Button";
 
 const ContactForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -387,12 +388,10 @@ const ContactForm: React.FC = () => {
             </p>
           </div>
 
-          <button
-            disabled={!isValid}
-            className={styles.submit_button}
-            type="submit">
+          
+          <Button disabled={!isValid} className={'black_button'} type="submit">
             Abschicken
-          </button>
+          </Button>
         </form>
       </div>
 

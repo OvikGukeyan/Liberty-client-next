@@ -3,7 +3,6 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./MyCalendar.module.scss";
-import Button from "../Button";
 import { useRouter } from "next/navigation";
 import BookingService from "@/services/bookingService";
 import { useQuery } from "@tanstack/react-query";
@@ -180,7 +179,6 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
             </div>
 
           
-            {/* <Button disabled={!selectedHours.length} onClick={handleSubmitClick}>Submit</Button> */}
         </div>
     );
 };

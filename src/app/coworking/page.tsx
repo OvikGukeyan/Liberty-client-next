@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import React from "react";
 import styles from "./coworking.module.scss";
-import Button from "@/components/Button";
 import Footer from "@/components/Footer";
 import CoworkingZone from "@/components/CoworkingZone";
 

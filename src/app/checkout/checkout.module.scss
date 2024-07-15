@@ -5,32 +5,7 @@
     max-width: 900px;
     margin: 0 auto;
 
-    .cart {
-      display: flex;
-      flex-direction: column;
-
-      h2 {
-        margin-bottom: 20px;
-      }
-
-      .cart_item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 15px;
-
-        .room_image {
-          border-radius: 10px;
-        }
-
-        .info {
-          display: flex;
-          flex-direction: column;
-        }
-      }
-
-    }
+    
 
     .book {
       display: flex;

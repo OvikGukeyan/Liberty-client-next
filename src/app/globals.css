@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 .react-datepicker__month-container {
   float: none !important;
   font-size: 18px !important;

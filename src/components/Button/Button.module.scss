@@ -1,4 +1,4 @@
-.button {
+.pink_button {
     min-width: 160px;
     height: 55px;
     background-color: #e7816b;
@@ -10,5 +10,30 @@
 
     &:disabled {
         background-color: rgb(192, 186, 186);
+        cursor: auto;
     }
 }
+
+.black_button {
+    width: 160px;
+    height: 50px;
+    background-color: #fff;
+    border: 2px solid #000;
+    color: #000;
+    font-weight: 500;
+    font-size: 16px;
+    align-self: flex-end;
+    margin-top: 25px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+
+    &:disabled {
+      background-color: #777676;
+      border: #777676;
+      color: #cfcfcf;
+    }
+  }

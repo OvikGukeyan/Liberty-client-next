@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './checkout.module.scss'
 import Header from '@/components/Header';
 import AuthService from '@/services/authService';
@@ -11,7 +11,7 @@ import BookingService from '@/services/bookingService';
 import Loader from '@/components/Loader';
 import InfoBoard from '@/components/InfoBoard';
 import { CartItem, useBookingsStore } from './store';
-import Image from 'next/image';
+import Cart from '../../components/Cart';
 
 export interface Room {
   name: string;
@@ -28,7 +28,6 @@ export type BookingType = Omit<CartItem, 'id'> & {
 const Checkout: React.FC = () => {
 
   const cartItems = useBookingsStore(store => store.bookings)
-  const deleteBooking = useBookingsStore(store => store.deleteBooking)
 
   const { data, error, isLoading: isQueryLoading } = useQuery({
     queryKey: ["authData"],
@@ -72,25 +71,7 @@ const Checkout: React.FC = () => {
     <div className={styles.checkout}>
       <Header />
       <div className={styles.main}>
-        <div className={styles.cart}>
-          <h2>Your bookings</h2>
-          {cartItems.length && cartItems.map(item => (
-            <div className={styles.cart_item}>
-              <Image className={styles.room_image} src={'/assets/conf1.jpeg'} alt='room' width={80} height={80} />
-              <div className={styles.info}>
-                <span>{item.room}</span>
-                <span>Date: {item.date}</span>
-                <div className={styles.selected_hours}>Hours:  {item.hours.length && item.hours[0] + ':00'} {item.hours.length > 1 && <span>  {" -" + (Number(item.hours.at(-1)) + 1) + ':00'} {'( ' + item.hours.length + ' hours )'}</span>} </div>
-
-              </div>
-              <Image onClick={() => deleteBooking(item.id)} src={'/assets/close.png'} alt='delete' width={30} height={30} />
-            </div>
-          ))}
-
-
-
-
-        </div>
+       <Cart/>
         {isQueryLoading ? <Loader isLoading={isQueryLoading} /> :
           <>
 
@@ -105,7 +86,7 @@ const Checkout: React.FC = () => {
                   <span>Name: {data.user.firstName} {data.user.lastName}</span>
 
                 </div>
-                <Button onClick={() => bookingHandler(cartItems)}>Buchen</Button>
+                <Button className={'pink_button'} onClick={() => bookingHandler(cartItems)}>Buchen</Button>
                 <Loader isLoading={isPending} />
                 <InfoBoard text='Booking successful' condition={isSuccess} />
               </div>

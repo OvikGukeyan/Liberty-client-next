@@ -144,29 +144,7 @@
     }
   }
 
-  .submit_button {
-    width: 160px;
-    height: 50px;
-    background-color: #fff;
-    border: 2px solid #000;
-    color: #000;
-    font-weight: 500;
-    font-size: 16px;
-    align-self: flex-end;
-    margin-top: 25px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #000;
-      color: #fff;
-    }
-
-    &:disabled {
-      background-color: #777676;
-      border: #777676;
-      color: #cfcfcf;
-    }
-  }
+  
 
   @media (max-width: 700px) {
     .input_box {

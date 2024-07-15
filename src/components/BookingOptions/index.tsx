@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import styles from './BookingOptions.module.scss';
 import MyCalendar from '../MyCalendar';
-import { BookingType, Room } from '@/app/checkout/page';
+import { Room } from '@/app/checkout/page';
 import Button from '../Button';
 import { useBookingsStore } from '@/app/checkout/store';
 import Image from 'next/image';
+import Cart from '@/components/Cart';
+import { useRouter } from 'next/navigation';
 
 interface BookingOptionsType {
     room: Room
@@ -13,6 +15,7 @@ interface BookingOptionsType {
 const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const [selectedHours, setSelectedHours] = useState<number[]>([]);
+    const [isCartOpen, setIsCartOpen] = useState(false)
     const [additions, setAdditions] = useState({
         coffee: false,
         girls: false,
@@ -20,6 +23,8 @@ const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
     });
     const [paymentMethod, setPaymentMethod] = useState('bill')
     const [numberOfVisitors, setNumberOfVisitors] = useState<number>(1)
+
+    const router = useRouter()
 
     const addBooking = useBookingsStore(store => store.addBooking)
     const bookings = useBookingsStore(store => store.bookings)
@@ -58,6 +63,7 @@ const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
             id: Date.now()
         }
         addBooking(newBooking)
+        setIsCartOpen(true)
         console.log(bookings)
         
     }
@@ -125,9 +131,9 @@ const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
                 <h3>Besucherzahl</h3>
 
                 <div className={styles.number_of_visitors}>
-                    <Image onClick={handleMinusClick} src={'/assets/minus.png'} alt='minus' width={35} height={35}/>
+                    <Image className={styles.plus_minus} onClick={handleMinusClick} src={'/assets/minus.png'} alt='minus' width={35} height={35}/>
                     <span>{numberOfVisitors}</span>
-                    <Image onClick={handlePlusClick} src={'/assets/plus.png'} alt='minus' width={35} height={35}/>
+                    <Image className={styles.plus_minus} onClick={handlePlusClick} src={'/assets/plus.png'} alt='minus' width={35} height={35}/>
 
 
                 </div>
@@ -135,7 +141,14 @@ const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
 
 
 
-            <Button onClick={handleAddToCart}>Add to Cart</Button>
+            <Button className={'pink_button'} disabled={!selectedHours.length} onClick={handleAddToCart}>Add to Cart</Button>
+            {isCartOpen && <div className={styles.cart_wrapper}>
+                <Cart/>
+                <div className={styles.buttons}>
+                    <Button className={'pink_button'} onClick={() => setIsCartOpen(false)}>Back to booking</Button>
+                    <Button className={'pink_button'} onClick={() => router.push('/checkout')}>Checkout</Button>
+                </div>
+            </div>}
         </div>
     )
 }

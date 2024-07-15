@@ -4,6 +4,7 @@ import styles from "./ApplicationForm.module.scss";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Image from "next/image";
+import Button from "../Button";
 
 interface FormValues {
   firstName: string;
@@ -269,13 +270,8 @@ const ApplicationForm = () => {
         </p>
       </div>
 
-      <button
-        disabled={!isValid}
-        className={styles.submit_button}
-        type="submit"
-      >
-        Abschicken
-      </button>
+      
+      <Button className={'black_button'} disabled={!isValid} type="submit" >Abschicken</Button>
     </form>
   );
 };
