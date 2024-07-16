@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import BookingService from "@/services/bookingService";
 import { useQuery } from "@tanstack/react-query";
 import { Room } from "@/app/checkout/page";
+import { useBookingsStore } from "@/app/checkout/store";
 
 interface MyCalendarTypes {
     room: Room;
@@ -17,7 +18,7 @@ interface MyCalendarTypes {
 }
 
 const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelectedDate, selectedHours, setSelectedHours }) => {
-    
+
 
     const [startHour, setStartHour] = useState<number | null>(null);
     const [endHour, setEndHour] = useState<number | null>(null);
@@ -39,7 +40,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
         { value: 20, booked: false, available: true },
         { value: 21, booked: false, available: true },
     ])
-
+    const bookingsInCart = useBookingsStore(store => store.bookings)
 
     const { data, error, isLoading: isQueryLoading } = useQuery({
         queryKey: ["bookings"],
@@ -47,8 +48,8 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
         select: (data) => data?.data,
     });
 
-    
-    
+
+
 
 
     const checkBookings = () => {
@@ -58,13 +59,29 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
         setStartHour(null)
         setEndHour(null)
         setSelectedHours([])
+        
         data.forEach((booking) => {
             const bookingDate = new Date(booking.date);
-            if (bookingDate.toISOString().split('T')[0] === formattedSelectedDate && booking.room === room.id) {
+
+            if (bookingDate.toISOString().split('T')[0] === formattedSelectedDate && booking.room === room.name) {
+
                 booking.hours.forEach((hour) => {
-                    const ind = updatedHours.findIndex((item) => item.value.toString() === hour);
+                    const ind = updatedHours.findIndex((item) => item.value.toString() === hour.toString());
                     if (ind >= 0) {
                         updatedHours[ind].booked = true;
+                    }
+                });
+            }
+        });
+        bookingsInCart.forEach((booking) => {
+            const bookingDate = new Date(booking.date);
+
+            if (bookingDate.toISOString().split('T')[0] === formattedSelectedDate && booking.room === room.name) {
+
+                booking.hours.forEach((hour) => {
+                    const ind = updatedHours.findIndex((item) => item.value.toString() === hour.toString());
+                    if (ind >= 0) {
+                        updatedHours[ind].available = false;
                     }
                 });
             }
@@ -88,14 +105,14 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
             });
             setSelectedHours(selected);
 
-            
+
         } else if (startHour === null) {
             setStartHour(hour);
             setSelectedHours([hour]);
 
             const firstBooking = hours.find((item) => item.booked === true && item.value > hour);
             if (firstBooking) {
-                hours.forEach((item) => (item.value > firstBooking.value ? (item.available = false) : ''));
+                hours.forEach((item) => (item.value > firstBooking.value && !item.booked ? (item.available = false) : ''));
             }
 
         } else if (startHour !== null && endHour !== null) {
@@ -105,7 +122,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
 
             const firstBooking = hours.find((item) => item.booked === true && item.value > hour);
             if (firstBooking) {
-                hours.forEach((item) => (item.value > firstBooking.value ? (item.available = false) : ''));
+                hours.forEach((item) => (item.value > firstBooking.value && !item.booked ? (item.available = false) : ''));
             }
 
         } else if (startHour !== null && hour < startHour) {
@@ -114,7 +131,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
 
             const firstBooking = hours.find((item) => item.booked === true && item.value > hour);
             if (firstBooking) {
-                hours.forEach((item) => (item.value > firstBooking.value ? (item.available = false) : ''));
+                hours.forEach((item) => (item.value > firstBooking.value && !item.booked ? (item.available = false) : ''));
             }
         }
     };
@@ -128,20 +145,10 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
 
     const router = useRouter();
 
-    // const handleSubmitClick = () => {
-    //     const dateString = selectedDate ? selectedDate.toISOString().split('T')[0] : '';
-    //     localStorage.setItem('selectedDate', dateString);
-    //     localStorage.setItem('selectedHours', JSON.stringify(selectedHours));
-    //     localStorage.setItem('room', JSON.stringify(room));
 
-    //     if (selectedHours.length) {
-    //         router.push('/checkout');
-    //         document.body.style.overflow = "";
-    //     }
-    // };
     useEffect(() => {
         checkBookings();
-
+        console.log(hours)
     }, [selectedDate, data]);
 
     return (
@@ -152,7 +159,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
                     <DatePicker
                         calendarClassName={styles.calendar}
                         selected={selectedDate}
-                        onChange={(date: Date ) => {handleDateClick(date)}}
+                        onChange={(date: Date) => { handleDateClick(date) }}
                         minDate={new Date()}
                         dateFormat="MMMM d, yyyy"
                         inline
@@ -175,10 +182,10 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
             <div className={styles.selected}>
                 <h3>Selected date</h3>
                 <span>Date: {selectedDate && selectedDate.toISOString().split('T')[0]}</span>
-                <div className={styles.selected_hours}>Hours:  {selectedHours.length && selectedHours[0] + ':00'} {selectedHours.length > 1 && <span>  {" -" + (Number(selectedHours.at(-1)) + 1) + ':00'} {'( ' + selectedHours.length + ' hours )'}</span> } </div>
+                <div className={styles.selected_hours}>Hours:  {selectedHours.length && selectedHours[0] + ':00'} {selectedHours.length > 1 && <span>  {" -" + (Number(selectedHours.at(-1)) + 1) + ':00'} {'( ' + selectedHours.length + ' hours )'}</span>} </div>
             </div>
 
-          
+
         </div>
     );
 };

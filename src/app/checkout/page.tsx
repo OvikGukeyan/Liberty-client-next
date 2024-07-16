@@ -12,6 +12,7 @@ import Loader from '@/components/Loader';
 import InfoBoard from '@/components/InfoBoard';
 import { CartItem, useBookingsStore } from './store';
 import Cart from '../../components/Cart';
+import { useRouter } from 'next/navigation';
 
 export interface Room {
   name: string;
@@ -26,8 +27,9 @@ export type BookingType = Omit<CartItem, 'id'> & {
 
 
 const Checkout: React.FC = () => {
-
-  const cartItems = useBookingsStore(store => store.bookings)
+  const router = useRouter()
+  const cartItems = useBookingsStore(store => store.bookings);
+  const clearCart = useBookingsStore(store => store.deleteAllBookings);
 
   const { data, error, isLoading: isQueryLoading } = useQuery({
     queryKey: ["authData"],
@@ -48,6 +50,7 @@ const Checkout: React.FC = () => {
       console.log("Booking successful", response.data);
       queryClient.setQueryData(["booking"], response.data);
       queryClient.invalidateQueries({ queryKey: ['booking'] });
+      clearCart();
     },
     onError: (error) => {
       // Handle error
@@ -65,6 +68,9 @@ const Checkout: React.FC = () => {
     }
   };
 
+  if(!cartItems.length) {
+    router.push('/')
+  }
 
   return (
 

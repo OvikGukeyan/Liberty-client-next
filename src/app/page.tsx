@@ -35,7 +35,6 @@ const servicesList = [
 
 
 export default function Home() {
-  const isMenuVisiable = false;
   return (
     <div className={styles.wrapper}>
       <div className={styles.box_1}>

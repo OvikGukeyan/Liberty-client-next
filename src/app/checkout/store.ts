@@ -22,6 +22,7 @@ interface BookingsState {
     bookings: CartItem[];
     addBooking: (booking: CartItem) => void;
     deleteBooking: (id: number) => void;
+    deleteAllBookings: () => void;
 }
 
 // Create the Zustand store with persist and immer middleware
@@ -37,6 +38,11 @@ export const useBookingsStore = create<BookingsState>()(
                 set((state) => {
                     state.bookings = state.bookings.filter(booking => booking.id !== id);
                 }),
+            deleteAllBookings: () => {
+                set((state) => {
+                    state.bookings = []
+                })
+            }
         })),
         {
             name: 'bookings-storage', // Name used as key in Local Storage
