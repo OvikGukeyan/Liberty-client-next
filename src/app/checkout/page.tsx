@@ -12,7 +12,6 @@ import Loader from '@/components/Loader';
 import InfoBoard from '@/components/InfoBoard';
 import { CartItem, useBookingsStore } from './store';
 import Cart from '../../components/Cart';
-import { useRouter } from 'next/navigation';
 
 export interface Room {
   name: string;
@@ -27,7 +26,6 @@ export type BookingType = Omit<CartItem, 'id'> & {
 
 
 const Checkout: React.FC = () => {
-  const router = useRouter()
   const cartItems = useBookingsStore(store => store.bookings);
   const clearCart = useBookingsStore(store => store.deleteAllBookings);
 
@@ -68,16 +66,13 @@ const Checkout: React.FC = () => {
     }
   };
 
-  if(!cartItems.length) {
-    router.push('/')
-  }
-
+  
   return (
 
     <div className={styles.checkout}>
       <Header />
       <div className={styles.main}>
-       <Cart/>
+        <Cart />
         {isQueryLoading ? <Loader isLoading={isQueryLoading} /> :
           <>
 
@@ -92,7 +87,7 @@ const Checkout: React.FC = () => {
                   <span>Name: {data.user.firstName} {data.user.lastName}</span>
 
                 </div>
-                <Button className={'pink_button'} onClick={() => bookingHandler(cartItems)}>Buchen</Button>
+                <Button disabled={!cartItems.length} className={'pink_button'} onClick={() => bookingHandler(cartItems)}>Buchen</Button>
                 <Loader isLoading={isPending} />
                 <InfoBoard text='Booking successful' condition={isSuccess} />
               </div>
