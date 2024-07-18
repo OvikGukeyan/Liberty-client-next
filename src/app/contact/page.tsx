@@ -12,7 +12,7 @@ export const metadata = {
   keywords: "",
 };
 
-type markersType = {
+export type markersType = {
   [key: string]: {
     geoCode: LatLngExpression;
     popUp: string;
@@ -23,6 +23,10 @@ const markers: markersType = {
   Liberty: {
     geoCode: [52.525783, 7.332966],
     popUp: "Liberty Finance GmBH",
+  },
+  Parking: {
+    geoCode: [52.529783, 7.334966],
+    popUp: "Liberty Finance Parking",
   },
 };
 
@@ -86,6 +90,18 @@ const Contact: React.FC = () => {
                     Burgstraße 48, 49808 Lingen (Ems)
                   </a>
                 </li>
+
+                <li>
+                  <Image
+                    src={"/assets/parking.png"}
+                    alt="parking"
+                    width={24}
+                    height={24}
+                  />
+                  <a href="https://www.google.com/maps?q=52.525783,7.332966">
+                    Parking place
+                  </a>
+                </li>
               </ul>
             </address>
           </div>
@@ -104,7 +120,7 @@ const Contact: React.FC = () => {
           </div>
         </div>
         <div className={styles.map}>
-          <Map marker={markers.Liberty} />
+          <Map markers={markers} />
         </div>
       </div>
       <Footer isStatic={true} />

@@ -1,18 +1,16 @@
+'use client'
 import React, { useState } from 'react';
 import styles from './BookingOptions.module.scss';
-import MyCalendar from '../MyCalendar';
-import { Room } from '@/app/checkout/page';
-import Button from '../Button';
+import MyCalendar from '../../components/MyCalendar';
+import Button from '../../components/Button';
 import { useBookingsStore } from '@/app/checkout/store';
 import Image from 'next/image';
 import Cart from '@/components/Cart';
 import { useRouter } from 'next/navigation';
+import { useCurrentRoomStore } from './store';
 
-interface BookingOptionsType {
-    room: Room
-}
 
-const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
+const BookingOptions: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const [selectedHours, setSelectedHours] = useState<number[]>([]);
     const [isCartOpen, setIsCartOpen] = useState(false)
@@ -22,7 +20,9 @@ const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
         music: false
     });
     const [paymentMethod, setPaymentMethod] = useState('bill')
-    const [numberOfVisitors, setNumberOfVisitors] = useState<number>(1)
+    const [numberOfVisitors, setNumberOfVisitors] = useState<number>(1);
+
+    const currentRoom = useCurrentRoomStore(store => store.currentRoom)
 
     const router = useRouter()
 
@@ -30,13 +30,13 @@ const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
     const bookings = useBookingsStore(store => store.bookings)
 
     const handlePlusClick = () => {
-        if(numberOfVisitors < 15) {
+        if (numberOfVisitors < 15) {
             setNumberOfVisitors(prev => prev + 1)
         }
     }
 
     const handleMinusClick = () => {
-        if(numberOfVisitors > 1) {
+        if (numberOfVisitors > 1) {
             setNumberOfVisitors(prev => prev - 1)
         }
     }
@@ -59,23 +59,30 @@ const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
             additions: additions,
             paymentMethod: paymentMethod,
             numberOfVisitors: numberOfVisitors,
-            room: room.name,
+            room: currentRoom.name,
             id: Date.now()
         }
         addBooking(newBooking)
         setIsCartOpen(true)
         console.log(bookings)
-        
+
     }
 
     return (
         <div className={styles.wrapper}>
+            <div>
+
+                <Button className={'go_back'} onClick={() => router.push('/coworking')}>
+                    <Image src={'/assets/left_arrow.png'} width={25} height={25} alt='arrow' />
+                    Go Back
+                </Button>
+            </div>
             <MyCalendar
                 selectedDate={selectedDate}
                 setSelectedDate={setSelectedDate}
                 selectedHours={selectedHours}
                 setSelectedHours={setSelectedHours}
-                room={room}
+                room={currentRoom}
             />
 
             <div className={styles.adjustments}>
@@ -131,9 +138,9 @@ const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
                 <h3>Besucherzahl</h3>
 
                 <div className={styles.number_of_visitors}>
-                    <Image className={styles.plus_minus} onClick={handleMinusClick} src={'/assets/minus.png'} alt='minus' width={35} height={35}/>
+                    <Image className={styles.plus_minus} onClick={handleMinusClick} src={'/assets/minus.png'} alt='minus' width={35} height={35} />
                     <span>{numberOfVisitors}</span>
-                    <Image className={styles.plus_minus} onClick={handlePlusClick} src={'/assets/plus.png'} alt='minus' width={35} height={35}/>
+                    <Image className={styles.plus_minus} onClick={handlePlusClick} src={'/assets/plus.png'} alt='minus' width={35} height={35} />
 
 
                 </div>
@@ -143,7 +150,7 @@ const BookingOptions: React.FC<BookingOptionsType> = ({ room }) => {
 
             <Button className={'pink_button'} disabled={!selectedHours.length} onClick={handleAddToCart}>Add to Cart</Button>
             {isCartOpen && <div className={styles.cart_wrapper}>
-                <Cart/>
+                <Cart />
                 <div className={styles.buttons}>
                     <Button className={'pink_button'} onClick={() => setIsCartOpen(false)}>Back to booking</Button>
                     <Button className={'pink_button'} onClick={() => router.push('/checkout')}>Checkout</Button>

@@ -5,6 +5,8 @@
   background-color: #fff;
   border-radius: 15px;
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
 
   &::-webkit-scrollbar {
     display: none;

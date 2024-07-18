@@ -10,7 +10,11 @@ const Cart = () => {
 
     const deleteBooking = useBookingsStore(store => store.deleteBooking);
     const cartItems = useBookingsStore(store => store.bookings)
-    const router = useRouter()
+    const router = useRouter();
+
+    const handleBackClick = () => {
+        router.push('/coworking');
+    }
 
     return (
         <div className={styles.cart}>
@@ -31,7 +35,7 @@ const Cart = () => {
                 <div className={styles.cart_empty}>
                     <h1>You have no bookings yet!</h1>
                     <Image src={'/assets/cart_empty.png'} alt='cart empty' width={200} height={200}/>
-                    <Button className={'pink_button'} onClick={() => router.push('/coworking')}>Back to booking</Button>
+                    <Button className={'pink_button'} onClick={handleBackClick}>Back to booking</Button>
                 </div>
                 }
 

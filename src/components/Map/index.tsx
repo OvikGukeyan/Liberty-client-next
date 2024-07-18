@@ -6,24 +6,27 @@ import { LatLngExpression, Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
+import { markersType } from "@/app/contact/page";
 
 type MapTypes = {
-  marker: {
-    geoCode: LatLngExpression;
-    popUp: string;
-  };
+  markers: markersType
 };
 
-const Map: React.FC<MapTypes> = ({ marker }) => {
+const Map: React.FC<MapTypes> = ({ markers }) => {
   const customIcon = new Icon({
     iconUrl: "/assets/location_map_icon.png", 
+    iconSize: [42, 42],
+  });
+
+  const parkingIcon = new Icon({
+    iconUrl: "/assets/parking_location.png", 
     iconSize: [42, 42],
   });
 
   return (
     <div className={styles.wrapper}>
       <MapContainer
-        center={marker.geoCode}
+        center={markers.Liberty.geoCode}
         zoom={14}
         style={{ height: "100%", width: "100%" }}
         zoomControl={false}
@@ -32,9 +35,15 @@ const Map: React.FC<MapTypes> = ({ marker }) => {
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         />
-        <Marker position={marker.geoCode} icon={customIcon}>
+        <Marker position={markers.Liberty.geoCode} icon={customIcon}>
           <Popup>
-            <h2>{marker.popUp}</h2>
+            <h2>{markers.Liberty.popUp}</h2>
+          </Popup>
+        </Marker>
+
+        <Marker position={markers.Parking.geoCode} icon={parkingIcon}>
+          <Popup>
+            <h2>{markers.Parking.popUp}</h2>
           </Popup>
         </Marker>
       </MapContainer>

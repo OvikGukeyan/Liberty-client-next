@@ -37,3 +37,22 @@
       color: #cfcfcf;
     }
   }
+
+  .go_back {
+    background-color: #fff;
+    color: #000;
+    font-weight: 500;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+
+    img {
+      margin-right: 5px;
+    }
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }

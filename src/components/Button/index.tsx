@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styles from './Button.module.scss';
 
 interface ButtonTypes {
-    children: string
+    children: ReactNode
     onClick?: () => void
     disabled?: boolean
     type?: "button" | "submit" | "reset" | undefined
-    className: 'pink_button' | 'black_button'
+    className: 'pink_button' | 'black_button' | 'go_back'
 
 }
 
