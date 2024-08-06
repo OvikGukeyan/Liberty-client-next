@@ -149,13 +149,16 @@ const BookingOptions: React.FC = () => {
 
 
             <Button className={'pink_button'} disabled={!selectedHours.length} onClick={handleAddToCart}>Add to Cart</Button>
-            {isCartOpen && <div className={styles.cart_wrapper}>
-                <Cart />
-                <div className={styles.buttons}>
-                    <Button className={'pink_button'} onClick={() => setIsCartOpen(false)}>Back to booking</Button>
-                    <Button className={'pink_button'} onClick={() => router.push('/checkout')}>Checkout</Button>
+            <div className={`${styles.overlay} ${!!isCartOpen && styles.overlayVisible}`}>
+                <div className={styles.cart_wrapper}>
+                    <Cart />
+                    <div className={styles.buttons}>
+                        <Button className={'pink_button'} onClick={() => setIsCartOpen(false)}>Back to booking</Button>
+                        <Button className={'pink_button'} onClick={() => router.push('/checkout')}>Checkout</Button>
+                    </div>
                 </div>
-            </div>}
+            </div>
+
         </div>
     )
 }

@@ -104,4 +104,15 @@
       display: flex;
     }
   }
+
+  @media (max-width: 700px) {
+    .picker {
+      flex-direction: column;
+
+      .time_wrapper {
+        margin: 15px 0 0 0;
+        
+      }
+    }
+  }
 }

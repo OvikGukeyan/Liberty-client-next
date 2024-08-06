@@ -47,10 +47,12 @@ const ContactForm: React.FC = () => {
         window.location.search.substring(1)
       ) as unknown as { id: string };
       setValue("manager", params.id);
+      console.log(params.id)
     }
   }, []);
 
   const submitHandler = (values: FieldValues) => {
+    console.log(values)
     setIsLoading(true);
     axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/contact`, values)

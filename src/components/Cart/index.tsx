@@ -34,7 +34,7 @@ const Cart = () => {
                 )):
                 <div className={styles.cart_empty}>
                     <h1>You have no bookings yet!</h1>
-                    <Image src={'/assets/cart_empty.png'} alt='cart empty' width={200} height={200}/>
+                    <Image src={'/assets/cart_empty.png'} alt='cart empty' width={100} height={100}/>
                     <Button className={'pink_button'} onClick={handleBackClick}>Back to booking</Button>
                 </div>
                 }
