@@ -133,6 +133,7 @@
       .input_box {
         flex-direction: column;
         width: 100%;
+        
 
         label,
         .radio_label,
@@ -157,6 +158,11 @@
     .overlay {
       .cart_wrapper {
         width: 90%;
+
+        .buttons {
+          flex-direction: column;
+          gap: 20px;
+        }
       }
     }
 
