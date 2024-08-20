@@ -8,7 +8,7 @@
 
   .cart_items {
     margin-bottom: 30px;
-    max-height: 280px;
+    max-height: 400px;
     overflow: scroll;
     
     &::-webkit-scrollbar {
@@ -23,6 +23,7 @@
 
       .room_image {
         border-radius: 10px;
+        margin-right: 20px;
       }
 
       .info {
@@ -44,6 +45,7 @@
 
       h1 {
         margin-bottom: 30px;
+        text-align: center;
       }
     }
   }

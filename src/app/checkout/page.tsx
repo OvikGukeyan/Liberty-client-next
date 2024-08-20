@@ -32,8 +32,8 @@ const Checkout: React.FC = () => {
   const { data, error, isLoading: isQueryLoading } = useQuery({
     queryKey: ["authData"],
     queryFn: AuthService.checkAuth,
-
-    select: (data) => data?.data
+    select: (data) => data?.data,
+    retry: false
   });
 
   const queryClient = useQueryClient()

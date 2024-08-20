@@ -70,7 +70,7 @@ const BookingOptions: React.FC = () => {
 
     return (
         <div className={styles.wrapper}>
-            <div>
+            <div className={styles.back_box}>
 
                 <Button className={'go_back'} onClick={() => router.push('/coworking')}>
                     <Image src={'/assets/left_arrow.png'} width={25} height={25} alt='arrow' />

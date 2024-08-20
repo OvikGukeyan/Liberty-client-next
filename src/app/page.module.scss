@@ -1,7 +1,6 @@
 .wrapper {
   width: 100vw;
   height: 101vh;
-
   
 
   .box_1 {
@@ -147,6 +146,7 @@
   @media (max-width: 767px) {
     overflow: scroll;
     height: auto;
+    margin-bottom: 200px;
 
     .box_1 {
       flex-direction: column;

@@ -76,4 +76,14 @@
         }
       }
   }
+
+  @media (max-width: 700px) {
+
+    form {
+      .input_box {
+        width: 100%;
+      }
+    }
+  }
+
 }
