@@ -9,6 +9,7 @@ export const metadata = {
 };
 
 const ContactFormLayout = () => {
+
   return (
     <>
       <ContactForm />

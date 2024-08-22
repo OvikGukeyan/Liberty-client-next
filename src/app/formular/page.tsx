@@ -9,6 +9,7 @@ import Image from "next/image";
 import InfoBoard from "@/components/InfoBoard";
 import Loader from "@/components/Loader";
 import Button from "@/components/Button";
+import Link from "next/link";
 
 const ContactForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -73,7 +74,15 @@ const ContactForm: React.FC = () => {
 
   return (
     <div className={styles.checkout_wrapper}>
+
+      <Link href={'/'}>
+        <Button className={'go_back'}>
+          <Image src={'/assets/left_arrow.png'} width={25} height={25} alt='arrow' />
+          Back Home
+        </Button>
+      </Link>
       <div className={styles.checkout_box}>
+
         <div className={styles.header}>
           <Image
             className={styles.logo}
@@ -390,7 +399,7 @@ const ContactForm: React.FC = () => {
             </p>
           </div>
 
-          
+
           <Button disabled={!isValid} className={'black_button'} type="submit">
             Abschicken
           </Button>

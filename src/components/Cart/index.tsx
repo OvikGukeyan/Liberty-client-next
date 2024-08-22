@@ -3,18 +3,15 @@ import styles from './Cart.module.scss';
 import Image from 'next/image';
 import { useBookingsStore } from '../../app/checkout/store';
 import Button from '../Button';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 
 const Cart = () => {
 
     const deleteBooking = useBookingsStore(store => store.deleteBooking);
     const cartItems = useBookingsStore(store => store.bookings)
-    const router = useRouter();
 
-    const handleBackClick = () => {
-        router.push('/coworking');
-    }
+    
 
     return (
         <div className={styles.cart}>
@@ -31,12 +28,14 @@ const Cart = () => {
                         </div>
                         <Image onClick={() => deleteBooking(item.id)} src={'/assets/close.png'} alt='delete' width={30} height={30} />
                     </div>
-                )):
-                <div className={styles.cart_empty}>
-                    <h1>You have no bookings yet!</h1>
-                    <Image src={'/assets/cart_empty.png'} alt='cart empty' width={100} height={100}/>
-                    <Button className={'pink_button'} onClick={handleBackClick}>Back to booking</Button>
-                </div>
+                )) :
+                    <div className={styles.cart_empty}>
+                        <h1>You have no bookings yet!</h1>
+                        <Image src={'/assets/cart_empty.png'} alt='cart empty' width={100} height={100} />
+                        <Link href={'/coworking'}>
+                            <Button className={'pink_button'}>Back to booking</Button>
+                        </Link>
+                    </div>
                 }
 
             </div>

@@ -6,8 +6,8 @@ import Button from '../../components/Button';
 import { useBookingsStore } from '@/app/checkout/store';
 import Image from 'next/image';
 import Cart from '@/components/Cart';
-import { useRouter } from 'next/navigation';
 import { useCurrentRoomStore } from './store';
+import Link from 'next/link';
 
 
 const BookingOptions: React.FC = () => {
@@ -24,7 +24,6 @@ const BookingOptions: React.FC = () => {
 
     const currentRoom = useCurrentRoomStore(store => store.currentRoom)
 
-    const router = useRouter()
 
     const addBooking = useBookingsStore(store => store.addBooking)
     const bookings = useBookingsStore(store => store.bookings)
@@ -64,18 +63,19 @@ const BookingOptions: React.FC = () => {
         }
         addBooking(newBooking)
         setIsCartOpen(true)
-        console.log(bookings)
 
     }
 
     return (
         <div className={styles.wrapper}>
             <div className={styles.back_box}>
+                <Link href={'/coworking'}>
+                    <Button className={'go_back'}>
+                        <Image src={'/assets/left_arrow.png'} width={25} height={25} alt='arrow' />
+                        Go Back
+                    </Button>
+                </Link>
 
-                <Button className={'go_back'} onClick={() => router.push('/coworking')}>
-                    <Image src={'/assets/left_arrow.png'} width={25} height={25} alt='arrow' />
-                    Go Back
-                </Button>
             </div>
             <MyCalendar
                 selectedDate={selectedDate}
@@ -153,8 +153,10 @@ const BookingOptions: React.FC = () => {
                 <div className={styles.cart_wrapper}>
                     <Cart />
                     <div className={styles.buttons}>
-                        <Button className={'pink_button'} onClick={() => setIsCartOpen(false)}>Back to booking</Button>
-                        <Button className={'pink_button'} onClick={() => router.push('/checkout')}>Checkout</Button>
+                        <Button className={'pink_button'} onClick={() => setIsCartOpen(false)}>Weitere Buchungen</Button>
+                        <Link href={'/checkout'}>
+                            <Button className={'pink_button'}>Checkout</Button>
+                        </Link>
                     </div>
                 </div>
             </div>

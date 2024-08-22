@@ -3,7 +3,6 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./MyCalendar.module.scss";
-import { useRouter } from "next/navigation";
 import BookingService from "@/services/bookingService";
 import { useQuery } from "@tanstack/react-query";
 import { Room } from "@/app/checkout/page";
@@ -59,7 +58,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
         setStartHour(null)
         setEndHour(null)
         setSelectedHours([])
-        
+
         data.forEach((booking) => {
             const bookingDate = new Date(booking.date);
 
@@ -74,6 +73,7 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
             }
         });
         bookingsInCart.forEach((booking) => {
+            console.log(booking)
             const bookingDate = new Date(booking.date);
 
             if (bookingDate.toISOString().split('T')[0] === formattedSelectedDate && booking.room === room.name) {
@@ -143,13 +143,11 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
         setEndHour(null)
     }
 
-    const router = useRouter();
 
 
     useEffect(() => {
         checkBookings();
-        console.log(hours)
-    }, [selectedDate, data]);
+    }, [selectedDate, data, bookingsInCart]);
 
     return (
         <div className={styles.myCalendarContainer}>
