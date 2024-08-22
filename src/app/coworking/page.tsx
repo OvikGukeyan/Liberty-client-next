@@ -1,8 +1,6 @@
-import Header from "@/components/Header";
 import React from "react";
 import styles from "./coworking.module.scss";
-import Footer from "@/components/Footer";
-import CoworkingZone from "@/components/CoworkingZone";
+import { CoworkingZone, Footer, Header } from "@/components";
 
 
 const coworkingZones = [

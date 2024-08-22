@@ -1,9 +1,6 @@
 import React from "react";
 import styles from "./career.module.scss";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import Image from "next/image";
-import ApplicationForm from "@/components/ApplicationForm";
+import { ApplicationForm, Footer, Header } from "@/components";
 
 export const metadata = {
   title: "Karriere",

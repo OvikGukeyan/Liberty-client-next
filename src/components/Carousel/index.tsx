@@ -16,7 +16,7 @@ type CarouselTypes = {
   auto?: boolean
 };
 
-const Carousel: React.FC<CarouselTypes> = ({ children, controllers, auto }) => {
+export const Carousel: React.FC<CarouselTypes> = ({ children, controllers, auto }) => {
   const [pages, setPages] = useState<ReactNode[]>([]);
   const [offset, setOffset] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -125,4 +125,3 @@ const Carousel: React.FC<CarouselTypes> = ({ children, controllers, auto }) => {
   );
 };
 
-export default Carousel;

@@ -3,7 +3,7 @@ import styles from './LoginForm.module.scss';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import AuthService from '@/services/authService';
-import Loader from '../Loader';
+import { Loader } from '..';
 
 
 export interface LoginValues {
@@ -11,7 +11,7 @@ export interface LoginValues {
     password: string
 }
 
-const LoginForm = () => {
+export const LoginForm = () => {
 
     const {
         register,
@@ -101,5 +101,3 @@ const LoginForm = () => {
         </div>
     )
 }
-
-export default LoginForm;

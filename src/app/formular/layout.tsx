@@ -1,6 +1,6 @@
 import React from "react";
 import ContactForm from "./page";
-import Footer from "@/components/Footer";
+import { Footer } from "@/components";
 
 export const metadata = {
   title: "Kontaktformular",

@@ -7,7 +7,7 @@ interface InfoBoardProps {
     text: string
 }
 
-const InfoBoard: React.FC<InfoBoardProps> = ({condition, text}) => {
+export const InfoBoard: React.FC<InfoBoardProps> = ({condition, text}) => {
   return (
     <div className={`${styles.overlay} ${condition ? styles.overlayVisible : ""}`}>
         <div className={styles.board}>
@@ -23,5 +23,3 @@ const InfoBoard: React.FC<InfoBoardProps> = ({condition, text}) => {
         </div>
       </div>
 )}
-
-export default InfoBoard;

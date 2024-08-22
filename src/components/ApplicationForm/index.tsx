@@ -4,7 +4,7 @@ import styles from "./ApplicationForm.module.scss";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Image from "next/image";
-import Button from "../Button";
+import { Button } from "..";
 
 interface FormValues {
   firstName: string;
@@ -18,7 +18,7 @@ interface FormValues {
 }
 
 
-const ApplicationForm = () => {
+export const ApplicationForm = () => {
 
   const inputFileRef = useRef<HTMLInputElement>(null)
 
@@ -276,4 +276,3 @@ const ApplicationForm = () => {
   );
 };
 
-export default ApplicationForm;

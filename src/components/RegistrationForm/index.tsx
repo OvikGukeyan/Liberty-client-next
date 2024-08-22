@@ -2,10 +2,9 @@
 import React from "react";
 import styles from "./RegistrationForm.module.scss";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import AuthService from "@/services/authService";
-import Loader from "../Loader";
-import Button from "../Button";
+import { Button, Loader } from "..";
 
 export interface RegistrationValues {
     firstName: string;
@@ -22,7 +21,7 @@ export interface RegistrationValues {
     check: boolean
 }
 
-const RegistrationForm = () => {
+export const RegistrationForm = () => {
 
 
     const {
@@ -299,4 +298,3 @@ const RegistrationForm = () => {
     );
 };
 
-export default RegistrationForm;

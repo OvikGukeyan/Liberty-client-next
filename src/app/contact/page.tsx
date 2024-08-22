@@ -1,10 +1,9 @@
 import styles from "./contact.module.scss";
 import { LatLngExpression } from "leaflet";
-import Header from "@/components/Header";
 import Image from "next/image";
-import Footer from "@/components/Footer";
 import { useMemo } from "react";
 import dynamic from "next/dynamic";
+import { Footer, Header } from "@/components";
 
 export const metadata = {
   title: "Kontaktinformationen",
@@ -48,7 +47,7 @@ const Contact: React.FC = () => {
             <h2>Kontact</h2>
             <address>
               <ul>
-                
+
                 <li>
                   <Image
                     src={"/assets/office.png"}

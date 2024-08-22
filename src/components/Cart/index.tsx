@@ -2,11 +2,11 @@ import React from 'react';
 import styles from './Cart.module.scss';
 import Image from 'next/image';
 import { useBookingsStore } from '../../app/checkout/store';
-import Button from '../Button';
 import Link from 'next/link';
+import { Button } from '..';
 
 
-const Cart = () => {
+export const Cart = () => {
 
     const deleteBooking = useBookingsStore(store => store.deleteBooking);
     const cartItems = useBookingsStore(store => store.bookings)
@@ -47,5 +47,3 @@ const Cart = () => {
         </div>
     )
 }
-
-export default Cart;

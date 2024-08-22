@@ -16,7 +16,7 @@ interface MyCalendarTypes {
     setSelectedHours: Dispatch<SetStateAction<number[]>>
 }
 
-const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelectedDate, selectedHours, setSelectedHours }) => {
+export const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelectedDate, selectedHours, setSelectedHours }) => {
 
 
     const [startHour, setStartHour] = useState<number | null>(null);
@@ -187,5 +187,3 @@ const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelected
         </div>
     );
 };
-
-export default MyCalendar;

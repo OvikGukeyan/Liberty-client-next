@@ -1,7 +1,6 @@
-import Header from "@/components/Header";
+import { Footer, Header } from "@/components";
 import styles from "./about.module.scss";
 import Image from "next/image";
-import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "About Us",

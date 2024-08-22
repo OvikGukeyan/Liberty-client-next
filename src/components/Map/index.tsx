@@ -1,7 +1,7 @@
 "use client";
 import styles from "./Map.module.scss";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { LatLngExpression, Icon } from "leaflet";
+import { Icon } from "leaflet";
 
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";

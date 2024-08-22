@@ -10,10 +10,8 @@ interface ButtonTypes {
 
 }
 
-const Button: React.FC<ButtonTypes> = ({children, onClick, disabled, type, className}) => {
+export const Button: React.FC<ButtonTypes> = ({children, onClick, disabled, type, className}) => {
   return (
     <button type={type ? type : "button"} disabled={disabled} onClick={onClick} className={styles[className]}>{children}</button>
   )
 }
-
-export default Button

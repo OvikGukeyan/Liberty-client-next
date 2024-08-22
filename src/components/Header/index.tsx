@@ -14,7 +14,7 @@ const headerItems = [
 
 ]
 
-const Header = () => {
+export const Header = () => {
   const [isMenuVisiable, setIsMenuVisible] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const pathName = usePathname()
@@ -89,4 +89,3 @@ const Header = () => {
   );
 };
 
-export default Header;

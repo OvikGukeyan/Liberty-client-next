@@ -1,17 +1,11 @@
 "use client"
 import React from 'react';
 import styles from './checkout.module.scss'
-import Header from '@/components/Header';
 import AuthService from '@/services/authService';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import Auth from '@/components/Auth';
-import Button from '@/components/Button';
-import Footer from '@/components/Footer';
 import BookingService from '@/services/bookingService';
-import Loader from '@/components/Loader';
-import InfoBoard from '@/components/InfoBoard';
 import { CartItem, useBookingsStore } from './store';
-import Cart from '../../components/Cart';
+import { Auth, Button, Cart, Footer, Header, InfoBoard, Loader } from '@/components';
 
 export interface Room {
   name: string;

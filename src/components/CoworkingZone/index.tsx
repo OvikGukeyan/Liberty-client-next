@@ -1,10 +1,10 @@
 "use client";
 import React, { useRef, useState } from "react";
 import styles from "./CoworkingZone.module.scss";
-import Button from "../Button";
 import { Room } from "@/app/checkout/page";
 import { useRouter } from "next/navigation";
 import { useCurrentRoomStore } from "@/app/bookingOptions/store";
+import { Button } from "..";
 
 
 
@@ -12,7 +12,7 @@ interface CoworkingZoneTypes {
     item: Room
 }
 
-const CoworkingZone: React.FC<CoworkingZoneTypes> = ({ item }) => {
+export const CoworkingZone: React.FC<CoworkingZoneTypes> = ({ item }) => {
     // const [isCalendarOpen, setIsCalendarOpen] = useState(false);
     const calendarRef = useRef<HTMLDivElement>(null)
     const router = useRouter();
@@ -58,4 +58,3 @@ const CoworkingZone: React.FC<CoworkingZoneTypes> = ({ item }) => {
     );
 };
 
-export default CoworkingZone;

@@ -7,7 +7,7 @@ type FooterType = {
   isStatic: boolean;
 };
 
-const Footer: React.FC<FooterType> = ({ isStatic }) => {
+export const Footer: React.FC<FooterType> = ({ isStatic }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => {
@@ -92,4 +92,3 @@ const Footer: React.FC<FooterType> = ({ isStatic }) => {
   );
 };
 
-export default Footer;

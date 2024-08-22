@@ -1,13 +1,11 @@
 'use client'
 import React, { useState } from 'react';
 import styles from './BookingOptions.module.scss';
-import MyCalendar from '../../components/MyCalendar';
-import Button from '../../components/Button';
 import { useBookingsStore } from '@/app/checkout/store';
 import Image from 'next/image';
-import Cart from '@/components/Cart';
 import { useCurrentRoomStore } from './store';
 import Link from 'next/link';
+import { Button, Cart, MyCalendar } from '@/components';
 
 
 const BookingOptions: React.FC = () => {

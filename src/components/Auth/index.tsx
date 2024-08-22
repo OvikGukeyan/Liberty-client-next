@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import RegistrationForm from '../RegistrationForm'
-import LoginForm from '../LoginForm'
-import styles from './Auth.module.scss'
+"use client"
 
-const Auth = () => {
+import React, { useState } from 'react'
+import styles from './Auth.module.scss'
+import { LoginForm, RegistrationForm } from '..'
+
+export const Auth = () => {
   const authMethods = [{ name: 'Registration' }, { name: 'Login' }]
   const [authMethod, setAuthMethod] = useState({ name: 'Registration' })
 
@@ -22,5 +23,3 @@ const Auth = () => {
           </div>
   )
 }
-
-export default Auth

@@ -1,9 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
-import Carousel from "@/components/Carousel";
 import Slide from "@/components/Slide";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import { Carousel, Footer, Header } from "@/components";
 
 const servicesList = [
   {

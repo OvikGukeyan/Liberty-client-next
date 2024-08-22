@@ -6,10 +6,8 @@ import { FieldValues, useForm } from "react-hook-form";
 import axios from "axios";
 import qs from "qs";
 import Image from "next/image";
-import InfoBoard from "@/components/InfoBoard";
-import Loader from "@/components/Loader";
-import Button from "@/components/Button";
 import Link from "next/link";
+import { Button, InfoBoard, Loader } from "@/components";
 
 const ContactForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
