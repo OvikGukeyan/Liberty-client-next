@@ -30,7 +30,6 @@ export const LoginForm = () => {
         },
         onSuccess: (response) => {
             // Handle success
-            console.log("Login successful", response.data);
             queryClient.setQueryData(["authData"], response.data);
             queryClient.invalidateQueries({queryKey: ['authData']});
             localStorage.setItem('token', response.data.accessToken)
@@ -38,6 +37,7 @@ export const LoginForm = () => {
         onError: (error) => {
             // Handle error
             console.error("Login failed", error);
+            alert("Login failed");
         },
     });
 

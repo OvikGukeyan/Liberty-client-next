@@ -60,7 +60,7 @@ const Checkout: React.FC = () => {
     }
   };
 
-  
+
   return (
 
     <div className={styles.checkout}>

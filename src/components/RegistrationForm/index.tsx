@@ -52,6 +52,7 @@ export const RegistrationForm = () => {
         onError: (error) => {
             // Handle error
             console.error("Registration failed", error);
+            alert("Registration failed");
         },
     });
 

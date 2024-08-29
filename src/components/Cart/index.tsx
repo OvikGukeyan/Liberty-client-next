@@ -17,8 +17,8 @@ export const Cart = () => {
         <div className={styles.cart}>
             <h2>Your bookings:</h2>
             <div className={styles.cart_items}>
-                {cartItems.length >= 1 ? cartItems.map(item => (
-                    <div className={styles.cart_item}>
+                {cartItems.length >= 1 ? cartItems.map((item, index) => (
+                    <div key={index} className={styles.cart_item}>
                         <Image className={styles.room_image} src={'/assets/conf1.jpeg'} alt='room' width={80} height={80} />
                         <div className={styles.info}>
                             <span>{item.room}</span>

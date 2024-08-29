@@ -7,6 +7,7 @@ import BookingService from "@/services/bookingService";
 import { useQuery } from "@tanstack/react-query";
 import { Room } from "@/app/checkout/page";
 import { useBookingsStore } from "@/app/checkout/store";
+import { Loader } from "../Loader";
 
 interface MyCalendarTypes {
     room: Room;
@@ -41,10 +42,11 @@ export const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setS
     ])
     const bookingsInCart = useBookingsStore(store => store.bookings)
 
-    const { data, error, isLoading: isQueryLoading } = useQuery({
+    const { data, isLoading: isQueryLoading } = useQuery({
         queryKey: ["bookings"],
         queryFn: BookingService.fetchBookings,
         select: (data) => data?.data,
+
     });
 
 
@@ -151,6 +153,7 @@ export const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setS
 
     return (
         <div className={styles.myCalendarContainer}>
+            <Loader isLoading={isQueryLoading} />
             <h2>Wählen Sie Datum und Uhrzeit aus</h2>
             <div className={styles.picker}>
                 <div className={styles.calendar_wrapper}>
@@ -176,6 +179,7 @@ export const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setS
                         </button>
                     ))}
                 </div>
+
             </div>
             <div className={styles.selected}>
                 <h3>Selected date</h3>
