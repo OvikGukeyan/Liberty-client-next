@@ -11,6 +11,8 @@ export {InfoBoard} from './InfoBoard';
 export {Loader} from './Loader';
 export {MyCalendar} from './MyCalendar';
 export {RegistrationForm} from './RegistrationForm';
+export {CookieConsent} from './CookieConsent';
+
 
 
 

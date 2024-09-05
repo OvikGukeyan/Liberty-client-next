@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
 import Slide from "@/components/Slide";
-import { Carousel, Footer, Header } from "@/components";
+import { Carousel, CookieConsent, Footer, Header } from "@/components";
 
 const servicesList = [
   {
@@ -75,6 +75,7 @@ export default function Home() {
         </div>
       </div>
       <Footer isStatic={false} />
+      <CookieConsent/>
     </div>
   );
 }
