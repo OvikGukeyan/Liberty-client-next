@@ -46,7 +46,7 @@ export const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setS
         queryKey: ["bookings"],
         queryFn: BookingService.fetchBookings,
         select: (data) => data?.data,
-
+        retry: false
     });
 
 
