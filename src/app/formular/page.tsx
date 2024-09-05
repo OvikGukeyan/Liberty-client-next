@@ -404,9 +404,9 @@ const ContactForm: React.FC = () => {
         </form>
       </div>
 
-      <InfoBoard text={'Vielen Dank für Ihr Vertrauen. Wir kümmern uns schnellstmöglich um Ihr Anliegen'} condition={isSubmitted} />
+      <InfoBoard imgUrl="/assets/submited.png" text={'Vielen Dank für Ihr Vertrauen. Wir kümmern uns schnellstmöglich um Ihr Anliegen'} condition={isSubmitted} />
       <Loader isLoading={isLoading} />
-      <InfoBoard text="Beim Senden ist ein Fehler aufgetreten" condition={isRejected} />
+      <InfoBoard imgUrl="/assets/error.png" text="Beim Senden ist ein Fehler aufgetreten" condition={isRejected} />
     </div>
   );
 };
