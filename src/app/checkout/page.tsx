@@ -70,7 +70,7 @@ const Checkout: React.FC = () => {
         {isQueryLoading ? <Loader isLoading={isQueryLoading} /> :
           <>
 
-            <InfoBoard text={'We have sent you an email to activate your account. Check your E-mail'} condition={!!(data?.user && !data.user.isActivated)} />
+            <InfoBoard imgUrl="/assets/email.png" text={'We have sent you an email to activate your account. Check your E-mail'} condition={!!(data?.user && !data.user.isActivated)} />
 
             {
               (data?.user && data.user.isActivated) &&
@@ -83,7 +83,7 @@ const Checkout: React.FC = () => {
                 </div>
                 <Button disabled={!cartItems.length} className={'pink_button'} onClick={() => bookingHandler(cartItems)}>Buchen</Button>
                 <Loader isLoading={isPending} />
-                <InfoBoard text='Booking successful' condition={isSuccess} />
+                <InfoBoard imgUrl="/assets/submited.png" text='Booking successful' condition={isSuccess} />
               </div>
 
             }
@@ -97,7 +97,7 @@ const Checkout: React.FC = () => {
 
       </div>
       <Footer isStatic={false} />
-
+      <InfoBoard imgUrl="/assets/error.png" condition={!!error} text={"Leider können wir derzeit keine Verbindung zum Server herstellen. Dies könnte auf vorübergehende technische Probleme oder Netzwerkunterbrechungen zurückzuführen sein."} />
     </div>
   )
 }

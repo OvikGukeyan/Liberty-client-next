@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Room } from "@/app/checkout/page";
 import { useBookingsStore } from "@/app/checkout/store";
 import { Loader } from "../Loader";
+import { InfoBoard } from "../InfoBoard";
 
 interface MyCalendarTypes {
     room: Room;
@@ -42,13 +43,12 @@ export const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setS
     ])
     const bookingsInCart = useBookingsStore(store => store.bookings)
 
-    const { data, isLoading: isQueryLoading } = useQuery({
+    const { data, isLoading: isQueryLoading, error } = useQuery({
         queryKey: ["bookings"],
         queryFn: BookingService.fetchBookings,
         select: (data) => data?.data,
         retry: false
     });
-
 
 
 
@@ -75,7 +75,6 @@ export const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setS
             }
         });
         bookingsInCart.forEach((booking) => {
-            console.log(booking)
             const bookingDate = new Date(booking.date);
 
             if (bookingDate.toISOString().split('T')[0] === formattedSelectedDate && booking.room === room.name) {
@@ -187,7 +186,7 @@ export const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setS
                 <div className={styles.selected_hours}>Hours:  {selectedHours.length && selectedHours[0] + ':00'} {selectedHours.length > 1 && <span>  {" -" + (Number(selectedHours.at(-1)) + 1) + ':00'} {'( ' + selectedHours.length + ' hours )'}</span>} </div>
             </div>
 
-
+                <InfoBoard imgUrl="/assets/error.png"  condition={!!error} text={"Leider können wir derzeit keine Verbindung zum Server herstellen. Dies könnte auf vorübergehende technische Probleme oder Netzwerkunterbrechungen zurückzuführen sein."}/>
         </div>
     );
 };

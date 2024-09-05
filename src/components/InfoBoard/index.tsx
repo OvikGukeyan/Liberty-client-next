@@ -5,14 +5,15 @@ import Image from "next/image";
 interface InfoBoardProps {
     condition: boolean
     text: string
+    imgUrl: string
 }
 
-export const InfoBoard: React.FC<InfoBoardProps> = ({condition, text}) => {
+export const InfoBoard: React.FC<InfoBoardProps> = ({condition, text, imgUrl}) => {
   return (
     <div className={`${styles.overlay} ${condition ? styles.overlayVisible : ""}`}>
         <div className={styles.board}>
           <Image
-            src={"/assets/submited.png"}
+            src={imgUrl}
             alt="submited"
             width={300}
             height={300}
