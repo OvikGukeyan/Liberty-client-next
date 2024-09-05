@@ -60,7 +60,6 @@ const Checkout: React.FC = () => {
     }
   };
 
-
   return (
 
     <div className={styles.checkout}>
@@ -97,7 +96,6 @@ const Checkout: React.FC = () => {
 
       </div>
       <Footer isStatic={false} />
-      <InfoBoard imgUrl="/assets/error.png" condition={!!error} text={"Leider können wir derzeit keine Verbindung zum Server herstellen. Dies könnte auf vorübergehende technische Probleme oder Netzwerkunterbrechungen zurückzuführen sein."} />
     </div>
   )
 }
