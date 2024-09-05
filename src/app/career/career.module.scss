@@ -7,6 +7,7 @@
         margin-bottom: 30px;
         text-align: center;
     }
+
     .what {
         width: 100%;
         display: flex;
@@ -15,13 +16,13 @@
         border-radius: 20px;
         background-color: #fdf3f0;
         overflow: hidden;
-        
+
         .text {
             width: 60%;
             padding: 40px;
-            
 
-            
+
+
 
             p {
                 font-size: 22px;
@@ -31,31 +32,30 @@
         }
 
         .img {
-            
+
             width: 40%;
             aspect-ratio: 1/1.4;
             background-image: url(../../../public/assets/career.webp);
             background-size: cover;
             background-position: center;
-            
-            
+
+
         }
     }
 
 
-  @media (max-width: 900px) {
-    .what {
-        .text {
-            padding: 30px;
-            p {
-                font-size: 18px;
-                line-height: 22px;
+    @media (max-width: 900px) {
+        .what {
+            .text {
+                padding: 30px;
+
+                p {
+                    font-size: 18px;
+                    line-height: 22px;
+                }
             }
         }
     }
-  }
 
-  @media (max-width: 767px) {
-    
-  }
+    @media (max-width: 767px) {}
 }

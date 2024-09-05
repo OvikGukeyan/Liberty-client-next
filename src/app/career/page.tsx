@@ -14,7 +14,7 @@ const Career: React.FC = () => {
       <Header />
       <div className={styles.main}>
         <h1>
-          Ihre Karriere bei der Liberty Finance GmbH:<br /> Zukunft gestalten, 
+          Ihre Karriere bei der Liberty Finance GmbH:<br /> Zukunft gestalten,
           Erfolg sichern
         </h1>
         <div className={styles.what}>
@@ -33,7 +33,7 @@ const Career: React.FC = () => {
           </div>
           <div className={styles.img}></div>
         </div>
-        <ApplicationForm/>
+        <ApplicationForm />
       </div>
       <Footer isStatic={false} />
     </div>

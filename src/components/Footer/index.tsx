@@ -9,13 +9,13 @@ type FooterType = {
 
 export const Footer: React.FC<FooterType> = ({ isStatic }) => {
   const [isVisible, setIsVisible] = useState(false);
-
   const toggleVisibility = () => {
     if (typeof window !== "undefined") {
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const totalHeight = document.documentElement.scrollHeight;
+      const scrollPosition = window.scrollY + window.innerHeight ;
+      const totalHeight = document.documentElement.scrollHeight - 1;
 
       setIsVisible(scrollPosition >= totalHeight);
+      console.log(scrollPosition, totalHeight)
     }
   };
 
@@ -31,9 +31,8 @@ export const Footer: React.FC<FooterType> = ({ isStatic }) => {
 
   return (
     <div
-      className={`${styles.footer} ${isVisible && styles.visible} ${
-        isStatic && styles.static
-      }`}
+      className={`${styles.footer} ${isVisible && styles.visible} ${isStatic && styles.static
+        }`}
     >
       <div className={styles.wrapper}>
         <div className={styles.head}>
@@ -46,9 +45,9 @@ export const Footer: React.FC<FooterType> = ({ isStatic }) => {
             />
           </div>
           <div className={styles.social_media}>
-            <Image src={'/assets/instagram.png'} alt="instagram" width={24} height={24}/>
-            <Image src={'/assets/youtube.png'} alt="youtube" width={24} height={24}/>
-            <Image src={'/assets/tiktok.png'} alt="tiktok" width={24} height={24}/>
+            <Image src={'/assets/instagram.png'} alt="instagram" width={24} height={24} />
+            <Image src={'/assets/youtube.png'} alt="youtube" width={24} height={24} />
+            <Image src={'/assets/tiktok.png'} alt="tiktok" width={24} height={24} />
           </div>
         </div>
         <div className={styles.main}>
