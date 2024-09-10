@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './BookingOptions.module.scss';
 import { useBookingsStore } from '@/app/checkout/store';
 import Image from 'next/image';
@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Button, Cart, MyCalendar } from '@/components';
 
 
-const BookingOptions: React.FC = () => {
+const BookingOptions: FC = () => {
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const [selectedHours, setSelectedHours] = useState<number[]>([]);
     const [isCartOpen, setIsCartOpen] = useState(false)

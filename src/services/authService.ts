@@ -1,5 +1,5 @@
 import $api from "../http";
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { AuthResponse } from "../models/response/AuthResponse";
 import { RegistrationValues } from "@/components/RegistrationForm";
 import { LoginValues } from "@/components/LoginForm";

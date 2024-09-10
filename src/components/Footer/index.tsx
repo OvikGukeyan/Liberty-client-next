@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 import styles from "./Footer.module.scss";
 import Image from "next/image";
 
@@ -7,7 +7,7 @@ type FooterType = {
   isStatic: boolean;
 };
 
-export const Footer: React.FC<FooterType> = ({ isStatic }) => {
+export const Footer: FC<FooterType> = ({ isStatic }) => {
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => {
     if (typeof window !== "undefined") {
@@ -15,7 +15,6 @@ export const Footer: React.FC<FooterType> = ({ isStatic }) => {
       const totalHeight = document.documentElement.scrollHeight - 1;
 
       setIsVisible(scrollPosition >= totalHeight);
-      console.log(scrollPosition, totalHeight)
     }
   };
 

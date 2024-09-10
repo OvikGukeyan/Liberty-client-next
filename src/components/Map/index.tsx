@@ -7,12 +7,13 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import { markersType } from "@/app/contact/page";
+import { FC } from "react";
 
 type MapTypes = {
   markers: markersType
 };
 
-const Map: React.FC<MapTypes> = ({ markers }) => {
+const Map: FC<MapTypes> = ({ markers }) => {
   const customIcon = new Icon({
     iconUrl: "/assets/location_map_icon.png", 
     iconSize: [42, 42],

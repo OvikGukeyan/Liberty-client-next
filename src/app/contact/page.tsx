@@ -1,7 +1,7 @@
 import styles from "./contact.module.scss";
 import { LatLngExpression } from "leaflet";
 import Image from "next/image";
-import { useMemo } from "react";
+import { FC, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { Footer, Header } from "@/components";
 
@@ -29,7 +29,7 @@ const markers: markersType = {
   },
 };
 
-const Contact: React.FC = () => {
+const Contact: FC = () => {
   const Map = useMemo(
     () =>
       dynamic(() => import("@/components/Map"), {

@@ -4,20 +4,19 @@ import React, {
   useEffect,
   useState,
   Children,
-  ReactNode,
-  ReactElement,
   useRef,
+  FC,
+  PropsWithChildren,
 } from "react";
 import styles from "./Carousel.module.scss";
+import { debounce } from "lodash";
 
 type CarouselTypes = {
-  children: ReactNode;
   controllers?: boolean;
   auto?: boolean
 };
 
-export const Carousel: React.FC<CarouselTypes> = ({ children, controllers, auto }) => {
-  const [pages, setPages] = useState<ReactNode[]>([]);
+export const Carousel: FC<PropsWithChildren<CarouselTypes>> = ({ children, controllers, auto }) => {
   const [offset, setOffset] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
   const [sliderWidth, setSliderWidth] = useState(0);
@@ -25,7 +24,7 @@ export const Carousel: React.FC<CarouselTypes> = ({ children, controllers, auto 
   const handleLeftArrowClick = () => {
     setOffset((currentOffset) => {
       const newOffset = currentOffset + sliderWidth;
-      const maxOffset = -(sliderWidth * (pages.length - 1));
+      const maxOffset = -(sliderWidth * (Children.count(children) - 1));
       const result = newOffset <= 0 ? newOffset : maxOffset;
       // return Math.min(newOffset, 0)
       return result;
@@ -35,7 +34,7 @@ export const Carousel: React.FC<CarouselTypes> = ({ children, controllers, auto 
   const handleRightArrowClick = () => {
     setOffset((currentOffset) => {
       const newOffset = currentOffset - sliderWidth;
-      const maxOffset = -(sliderWidth * (pages.length - 1));
+      const maxOffset = -(sliderWidth * (Children.count(children) - 1));
       const result = newOffset >= maxOffset ? newOffset : 0;
 
       // Math.max(newOffset, maxOffset)
@@ -43,13 +42,13 @@ export const Carousel: React.FC<CarouselTypes> = ({ children, controllers, auto 
     });
   };
 
-  const handleResize = () => {
+  const handleResize = debounce(() => {
     if (sliderRef.current) {
       const width = sliderRef.current.offsetWidth;
       setSliderWidth(width);
       setOffset(0);
     }
-  };
+  }, 100); // debounce через каждые 100 мс
 
   useEffect(() => {
     handleResize();
@@ -59,39 +58,32 @@ export const Carousel: React.FC<CarouselTypes> = ({ children, controllers, auto 
     };
   }, []);
 
-  useEffect(() => {
-    const newChildren = Children.map(children, (child) => {
-      if (React.isValidElement(child)) {
-        return (
-          <div
-            style={{
-              minWidth: "100%",
-              maxWidth: "100%",
-              height: "100%",
-              ...child.props.style,
-            }}
-          >
-            {child}
-          </div>
-        );
-      }
-      return null;
-    }) as ReactElement[];
-    setPages(newChildren);
-
-
-  }, [children]);
+  
 
   useEffect(() => {
     if (auto) {
-      const interval = setInterval(() => {
-        handleRightArrowClick();
-      }, 3000); // Auto-flip every 5 seconds
+      let animationFrameId: number;
+      let start: number | null = null;
 
-      return () => clearInterval(interval); // Clear interval on component unmount
+      const step = (timestamp: number) => {
+        if (!start) start = timestamp;
+        const elapsed = timestamp - start;
+
+        if (elapsed > 3000) { // Автопрокрутка каждые 3 секунды
+          handleRightArrowClick();
+          start = timestamp; // Сбрасываем время начала
+        }
+
+        animationFrameId = requestAnimationFrame(step);
+      };
+
+      animationFrameId = requestAnimationFrame(step);
+
+      return () => {
+        cancelAnimationFrame(animationFrameId); // Очищаем requestAnimationFrame при размонтировании
+      };
     }
-  }, [sliderWidth, pages.length]);
-
+  }, [sliderWidth, children, auto]);
 
 
 
@@ -104,7 +96,18 @@ export const Carousel: React.FC<CarouselTypes> = ({ children, controllers, auto 
             transform: `translateX(${offset}px)`,
           }}
         >
-          {pages}
+          {Children.map(children, (child, index) => (
+            <div
+              key={index}
+              style={{
+                minWidth: "100%",
+                maxWidth: "100%",
+                height: "100%",
+              }}
+            >
+              {child}
+            </div>
+          ))}
         </div>
 
         {controllers && <div className={styles.slider}>

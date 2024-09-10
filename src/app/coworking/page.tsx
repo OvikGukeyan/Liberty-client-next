@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./coworking.module.scss";
 import { CoworkingZone, Footer, Header } from "@/components";
 
@@ -29,7 +29,7 @@ const coworkingZones = [
   },
 ];
 
-const Coworking: React.FC = () => {
+const Coworking: FC = () => {
   return (
     <div className={styles.coworking}>
       <Header />

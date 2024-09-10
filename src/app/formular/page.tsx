@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import styles from "./formular.module.scss";
 import { FieldValues, useForm } from "react-hook-form";
 import axios from "axios";
@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button, InfoBoard, Loader } from "@/components";
 
-const ContactForm: React.FC = () => {
+const ContactForm: FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isRejected, setIsRejected] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

@@ -2,11 +2,13 @@
 import React, { useRef } from "react";
 import styles from "./ApplicationForm.module.scss";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import Image from "next/image";
-import { Button } from "..";
+import { Button, InfoBoard, Loader } from "..";
+import { allowedFileTypes, maxSizeInBytes } from "./utils";
+import formService from "@/services/formService";
+import { useMutation } from "@tanstack/react-query";
 
-interface FormValues {
+export interface FormValues {
   firstName: string;
   lastName: string;
   emailAddress: string;
@@ -20,7 +22,7 @@ interface FormValues {
 
 export const ApplicationForm = () => {
 
-  const inputFileRef = useRef<HTMLInputElement>(null)
+ const inputFileRef = useRef<HTMLInputElement>(null)
 
   const {
     register,
@@ -45,47 +47,6 @@ export const ApplicationForm = () => {
 
   const cv = watch('cv')
 
-  
-
-
-  const submitHandler = async (values: FormValues) => {
-    const formData = new FormData();
-    formData.append("firstName", values.firstName);
-    formData.append("lastName", values.lastName);
-    formData.append("emailAddress", values.emailAddress);
-    formData.append("phoneNumber", values.phoneNumber);
-    formData.append("description", values.description);
-    formData.append("communicationMethod", values.communicationMethod);
-    formData.append("check", values.check.toString());
-    if (values.cv) {
-      formData.append("cv", values.cv);
-    }
-
-    // Вывод данных в консоль перед отправкой
-    formData.forEach((value, key) => {
-      console.log(key, value);
-    });
-
-    try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/job`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log(response.data);
-      reset();
-    } catch (error) {
-      console.error("Error submitting form:", error);
-    }
-  };
-
-  const allowedFileTypes = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "text/plain"];
-  const maxSizeInBytes = 2 * 1024 * 1024; 
-
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -108,8 +69,25 @@ export const ApplicationForm = () => {
       setValue("cv", file);
     }
   };
+
+  const {isPending, mutate, error, isSuccess} = useMutation({
+    mutationFn: async (values: FormValues) => {
+        return formService.sendAplicationForm(values);
+    },
+    onSuccess: (response) => {
+       reset()
+    },
+    onError: (error) => {
+        // Handle error
+        console.error("Sending failed", error);
+        alert("Sending failed");
+    },
+});
+
+
+
   return (
-    <form onSubmit={handleSubmit(submitHandler)} className={styles.form}>
+    <form onSubmit={handleSubmit((values) => mutate(values))} className={styles.form}>
       <h2 className={styles.title}>BEWERBUNGS­FORMULAR</h2>
       <div className={styles.input_box}>
         <label>
@@ -270,6 +248,9 @@ export const ApplicationForm = () => {
         </p>
       </div>
 
+      <InfoBoard imgUrl="/assets/submited.png" text={'Vielen Dank für Ihr Vertrauen. Wir kümmern uns schnellstmöglich um Ihr Anliegen'} condition={isSuccess} />
+      <InfoBoard condition={!!error} text="Beim Senden ist ein Fehler aufgetreten" imgUrl="/assets/error.png"/>
+      <Loader isLoading={isPending}/>
       
       <Button className={'black_button'} disabled={!isValid} type="submit" >Abschicken</Button>
     </form>

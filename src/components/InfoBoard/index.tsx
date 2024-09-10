@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './InfoBoard.module.scss';
 import Image from "next/image";
 
@@ -8,7 +8,7 @@ interface InfoBoardProps {
     imgUrl: string
 }
 
-export const InfoBoard: React.FC<InfoBoardProps> = ({condition, text, imgUrl}) => {
+export const InfoBoard: FC<InfoBoardProps> = ({condition, text, imgUrl}) => {
   return (
     <div className={`${styles.overlay} ${condition ? styles.overlayVisible : ""}`}>
         <div className={styles.board}>

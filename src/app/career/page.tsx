@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./career.module.scss";
 import { ApplicationForm, Footer, Header } from "@/components";
 
@@ -8,7 +8,7 @@ export const metadata = {
   keywords: "",
 };
 
-const Career: React.FC = () => {
+const Career: FC = () => {
   return (
     <div>
       <Header />

@@ -1,8 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import styles from './Button.module.scss';
 
 interface ButtonTypes {
-    children: ReactNode
     onClick?: () => void
     disabled?: boolean
     type?: "button" | "submit" | "reset" | undefined
@@ -10,7 +9,7 @@ interface ButtonTypes {
 
 }
 
-export const Button: React.FC<ButtonTypes> = ({children, onClick, disabled, type, className}) => {
+export const Button: FC<PropsWithChildren<ButtonTypes>> = ({children, onClick, disabled, type, className}) => {
   return (
     <button type={type ? type : "button"} disabled={disabled} onClick={onClick} className={styles[className]}>{children}</button>
   )

@@ -1,6 +1,7 @@
 import { Footer, Header } from "@/components";
 import styles from "./about.module.scss";
 import Image from "next/image";
+import { FC } from "react";
 
 export const metadata = {
   title: "About Us",
@@ -8,7 +9,7 @@ export const metadata = {
   keywords: "",
 };
 
-const About: React.FC = () => {
+const About: FC = () => {
   return (
     <div className={styles.about}>
       <Header />

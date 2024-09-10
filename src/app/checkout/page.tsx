@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './checkout.module.scss'
 import AuthService from '@/services/authService';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -19,7 +19,7 @@ export type BookingType = Omit<CartItem, 'id'> & {
 };
 
 
-const Checkout: React.FC = () => {
+const Checkout: FC = () => {
   const cartItems = useBookingsStore(store => store.bookings);
   const clearCart = useBookingsStore(store => store.deleteAllBookings);
 

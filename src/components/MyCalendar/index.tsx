@@ -1,5 +1,5 @@
 "use client";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./MyCalendar.module.scss";
@@ -18,7 +18,7 @@ interface MyCalendarTypes {
     setSelectedHours: Dispatch<SetStateAction<number[]>>
 }
 
-export const MyCalendar: React.FC<MyCalendarTypes> = ({ room, selectedDate, setSelectedDate, selectedHours, setSelectedHours }) => {
+export const MyCalendar: FC<MyCalendarTypes> = ({ room, selectedDate, setSelectedDate, selectedHours, setSelectedHours }) => {
 
 
     const [startHour, setStartHour] = useState<number | null>(null);

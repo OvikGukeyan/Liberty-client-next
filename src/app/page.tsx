@@ -69,7 +69,7 @@ export default function Home() {
         <div className={styles.photo_2}>
           <Carousel auto>
             {[...Array(5)].map((item, ind) => (
-              <span key={ind} style={{backgroundColor: '#000', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Slide {ind + 1}</span>
+              <span key={ind} style={{backgroundColor: '#000', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>Slide {ind + 1}</span>
             ))}
           </Carousel>
         </div>
