@@ -6,7 +6,7 @@ import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import { markersType } from "@/app/contact/page";
+import { markersType } from "@/app/(root)/contact/page";
 import { FC } from "react";
 
 type MapTypes = {

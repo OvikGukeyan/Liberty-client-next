@@ -1,9 +1,9 @@
 "use client";
 import React, { FC, useRef, useState } from "react";
 import styles from "./CoworkingZone.module.scss";
-import { Room } from "@/app/checkout/page";
+import { Room } from "@/app/(root)/checkout/page";
 import { useRouter } from "next/navigation";
-import { useCurrentRoomStore } from "@/app/bookingOptions/store";
+import { useCurrentRoomStore } from "@/app/(root)/bookingOptions/store";
 import { Button } from "..";
 
 

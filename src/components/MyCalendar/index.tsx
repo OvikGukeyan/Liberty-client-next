@@ -5,8 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import styles from "./MyCalendar.module.scss";
 import BookingService from "@/services/bookingService";
 import { useQuery } from "@tanstack/react-query";
-import { Room } from "@/app/checkout/page";
-import { useBookingsStore } from "@/app/checkout/store";
+import { Room } from "@/app/(root)/checkout/page";
+import { useBookingsStore } from "@/app/(root)/checkout/store";
 import { Loader } from "../Loader";
 import { InfoBoard } from "../InfoBoard";
 

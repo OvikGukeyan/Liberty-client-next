@@ -1,5 +1,6 @@
+
 import Image from "next/image";
-import styles from "./page.module.scss";
+import styles from "../page.module.scss";
 import Slide from "@/components/Slide";
 import { Carousel, CookieConsent, Footer, Header } from "@/components";
 
@@ -33,6 +34,13 @@ const servicesList = [
 
 
 export default function Home() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <div className={styles.wrapper}>
       <div className={styles.box_1}>
@@ -51,6 +59,7 @@ export default function Home() {
             {servicesList.map((item, ind) => (
               <Slide key={ind} item={item} />
             ))}
+
           </Carousel>
         </div>
       </div>
@@ -69,13 +78,13 @@ export default function Home() {
         <div className={styles.photo_2}>
           <Carousel auto>
             {[...Array(5)].map((item, ind) => (
-              <span key={ind} style={{backgroundColor: '#000', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>Slide {ind + 1}</span>
+              <div key={ind} style={{ backgroundColor: '#000', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>Slide {ind + 1}</div>
             ))}
           </Carousel>
         </div>
       </div>
       <Footer isStatic={false} />
-      <CookieConsent/>
+      <CookieConsent />
     </div>
   );
 }

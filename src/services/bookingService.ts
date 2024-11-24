@@ -1,4 +1,4 @@
-import { BookingType } from "@/app/checkout/page";
+import { BookingType } from "@/app/(root)/checkout/page";
 import $api from "@/http";
 import { Booking } from "@/models/Booking";
 import { AxiosResponse } from "axios";

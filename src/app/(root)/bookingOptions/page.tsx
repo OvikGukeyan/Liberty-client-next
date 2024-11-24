@@ -1,7 +1,7 @@
 'use client'
 import React, { FC, useState } from 'react';
 import styles from './BookingOptions.module.scss';
-import { useBookingsStore } from '@/app/checkout/store';
+import { useBookingsStore } from '@/app/(root)/checkout/store';
 import Image from 'next/image';
 import { useCurrentRoomStore } from './store';
 import Link from 'next/link';

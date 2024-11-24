@@ -4,6 +4,7 @@ import styles from "./Header.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 
 const headerItems = [
   { name: 'home', href: '/' },
@@ -41,14 +42,13 @@ export const Header = () => {
   return (
     <header className={styles.header}>
 
-      <Image
+      <Menu
         onClick={handleHamburgerClick}
-        src={"/assets/hamburger.png"}
-        alt="hamburger"
         width={40}
         height={40}
         className={styles.hamburger}
       />
+
 
       <div className={styles.logo}>
         <Link href={"/"}>
@@ -67,10 +67,8 @@ export const Header = () => {
           }`}
       >
         <nav ref={menuRef}>
-          <Image
+          <X
             onClick={handleHamburgerClick}
-            src={"/assets/close.png"}
-            alt="close"
             width={30}
             height={30}
             className={styles.close}

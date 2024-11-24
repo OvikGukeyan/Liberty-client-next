@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Cart.module.scss';
 import Image from 'next/image';
-import { useBookingsStore } from '../../app/checkout/store';
+import { useBookingsStore } from '../../app/(root)/checkout/store';
 import Link from 'next/link';
 import { Button } from '..';
 

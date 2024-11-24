@@ -1,3 +1,6 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -22,7 +25,8 @@ body::-webkit-scrollbar {
   background-color: #fdf3f0 !important;
 }
 
-.react-datepicker__day, .react-datepicker__day-name {
+.react-datepicker__day,
+.react-datepicker__day-name {
   margin: 4px 5px !important;
   border-radius: 0 !important;
 }
