@@ -6,6 +6,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import BookingService from '@/services/bookingService';
 import { CartItem, useBookingsStore } from './store';
 import { Auth, Button, Cart, Footer, Header, InfoBoard, Loader } from '@/components';
+import toast from 'react-hot-toast';
+import { redirect, useRouter } from 'next/navigation';
 
 export interface Room {
   name: string;
@@ -23,6 +25,7 @@ const Checkout: FC = () => {
   const cartItems = useBookingsStore(store => store.bookings);
   const clearCart = useBookingsStore(store => store.deleteAllBookings);
 
+  const router = useRouter();
   const { data, error, isLoading: isQueryLoading } = useQuery({
     queryKey: ["authData"],
     queryFn: AuthService.checkAuth,
@@ -39,14 +42,16 @@ const Checkout: FC = () => {
     },
     onSuccess: (response) => {
       // Handle success
-      console.log("Booking successful", response.data);
       queryClient.setQueryData(["booking"], response.data);
       queryClient.invalidateQueries({ queryKey: ['booking'] });
       clearCart();
+      toast.success("Booking successful");
+      router.push('/');
     },
     onError: (error) => {
       // Handle error
-      console.error("Registration failed", error);
+      console.error("Booking failed", error);
+      toast.error("Something went wrong");
     },
   });
 
@@ -55,7 +60,6 @@ const Checkout: FC = () => {
   const bookingHandler = (values: CartItem[]) => {
     if (data?.user.id) {
       const bookings = values.map(({ id, ...values }) => ({ userId: data?.user.id, ...values }))
-      console.log(values)
       mutate(bookings);
     }
   };
@@ -82,7 +86,6 @@ const Checkout: FC = () => {
                 </div>
                 <Button disabled={!cartItems.length} className={'pink_button'} onClick={() => bookingHandler(cartItems)}>Buchen</Button>
                 <Loader isLoading={isPending} />
-                <InfoBoard imgUrl="/assets/submited.png" text='Booking successful' condition={isSuccess} />
               </div>
 
             }
@@ -95,7 +98,6 @@ const Checkout: FC = () => {
 
 
       </div>
-      <Footer isStatic={false} />
     </div>
   )
 }

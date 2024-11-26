@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import AuthService from '@/services/authService';
 import { Loader } from '..';
+import toast from 'react-hot-toast';
 
 
 export interface LoginValues {
@@ -29,15 +30,14 @@ export const LoginForm = () => {
             return AuthService.login(values);
         },
         onSuccess: (response) => {
-            // Handle success
             queryClient.setQueryData(["authData"], response.data);
             queryClient.invalidateQueries({queryKey: ['authData']});
             localStorage.setItem('token', response.data.accessToken)
+            toast.success("Login successful");
         },
         onError: (error) => {
-            // Handle error
             console.error("Login failed", error);
-            alert("Login failed");
+            toast.error("Login failed");
         },
     });
 

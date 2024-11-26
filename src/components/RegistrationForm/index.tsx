@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import AuthService from "@/services/authService";
 import { Button, Loader } from "..";
+import toast from "react-hot-toast";
 
 export interface RegistrationValues {
     firstName: string;
@@ -47,12 +48,12 @@ export const RegistrationForm = () => {
             console.log("Registration successful", response.data);
             queryClient.setQueryData(["authData"], response.data);
             queryClient.invalidateQueries({ queryKey: ['authData'] });
-            localStorage.setItem('token', response.data.accessToken)
+            localStorage.setItem('token', response.data.accessToken);
+            toast.success("Registration successful");
         },
         onError: (error) => {
-            // Handle error
             console.error("Registration failed", error);
-            alert("Registration failed");
+            toast.error("Registration failed");
         },
     });
 

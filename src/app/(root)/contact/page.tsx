@@ -122,7 +122,6 @@ const Contact: FC = () => {
           <Map markers={markers} />
         </div>
       </div>
-      <Footer isStatic={true} />
     </div>
   );
 };

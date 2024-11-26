@@ -117,7 +117,6 @@ const About: FC = () => {
           </div>
         </div>
       </div>
-      <Footer isStatic={false} />
     </div>
   );
 };

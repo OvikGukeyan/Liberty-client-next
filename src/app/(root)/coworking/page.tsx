@@ -39,7 +39,6 @@ const Coworking: FC = () => {
 
 
       </div>
-      <Footer isStatic={false} />
     </div>
   );
 };

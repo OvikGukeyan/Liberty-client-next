@@ -35,7 +35,6 @@ const Career: FC = () => {
         </div>
         <ApplicationForm />
       </div>
-      <Footer isStatic={false} />
     </div>
   );
 };

@@ -3,10 +3,12 @@ import React, { useRef } from "react";
 import styles from "./ApplicationForm.module.scss";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
-import { Button, InfoBoard, Loader } from "..";
+import { Button, Loader } from "..";
 import { allowedFileTypes, maxSizeInBytes } from "./utils";
 import formService from "@/services/formService";
 import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { redirect, useRouter } from "next/navigation";
 
 export interface FormValues {
   firstName: string;
@@ -21,8 +23,8 @@ export interface FormValues {
 
 
 export const ApplicationForm = () => {
-
- const inputFileRef = useRef<HTMLInputElement>(null)
+  const router = useRouter();
+  const inputFileRef = useRef<HTMLInputElement>(null)
 
   const {
     register,
@@ -51,7 +53,7 @@ export const ApplicationForm = () => {
     const file = event.target.files?.[0];
     if (file) {
       if (!allowedFileTypes.includes(file.type)) {
-        alert("Invalid file type. Only PDF, DOC, DOCX and TXT are accepted.");
+        toast.error("Invalid file type. Only PDF, DOC, DOCX and TXT are accepted.");
         setValue("cv", null);
         if (inputFileRef.current) {
           inputFileRef.current.value = "";
@@ -59,7 +61,7 @@ export const ApplicationForm = () => {
         return;
       }
       if (file.size > maxSizeInBytes) {
-        alert("The file is too large. Maximum size 2MB.");
+        toast.error("The file is too large. Maximum size 2MB.");
         setValue("cv", null);
         if (inputFileRef.current) {
           inputFileRef.current.value = "";
@@ -70,19 +72,20 @@ export const ApplicationForm = () => {
     }
   };
 
-  const {isPending, mutate, error, isSuccess} = useMutation({
+  const { isPending, mutate, error, isSuccess } = useMutation({
     mutationFn: async (values: FormValues) => {
-        return formService.sendAplicationForm(values);
+      return formService.sendAplicationForm(values);
     },
     onSuccess: (response) => {
-       reset()
+      reset();
+      toast.success("Deine Bewerbung wurde erfolgreich gesendet");
+      router.push("/");
     },
     onError: (error) => {
-        // Handle error
-        console.error("Sending failed", error);
-        alert("Sending failed");
+      toast.error("Beim Senden ist ein Fehler aufgetreten");
+      console.error("Sending failed", error);
     },
-});
+  });
 
 
 
@@ -180,7 +183,7 @@ export const ApplicationForm = () => {
 
       <div className={styles.file_box}>
         <h3>Upload your CV: <br /><span>(Only PDF, DOC, DOCX and TXT are accepted)</span></h3>
-        
+
         <label onClick={() => inputFileRef.current?.click()} className={styles.file_upload} htmlFor="file">
           {cv ?
             <>
@@ -248,10 +251,8 @@ export const ApplicationForm = () => {
         </p>
       </div>
 
-      <InfoBoard imgUrl="/assets/submited.png" text={'Vielen Dank für Ihr Vertrauen. Wir kümmern uns schnellstmöglich um Ihr Anliegen'} condition={isSuccess} />
-      <InfoBoard condition={!!error} text="Beim Senden ist ein Fehler aufgetreten" imgUrl="/assets/error.png"/>
-      <Loader isLoading={isPending}/>
-      
+      <Loader isLoading={isPending} />
+
       <Button className={'black_button'} disabled={!isValid} type="submit" >Abschicken</Button>
     </form>
   );

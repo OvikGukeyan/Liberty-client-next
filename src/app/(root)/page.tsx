@@ -83,7 +83,6 @@ export default function Home() {
           </Carousel>
         </div>
       </div>
-      <Footer isStatic={false} />
       <CookieConsent />
     </div>
   );
