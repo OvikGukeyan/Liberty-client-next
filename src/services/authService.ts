@@ -1,16 +1,16 @@
 import $api from "../http";
 import { AxiosResponse } from "axios";
 import { AuthResponse } from "../models/response/AuthResponse";
-import { RegistrationValues } from "@/components/RegistrationForm";
-import { LoginValues } from "@/components/LoginForm";
+import { TFormLoginValues } from "../../schemas/loginSchema";
+import { TFormRegisterValues } from "../../schemas/registerSchema";
 
 
 export default class AuthService {
-    static async login(values: LoginValues): Promise<AxiosResponse<AuthResponse>> {
+    static async login(values: TFormLoginValues): Promise<AxiosResponse<AuthResponse>> {
         return $api.post<AuthResponse>('/login', {...values})
     }
 
-    static async registration (values: RegistrationValues): Promise<AxiosResponse<AuthResponse>> {
+    static async registration (values: TFormRegisterValues): Promise<AxiosResponse<AuthResponse>> {
         console.log(values)
         return $api.post<AuthResponse>('/registration', {...values})
     }
