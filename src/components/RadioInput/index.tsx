@@ -1,3 +1,5 @@
+'use client'
+
 import React, { FC } from 'react';
 import styles from './RadioInput.module.scss';
 import { useFormContext } from 'react-hook-form';
