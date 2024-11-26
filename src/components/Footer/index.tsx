@@ -1,7 +1,8 @@
 "use client";
-import React, { useState, useEffect, FC } from "react";
+import React, { useState, useEffect, FC, useCallback } from "react";
 import styles from "./Footer.module.scss";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 type FooterType = {
   isStatic: boolean;
@@ -9,14 +10,13 @@ type FooterType = {
 
 export const Footer: FC<FooterType> = ({ isStatic }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const toggleVisibility = () => {
+  const toggleVisibility = useCallback(() => {
     if (typeof window !== "undefined") {
-      const scrollPosition = window.scrollY + window.innerHeight ;
+      const scrollPosition = window.scrollY + window.innerHeight;
       const totalHeight = document.documentElement.scrollHeight - 1;
-
       setIsVisible(scrollPosition >= totalHeight);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (isStatic) {
@@ -27,6 +27,9 @@ export const Footer: FC<FooterType> = ({ isStatic }) => {
       window.removeEventListener("scroll", toggleVisibility);
     };
   }, []);
+
+  
+
 
   return (
     <div

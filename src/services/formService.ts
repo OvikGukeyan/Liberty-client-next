@@ -2,7 +2,7 @@ import { FormValues } from "@/components/ApplicationForm";
 import $api from "../http";
 
 
-export default class AplicationFormService {
+export default class formService {
     static async sendAplicationForm(values: FormValues) {
         const formData = new FormData();
         formData.append("firstName", values.firstName);
@@ -24,5 +24,9 @@ export default class AplicationFormService {
                 },
             }
         );
+    };
+
+    sendContactForm(values: FormValues) {
+        
     }
 }

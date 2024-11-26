@@ -3,7 +3,7 @@ import React, { FC, useRef, useState } from "react";
 import styles from "./CoworkingZone.module.scss";
 import { Room } from "@/app/(root)/checkout/page";
 import { useRouter } from "next/navigation";
-import { useCurrentRoomStore } from "@/app/(root)/bookingOptions/store";
+import { useCurrentRoomStore } from "@/app/(root)/booking-options/store";
 import { Button } from "..";
 
 
@@ -13,27 +13,15 @@ interface CoworkingZoneTypes {
 }
 
 export const CoworkingZone: FC<CoworkingZoneTypes> = ({ item }) => {
-    // const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-    const calendarRef = useRef<HTMLDivElement>(null)
     const router = useRouter();
     const setCurrentRoom = useCurrentRoomStore(store => store.setCurrentRoom)
     const handleBookingClick = () => {
-        // setIsCalendarOpen(true);
-        // document.body.style.overflow = "hidden";
+       
         setCurrentRoom(item)
-        router.push('/bookingOptions')
+        router.push('/booking-options')
     };
 
-    // const handleOutsideClick = (
-    //     e: React.MouseEvent<HTMLDivElement, MouseEvent>
-    // ) => {
-    //     if (calendarRef.current) {
-    //         if (!calendarRef.current.contains(e.target as Node)) {
-    //             setIsCalendarOpen(false);
-    //             document.body.style.overflow = "";
-    //         }
-    //     }
-    // };
+   
 
     return (
         <div className={styles.zone}>
@@ -45,14 +33,7 @@ export const CoworkingZone: FC<CoworkingZoneTypes> = ({ item }) => {
                 </div>
             </div>
             <div className={styles[item.img]}></div>
-            {/* {
-                isCalendarOpen &&
-                <div onClick={(e) => handleOutsideClick(e)} className={`${styles.overlay} ${isCalendarOpen && styles.overlayVisible}`}>
-                    <div ref={calendarRef}>
-                        <BookingOptions room={item}/>
-                    </div>
-                </div>
-            } */}
+           
 
         </div>
     );

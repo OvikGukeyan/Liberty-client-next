@@ -12,6 +12,8 @@ export {Loader} from './Loader';
 export {MyCalendar} from './MyCalendar';
 export {RegistrationForm} from './RegistrationForm';
 export {CookieConsent} from './CookieConsent';
+export {FormInput} from './FormInput';
+export {RadioInput} from './RadioInput';
 
 
 

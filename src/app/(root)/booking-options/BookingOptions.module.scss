@@ -1,12 +1,11 @@
 .wrapper {
   overflow: scroll;
-  height: 95vh;
   padding: 60px;
   background-color: #fff;
   border-radius: 15px;
   position: relative;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 0 auto 200px auto;
 
   &::-webkit-scrollbar {
     display: none;
