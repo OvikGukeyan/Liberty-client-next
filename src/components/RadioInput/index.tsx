@@ -11,7 +11,6 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 export const RadioInput: FC<Props> = ({ className, name, label, ...props }) => {
     const { register } = useFormContext();
-    console.log(className);
     return (
         <label className={styles.radio_label}>
             {label && <span>{label}</span>}

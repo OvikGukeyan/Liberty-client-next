@@ -11,7 +11,6 @@ export default class AuthService {
     }
 
     static async registration (values: TFormRegisterValues): Promise<AxiosResponse<AuthResponse>> {
-        console.log(values)
         return $api.post<AuthResponse>('/registration', {...values})
     }
 

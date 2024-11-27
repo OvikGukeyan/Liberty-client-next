@@ -10,11 +10,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button, FormInput, InfoBoard, Loader, RadioInput } from "@/components";
 import { contactFormSchema, TFormContactValues } from "../../../../schemas/contactFormSchema";
+import { useMutation } from "@tanstack/react-query";
+import FormService from "@/services/formService";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const ContactForm: FC = () => {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isRejected, setIsRejected] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  
+  const router = useRouter();
 
   const form = useForm<TFormContactValues>({
     resolver: zodResolver(contactFormSchema),
@@ -47,24 +50,22 @@ const ContactForm: FC = () => {
     }
   }, []);
 
-  const submitHandler = (values: FieldValues) => {
-    setIsLoading(true);
-    axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/contact`, values)
-      .then((response) => {
-        document.body.style.overflow = "hidden";
-        setIsRejected(false);
-        setIsSubmitted(true);
-        setIsLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error submitting form:", error);
-        setIsLoading(false);
-        setIsSubmitted(false);
-        setIsRejected(true);
-      });
-    form.reset();
-  };
+ 
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (values: TFormContactValues) => {
+      return FormService.sendContactForm(values);
+    },
+    onSuccess: (response) => {
+      toast.success("Contact form submitted successfully. We will contact you soon.");
+      form.reset();
+      router.push('/');
+    },
+    onError: (error) => {
+      console.error("Sending failed", error);
+      toast.error("Sending failed");
+    },
+  });
+
 
   return (
     <div className={styles.checkout_wrapper}>
@@ -95,11 +96,11 @@ const ContactForm: FC = () => {
         </div>
         <h1>Kontaktformular </h1>
         <FormProvider {...form}>
-          <form onSubmit={form.handleSubmit(submitHandler)}>
+          <form onSubmit={form.handleSubmit(values => mutate(values))}>
             <h3>ANREDE</h3>
             <div className={styles.input_box}>
-              <RadioInput name={'salutation'} label={'Herr'} value={'herr'} type="radio"/>
-              <RadioInput name={'salutation'} label={'Frau'} value={'frau'} type="radio"/>
+              <RadioInput name={'salutation'} label={'Herr'} value={'herr'} type="radio" />
+              <RadioInput name={'salutation'} label={'Frau'} value={'frau'} type="radio" />
               <FormInput name={'titel'} label={'Titel'} />
             </div>
 
@@ -122,14 +123,14 @@ const ContactForm: FC = () => {
 
             <h3>Ich wünche eine unverbindliche Beratung zu folgendem Thema</h3>
             <div className={styles.input_box}>
-              <RadioInput name={'topic'} label={'Baufinanzierung'} value={'baufinanzierung'}  type="checkbox"/>
-              <RadioInput name={'topic'} label={'Privatkredit'} value={'privatkredit'} type="checkbox"/>
-              <RadioInput name={'topic'} label={'Autokredit'} value={'autokredit'} type="checkbox"/>
-              <RadioInput name={'topic'} label={'Versicherung'} value={'versicherung'} type="checkbox"/>
-              <RadioInput name={'topic'} label={'Kapitalaufbau'} value={'kapitalaufbau'} type="checkbox"/>
-              <RadioInput name={'topic'} label={'Immobilien'} value={'immobilien'} type="checkbox"/>
-              <RadioInput name={'topic'} label={'Modernisierungsdarlehen'} value={'modernisierungsdarlehen'} type="checkbox"/>
-              <RadioInput name={'topic'} label={'Kapitalbeschaffung'} value={'kapitalbeschaffung'} type="checkbox"/>
+              <RadioInput name={'topic'} label={'Baufinanzierung'} value={'baufinanzierung'} type="checkbox" />
+              <RadioInput name={'topic'} label={'Privatkredit'} value={'privatkredit'} type="checkbox" />
+              <RadioInput name={'topic'} label={'Autokredit'} value={'autokredit'} type="checkbox" />
+              <RadioInput name={'topic'} label={'Versicherung'} value={'versicherung'} type="checkbox" />
+              <RadioInput name={'topic'} label={'Kapitalaufbau'} value={'kapitalaufbau'} type="checkbox" />
+              <RadioInput name={'topic'} label={'Immobilien'} value={'immobilien'} type="checkbox" />
+              <RadioInput name={'topic'} label={'Modernisierungsdarlehen'} value={'modernisierungsdarlehen'} type="checkbox" />
+              <RadioInput name={'topic'} label={'Kapitalbeschaffung'} value={'kapitalbeschaffung'} type="checkbox" />
             </div>
             <div className={styles.input_box}>
               <label className={styles.description}>
@@ -157,10 +158,7 @@ const ContactForm: FC = () => {
         </FormProvider>
 
       </div>
-
-      <InfoBoard imgUrl="/assets/submited.png" text={'Vielen Dank für Ihr Vertrauen. Wir kümmern uns schnellstmöglich um Ihr Anliegen'} condition={isSubmitted} />
-      <Loader isLoading={isLoading} />
-      <InfoBoard imgUrl="/assets/error.png" text="Beim Senden ist ein Fehler aufgetreten" condition={isRejected} />
+      <Loader isLoading={isPending} />
     </div>
   );
 };

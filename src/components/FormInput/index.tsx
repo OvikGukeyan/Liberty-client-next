@@ -11,7 +11,6 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 export const FormInput: FC<Props> = ({ className, name, label, ...props }) => {
     const { register, formState: { errors } } = useFormContext();
-    console.log(className);
     const errorText = errors[name]?.message?.toString() as string;
     return (
         <label className={`${styles.label} ${className && styles[className]}`}>

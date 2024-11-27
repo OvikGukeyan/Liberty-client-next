@@ -35,7 +35,6 @@ export const ApplicationForm = () => {
 
   const cv = form.watch('cv');
 
-  console.log(form.formState.errors, form.formState.isValid);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
