@@ -1,15 +1,15 @@
-import { FormValues } from "@/components/ApplicationForm";
 import $api from "../http";
+import { TFormAplicationValues } from "../../schemas/aplicationSchema";
 
 
 export default class formService {
-    static async sendAplicationForm(values: FormValues) {
+    static async sendAplicationForm(values: TFormAplicationValues) {
         const formData = new FormData();
         formData.append("firstName", values.firstName);
         formData.append("lastName", values.lastName);
-        formData.append("emailAddress", values.emailAddress);
+        formData.append("email", values.email);
         formData.append("phoneNumber", values.phoneNumber);
-        formData.append("description", values.description);
+        formData.append("description", values.description || "");
         formData.append("communicationMethod", values.communicationMethod);
         formData.append("check", values.check.toString());
         if (values.cv) {
@@ -26,7 +26,7 @@ export default class formService {
         );
     };
 
-    sendContactForm(values: FormValues) {
+    sendContactForm(values: TFormAplicationValues) {
         
     }
 }

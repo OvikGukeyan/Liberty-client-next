@@ -23,7 +23,7 @@ const ContactForm: FC = () => {
       titel: "",
       firstName: "",
       lastName: "",
-      emailAddress: "",
+      email: "",
       phoneNumber: "",
       address: "",
       zipCode: "",
@@ -107,7 +107,7 @@ const ContactForm: FC = () => {
             <div className={styles.input_box}>
               <FormInput name={'firstName'} label={'Vorname'} />
               <FormInput name={'lastName'} label={'Nachname'} />
-              <FormInput name={'emailAddress'} label={'Email'} />
+              <FormInput name={'email'} label={'Email'} />
               <FormInput name={'phoneNumber'} label={'Mobil'} />
             </div>
 
