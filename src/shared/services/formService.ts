@@ -1,6 +1,6 @@
 import $api from "../http";
-import { TFormAplicationValues } from "../../schemas/aplicationSchema";
-import { TFormContactValues } from "../../schemas/contactFormSchema";
+import { TFormAplicationValues } from "../schemas/aplicationSchema";
+import { TFormContactValues } from "../schemas/contactFormSchema";
 
 
 export default class formService {
@@ -28,6 +28,7 @@ export default class formService {
     };
 
     static async sendContactForm(values: TFormContactValues) {
+        console.log(values);
         return $api.post(`${process.env.NEXT_PUBLIC_API_URL}/contact`, values);
     }
 }

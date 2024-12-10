@@ -1,9 +1,9 @@
 "use client"
 import React, { FC } from 'react';
 import styles from './checkout.module.scss'
-import AuthService from '@/services/authService';
+import AuthService from '@/shared/services/authService';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import BookingService from '@/services/bookingService';
+import BookingService from '@/shared/services/bookingService';
 import { CartItem, useBookingsStore } from './store';
 import { Auth, Button, Cart, Footer, Header, InfoBoard, Loader } from '@/components';
 import toast from 'react-hot-toast';
@@ -73,7 +73,7 @@ const Checkout: FC = () => {
         {isQueryLoading ? <Loader isLoading={isQueryLoading} /> :
           <>
 
-            <InfoBoard imgUrl="/assets/email.png" text={'We have sent you an email to activate your account. Check your E-mail'} condition={!!(data?.user && !data.user.isActivated)} />
+            {/* <InfoBoard imgUrl="/assets/email.png" text={'We have sent you an email to activate your account. Check your E-mail'} condition={!!(data?.user && !data.user.isActivated)} /> */}
 
             {
               (data?.user && data.user.isActivated) &&

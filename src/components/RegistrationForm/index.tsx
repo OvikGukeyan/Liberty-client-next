@@ -3,10 +3,10 @@ import React from "react";
 import styles from "./RegistrationForm.module.scss";
 import { Form, FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import AuthService from "@/services/authService";
+import AuthService from "@/shared/services/authService";
 import { Button, FormInput, Loader } from "..";
 import toast from "react-hot-toast";
-import { formRegisterSchema, TFormRegisterValues } from "../../../schemas/registerSchema";
+import { formRegisterSchema, TFormRegisterValues } from "../../shared/schemas/registerSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 

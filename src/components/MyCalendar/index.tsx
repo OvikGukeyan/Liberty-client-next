@@ -3,7 +3,7 @@ import React, { Dispatch, FC, SetStateAction, useEffect, useState } from "react"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./MyCalendar.module.scss";
-import BookingService from "@/services/bookingService";
+import BookingService from "@/shared/services/bookingService";
 import { useQuery } from "@tanstack/react-query";
 import { Room } from "@/app/(root)/checkout/page";
 import { useBookingsStore } from "@/app/(root)/checkout/store";

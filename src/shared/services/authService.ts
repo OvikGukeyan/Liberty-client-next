@@ -1,8 +1,8 @@
 import $api from "../http";
 import { AxiosResponse } from "axios";
 import { AuthResponse } from "../models/response/AuthResponse";
-import { TFormLoginValues } from "../../schemas/loginSchema";
-import { TFormRegisterValues } from "../../schemas/registerSchema";
+import { TFormLoginValues } from "../schemas/loginSchema";
+import { TFormRegisterValues } from "../schemas/registerSchema";
 
 
 export default class AuthService {

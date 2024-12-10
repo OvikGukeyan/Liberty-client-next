@@ -55,7 +55,7 @@ export default function Home() {
           <Header />
         </div>
         <div className={styles.services}>
-          <Carousel controllers>
+          <Carousel controllers auto autoplaySpeed={8000}>
             {servicesList.map((item, ind) => (
               <Slide key={ind} item={item} />
             ))}

@@ -39,9 +39,9 @@ const Contact: FC = () => {
     []
   );
   return (
-    <div className={styles.contact}>
+    <>
       <Header />
-      <div className={styles.box}>
+      <div className={styles.contact}>
         <div className={styles.info}>
           <div className={styles.contact_info}>
             <h2>Kontact</h2>
@@ -122,7 +122,7 @@ const Contact: FC = () => {
           <Map markers={markers} />
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

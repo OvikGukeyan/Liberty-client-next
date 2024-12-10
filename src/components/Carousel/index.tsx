@@ -8,10 +8,11 @@ import { CustomArrowRiht } from "./CustomArrowRiht";
 
 type CarouselTypes = {
   controllers?: boolean;
-  auto?: boolean
+  auto?: boolean;
+  autoplaySpeed?: number
 };
 
-export const Carousel: FC<PropsWithChildren<CarouselTypes>> = ({ children, controllers, auto }) => {
+export const Carousel: FC<PropsWithChildren<CarouselTypes>> = ({ children, controllers, auto, autoplaySpeed }) => {
   const settings = {
     dots: false,
     infinite: true,
@@ -19,7 +20,7 @@ export const Carousel: FC<PropsWithChildren<CarouselTypes>> = ({ children, contr
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: auto,
-    autoplaySpeed: 2000,
+    autoplaySpeed: autoplaySpeed ||5000,
     pauseOnHover: true,
     nextArrow: controllers ? <CustomArrowLeft /> : <></> ,
     prevArrow: controllers ?  <CustomArrowRiht /> : <></>,

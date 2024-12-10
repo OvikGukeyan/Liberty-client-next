@@ -1,153 +1,150 @@
 .contact {
-  height: 101vh;
-  .box {
-    max-width: 1200px;
-    padding: 0 30px;
-    margin: 60px auto;
-    width: 100%;
+  max-width: 1200px;
+  padding: 0 30px;
+  margin: 60px auto 300px auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .info {
+    width: 58%;
+    background-color: #fdf3f0;
+    height: 350px;
+    border-radius: 25px;
+    transition: all 0.6s ease-in-out;
+    padding: 4%;
     display: flex;
     justify-content: space-between;
 
+    &:hover {
+      border-radius: 5px;
+      box-shadow: 3px 3px 3px rgb(181, 178, 178);
+    }
+
+    h2 {
+      color: #e7816b;
+      font-size: 25px;
+      margin-bottom: 20px;
+    }
+
+    .contact_info {
+      width: 50%;
+
+      ul {
+        li {
+          display: flex;
+          list-style: none;
+          font-size: 18px;
+          font-weight: 600;
+          align-items: center;
+          margin-bottom: 10px;
+
+
+          a {
+            color: #000;
+            font-style: normal;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            &:hover {
+              &::after {
+                width: 100%;
+              }
+            }
+
+            &::after {
+              content: "";
+              display: block;
+              width: 0px;
+              height: 2px;
+              background-color: #000;
+              transition: all 0.4s ease-in-out;
+            }
+
+
+
+          }
+
+          img {
+            margin-right: 20px;
+          }
+        }
+      }
+    }
+
+    .opening_hours {
+      width: 40%;
+    }
+  }
+
+  .map {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 350px;
+    border-radius: 25px;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+
+    &:hover {
+      border-radius: 5px;
+      box-shadow: 3px 3px 3px rgb(181, 178, 178);
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .box {
+    flex-direction: column;
+
     .info {
-      width: 58%;
-      background-color: #fdf3f0;
-      height: 350px;
-      border-radius: 25px;
-      transition: all 0.6s ease-in-out;
-      padding: 4%;
-      display: flex;
-      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 20px;
+    }
 
-      &:hover {
-        border-radius: 5px;
-        box-shadow: 3px 3px 3px rgb(181, 178, 178);
-      }
+    .map {
+      width: 100%;
+    }
+  }
+}
 
-      h2 {
-        color: #e7816b;
-        font-size: 25px;
-        margin-bottom: 20px;
-      }
+@media (max-width: 767px) {
+  .box {
+    padding: 0;
+
+    .info {
+      height: auto;
+      border-radius: 0;
+      margin-bottom: 0;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
 
       .contact_info {
-        width: 50%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         ul {
-          li {
-            display: flex;
-            list-style: none;
-            font-size: 18px;
-            font-weight: 600;
-            align-items: center;
-            margin-bottom: 10px;
-            
-
-            a {
-              color: #000;
-              font-style: normal;
-              text-decoration: none;
-              cursor: pointer;
-              transition: all 0.5s ease-in-out;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-
-              &:hover {
-                &::after {
-                  width: 100%;
-                }
-              }
-  
-              &::after {
-                content: "";
-                display: block;
-                width: 0px;
-                height: 2px;
-                background-color: #000;
-                transition: all 0.4s ease-in-out;
-              }
-
-
-
-            }
-
-            img {
-              margin-right: 20px;
-            }
-          }
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
       }
 
       .opening_hours {
-        width: 40%;
+        width: 100%;
       }
     }
 
     .map {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40%;
-      height: 350px;
-      border-radius: 25px;
-      overflow: hidden;
-      transition: all 0.6s ease-in-out;
-
-      &:hover {
-        border-radius: 5px;
-        box-shadow: 3px 3px 3px rgb(181, 178, 178);
-      }
-    }
-  }
-
-  @media (max-width: 1000px) {
-    .box {
-      flex-direction: column;
-
-      .info {
-        width: 100%;
-        margin-bottom: 20px;
-      }
-
-      .map {
-        width: 100%;
-      }
-    }
-  }
-
-  @media (max-width: 767px) {
-    .box {
-      padding: 0;
-
-      .info {
-        height: auto;
-        border-radius: 0;
-        margin-bottom: 0;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-
-        .contact_info {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          ul {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-        }
-
-        .opening_hours {
-          width: 100%;
-        }
-      }
-
-      .map {
-        border-radius: 0;
-      }
+      border-radius: 0;
     }
   }
 }

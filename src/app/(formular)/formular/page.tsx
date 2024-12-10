@@ -9,14 +9,14 @@ import qs from "qs";
 import Image from "next/image";
 import Link from "next/link";
 import { Button, FormInput, InfoBoard, Loader, RadioInput } from "@/components";
-import { contactFormSchema, TFormContactValues } from "../../../../schemas/contactFormSchema";
+import { contactFormSchema, TFormContactValues } from "../../../shared/schemas/contactFormSchema";
 import { useMutation } from "@tanstack/react-query";
-import FormService from "@/services/formService";
+import FormService from "@/shared/services/formService";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 const ContactForm: FC = () => {
-  
+
   const router = useRouter();
 
   const form = useForm<TFormContactValues>({
@@ -39,8 +39,7 @@ const ContactForm: FC = () => {
     },
     mode: "onBlur",
   });
-  const { register, formState: { errors, isValid } } = form;
-
+  console.log(form.watch('address'), 111);
   useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(
@@ -50,7 +49,7 @@ const ContactForm: FC = () => {
     }
   }, []);
 
- 
+
   const { mutate, isPending } = useMutation({
     mutationFn: async (values: TFormContactValues) => {
       return FormService.sendContactForm(values);
@@ -135,12 +134,12 @@ const ContactForm: FC = () => {
             <div className={styles.input_box}>
               <label className={styles.description}>
                 Bemerkung:
-                <textarea {...register("description")} />
+                <textarea {...form.register("description")} />
               </label>
             </div>
             <div className={styles.check_box}>
               <input
-                {...register("check")}
+                {...form.register("check")}
                 className={styles.check}
                 type="checkbox"
               />
@@ -151,7 +150,7 @@ const ContactForm: FC = () => {
             </div>
 
 
-            <Button disabled={!isValid} className={'black_button'} type="submit">
+            <Button disabled={!form.formState.isValid} className={'black_button'} type="submit">
               Abschicken
             </Button>
           </form>

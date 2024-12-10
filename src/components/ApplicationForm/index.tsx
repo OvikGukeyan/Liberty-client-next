@@ -5,12 +5,12 @@ import { Form, FormProvider, useForm } from "react-hook-form";
 import Image from "next/image";
 import { Button, FormInput, Loader, RadioInput } from "..";
 import { allowedFileTypes, maxSizeInBytes } from "./utils";
-import formService from "@/services/formService";
+import formService from "@/shared/services/formService";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { aplicationSchema, TFormAplicationValues } from "../../../schemas/aplicationSchema";
+import { aplicationSchema, TFormAplicationValues } from "../../shared/schemas/aplicationSchema";
 
 
 

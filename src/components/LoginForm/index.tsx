@@ -3,10 +3,10 @@ import styles from './LoginForm.module.scss';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import AuthService from '@/services/authService';
+import AuthService from '@/shared/services/authService';
 import { FormInput, Loader } from '..';
 import toast from 'react-hot-toast';
-import { formLoginSchema, TFormLoginValues } from '../../../schemas/loginSchema';
+import { formLoginSchema, TFormLoginValues } from '../../shared/schemas/loginSchema';
 
 
 
