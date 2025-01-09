@@ -70,6 +70,7 @@
           align-items: center;
 
           &:hover {
+            color: var(--primary-color);
             &::after {
               width: 30px;
             }
@@ -80,7 +81,7 @@
             display: block;
             width: 0px;
             height: 3px;
-            background-color: #000;
+            background-color: var(--primary-color);
             transition: all 0.2s ease-in-out;
           }
         }

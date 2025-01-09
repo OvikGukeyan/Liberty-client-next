@@ -1,83 +1,81 @@
 .zone {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
 
-    &:nth-child(even) {
-        flex-direction: row-reverse;
-
-        .about {
-            .button_boix {
-                align-self: flex-end;
-            }
-        }
-    }
+  &:nth-child(even) {
+    flex-direction: row-reverse;
 
     .about {
-        width: 63%;
-        padding: 50px;
-        background-color: #fdf3f0;
-        border-radius: 25px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+      .button_boix {
+        align-self: flex-end;
+      }
+    }
+  }
 
-        h2 {
-            font-size: 25px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
+  .about {
+    width: 63%;
+    padding: 50px;
+    background-color: var(--secondary-color);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-        p {
-            font-size: 20px;
-            margin-bottom: 30px;
-        }
-
-        
+    h2 {
+      font-size: 25px;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
 
-    .conf1 {
-        background-image: url(../../../public//assets/conf1.jpeg);
+    p {
+      font-size: 20px;
+      margin-bottom: 30px;
     }
+  }
 
-    .sonf2 {
-        background-image: url(../../../public//assets/conf2.jpg);
-    }
+  .conf1 {
+    background-image: url(../../../public//assets/conf1.jpeg);
+  }
 
-    .work_space {
-        background-image: url(../../../public//assets/work-space.jpeg);
-    }
+  .sonf2 {
+    background-image: url(../../../public//assets/conf2.jpg);
+  }
 
-    .conf1, .sonf2, .work_space {
-        width: 35%;
-        aspect-ratio: 1/1.4;
-        background-size: cover;
-        background-position: center;
-        border-radius: 25px;
-    }
+  .work_space {
+    background-image: url(../../../public//assets/work-space.jpeg);
+  }
 
-    // .overlay {
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-    //     position: fixed;
-    //     width: 100%;
-    //     height: 100%;
-    //     top: 0;
-    //     left: 0;
-    //     background-color: rgba(0, 0, 0, 0.3);
-    //     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-    //     opacity: 0;
-    //     visibility: hidden;
-    //     z-index: 10;
-        
-    // }
+  .conf1,
+  .sonf2,
+  .work_space {
+    width: 35%;
+    aspect-ratio: 1/1.4;
+    background-size: cover;
+    background-position: center;
+    border-radius: 25px;
+  }
 
-    // .overlayVisible {
-    //     visibility: visible;
-    //     opacity: 1;
-      
-        
-    //   }
+  // .overlay {
+  //     display: flex;
+  //     align-items: center;
+  //     justify-content: center;
+  //     position: fixed;
+  //     width: 100%;
+  //     height: 100%;
+  //     top: 0;
+  //     left: 0;
+  //     background-color: rgba(0, 0, 0, 0.3);
+  //     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+  //     opacity: 0;
+  //     visibility: hidden;
+  //     z-index: 10;
 
+  // }
+
+  // .overlayVisible {
+  //     visibility: visible;
+  //     opacity: 1;
+
+  //   }
 }

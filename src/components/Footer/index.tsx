@@ -4,6 +4,7 @@ import styles from "./Footer.module.scss";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { SocialMedia } from "../";
+import Link from "next/link";
 
 type FooterType = {
   isStatic: boolean;
@@ -29,16 +30,14 @@ export const Footer: FC<FooterType> = ({ isStatic }) => {
     };
   }, []);
 
-  
-
-
   return (
     <div
-      className={`${styles.footer} ${isVisible && styles.visible} ${isStatic && styles.static
-        }`}
+      className={`${styles.footer} ${isVisible && styles.visible} ${
+        isStatic && styles.static
+      }`}
     >
       <div className={styles.wrapper}>
-        <div className={styles.head}>
+        <div className={styles.main}>
           <div className={styles.logo}>
             <Image
               src={"/assets/logo-full.png"}
@@ -47,46 +46,29 @@ export const Footer: FC<FooterType> = ({ isStatic }) => {
               height={60}
             />
           </div>
+          <ul className={styles.links}>
+            <Link href="/impressum">
+              <li>Impressum</li>
+            </Link>
+
+            <Link href="/impressum">
+              <li>Impressum</li>
+            </Link>
+
+            <Link href="/datenschutz">
+              <li>Datenschutzerklärung</li>
+            </Link>
+
+            <Link href="/contact">
+              <li>Kontakt</li>
+            </Link>
+          </ul>
           <SocialMedia />
         </div>
-        <div className={styles.main}>
-          <div>
-            <h5>OUR COMPANY</h5>
-            <ul>
-              <li>HOW WE WORK</li>
-              <li>WHY INSURE?</li>
-              <li>VIEW PLANS</li>
-              <li>REVIEWS</li>
-            </ul>
-          </div>
-          <div>
-            <h5>HELP ME</h5>
-            <ul>
-              <li>FAQ</li>
-              <li>TERMS OF USE</li>
-              <li>PRIVACY POLICY</li>
-              <li>COOKIES</li>
-            </ul>
-          </div>
-          <div>
-            <h5>CONTACT</h5>
-            <ul>
-              <li>SALES</li>
-              <li>SUPPORT</li>
-              <li>LIVE CHAT</li>
-            </ul>
-          </div>
-          <div>
-            <h5>OTHERS</h5>
-            <ul>
-              <li>CAREERS</li>
-              <li>PRESS</li>
-              <li>LICENSES</li>
-            </ul>
-          </div>
+        <div className={styles.copyright}>
+          <span>© 2023 Liberty Finance GmbH</span>
         </div>
       </div>
     </div>
   );
 };
-

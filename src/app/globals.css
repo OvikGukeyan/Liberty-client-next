@@ -1,6 +1,12 @@
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
+:root {
+  --primary-color: #B58730;
+  --secondary-color: #def0ea;
+  
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -22,7 +28,7 @@ body::-webkit-scrollbar {
 }
 
 .react-datepicker__header:not(.react-datepicker__header--has-time-select) {
-  background-color: #fdf3f0 !important;
+  background-color: #def0ea !important;
 }
 
 .react-datepicker__day,
