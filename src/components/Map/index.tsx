@@ -6,21 +6,21 @@ import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import { markersType } from "@/app/(root)/contact/page";
+import { markersType } from "@/app/(formular)/contact/page";
 import { FC } from "react";
 
 type MapTypes = {
-  markers: markersType
+  markers: markersType;
 };
 
 const Map: FC<MapTypes> = ({ markers }) => {
   const customIcon = new Icon({
-    iconUrl: "/assets/location_map_icon.png", 
+    iconUrl: "/assets/location_map_icon.png",
     iconSize: [42, 42],
   });
 
   const parkingIcon = new Icon({
-    iconUrl: "/assets/parking_location.png", 
+    iconUrl: "/assets/parking_location.png",
     iconSize: [42, 42],
   });
 

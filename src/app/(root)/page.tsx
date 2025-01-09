@@ -45,13 +45,7 @@ export default function Home() {
     <div className={styles.wrapper}>
       <div className={styles.box_1}>
         <div className={styles.main}>
-          <video
-            muted
-            autoPlay
-            className={styles.video}
-            src="./assets/Lingen1.mp4"
-            playsInline
-          />
+          
           <Header />
         </div>
         <div className={styles.services}>

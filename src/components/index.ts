@@ -14,7 +14,6 @@ export {RegistrationForm} from './RegistrationForm';
 export {CookieConsent} from './CookieConsent';
 export {FormInput} from './FormInput';
 export {RadioInput} from './RadioInput';
-
-
+export {SocialMedia} from './SocialMedia';
 
 

@@ -3,6 +3,7 @@ import React, { useState, useEffect, FC, useCallback } from "react";
 import styles from "./Footer.module.scss";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { SocialMedia } from "../";
 
 type FooterType = {
   isStatic: boolean;
@@ -46,11 +47,7 @@ export const Footer: FC<FooterType> = ({ isStatic }) => {
               height={60}
             />
           </div>
-          <div className={styles.social_media}>
-            <Image src={'/assets/instagram.png'} alt="instagram" width={24} height={24} />
-            <Image src={'/assets/youtube.png'} alt="youtube" width={24} height={24} />
-            <Image src={'/assets/tiktok.png'} alt="tiktok" width={24} height={24} />
-          </div>
+          <SocialMedia />
         </div>
         <div className={styles.main}>
           <div>

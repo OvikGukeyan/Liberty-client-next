@@ -46,7 +46,7 @@ export const RegistrationForm = () => {
             queryClient.setQueryData(["authData"], response.data);
             queryClient.invalidateQueries({ queryKey: ['authData'] });
             localStorage.setItem('token', response.data.accessToken);
-            toast.success("Registration successful");
+            toast.success("Registration successful. Check your E-mail to authorize your account.");
         },
         onError: (error) => {
             console.error("Registration failed", error);

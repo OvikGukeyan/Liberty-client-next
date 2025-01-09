@@ -1,0 +1,258 @@
+.checkout_wrapper {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 15px;
+
+
+
+
+
+    a {
+        text-decoration: none;
+        align-self: flex-start;
+        max-width: 800px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 20px;
+    }
+
+
+    .checkout_box {
+        max-width: 900px;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 50px;
+        margin: 40px 0 200px 0;
+
+
+
+        .header {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+
+            .company_name {
+                height: 80px;
+            }
+
+            .logo {
+                height: 130px;
+            }
+        }
+
+        h1 {
+            width: 100%;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 36px;
+            letter-spacing: 1.1428571939468384px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            h3 {
+                font-size: 13px;
+                font-weight: 700;
+                line-height: 25px;
+                letter-spacing: 0.9285714030265808px;
+                color: #D87D4A;
+            }
+
+            .input_box {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+
+
+
+              
+
+
+
+               
+
+             
+
+                .description {
+                    font-weight: 700;
+                    line-height: 16px;
+                    letter-spacing: -0.2142857164144516px;
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 12px;
+                    width: 100%;
+                    margin: 20px 0 25px 0;
+
+                    textarea {
+                        height: 100px;
+                        resize: none;
+                        padding: 15px;
+                        padding-left: 24px;
+                        border-radius: 8px;
+                        border: 1px solid #CFCFCF;
+                        background-color: #fff;
+                        font-size: 16px;
+                        margin-top: 9px;
+
+                        &:focus {
+                            outline: 1px solid #D87D4A;
+                        }
+                    }
+                }
+            }
+
+
+
+            .check_box {
+                display: flex;
+                margin-top: -15px;
+
+                .check {
+                    width: 15px;
+                    margin-right: 10px;
+                }
+            }
+
+            .submit_button {
+                width: 160px;
+                height: 50px;
+                background-color: #fff;
+                border: 2px solid #000;
+                color: #000;
+                font-weight: 500;
+                font-size: 16px;
+                align-self: flex-end;
+                margin-top: 25px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #000;
+                    color: #fff;
+                }
+
+                &:disabled {
+                    background-color: #777676;
+                    border: #777676;
+                    color: #CFCFCF;
+
+                }
+            }
+
+
+
+        }
+
+    }
+
+    .overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .board {
+            background-color: #F2F2F2;
+            border-radius: 15px;
+            padding: 50px;
+            margin: 0 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+
+
+
+        }
+
+
+    }
+
+    .overlayVisible {
+        visibility: visible;
+        opacity: 1;
+    }
+
+
+
+
+
+
+
+    @media (max-width: 700px) {
+        .back {
+            width: 330px;
+        }
+
+
+
+        .checkout_box {
+            // width: 270px;
+            padding: 30px;
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .header {
+                flex-direction: column;
+
+                .company_name {
+                    width: 200px;
+                    margin-top: 20px;
+                }
+            }
+
+            form {
+                .input_box {
+                    flex-direction: column;
+                    width: 100%;
+
+                    label,
+                    .radio_label,
+                    .adress_input {
+                        width: 100%;
+                    }
+
+
+
+
+                }
+
+                .submit_button {
+                    align-self: center;
+                    width: 100%;
+                }
+
+            }
+
+
+        }
+
+
+
+    }
+}

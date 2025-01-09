@@ -13,6 +13,9 @@
       height: 100%;
       padding: 0;
       position: relative;
+      background-image: url(../../public/assets/liberty-finanz-88.jpg);
+      background-size: cover;
+      background-position: center;
 
       .video {
         position: absolute;
@@ -82,7 +85,9 @@
     height: 35%;
 
     .photo_1 {
-      background-image: url(../../public/assets/Insurance.jpg);
+      // background-image: url(../../public/assets/Insurance.jpg);
+      background-image: url(../../public/assets/liberty-finanz-74.jpg);
+
       background-size: cover;
       background-position: center;
       width: 30%;

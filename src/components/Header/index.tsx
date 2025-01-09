@@ -1,25 +1,23 @@
 "use client";
 import React, { useRef, useState } from "react";
 import styles from "./Header.module.scss";
-import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const headerItems = [
-  { name: 'home', href: '/' },
-  { name: 'about', href: '/about' },
-  { name: 'karriere', href: '/career' },
-  { name: 'coworking', href: '/coworking' },
-  { name: 'contact', href: '/contact' },
-
-]
+  { name: "home", href: "/" },
+  { name: "about", href: "/about" },
+  { name: "karriere", href: "/career" },
+  { name: "coworking", href: "/coworking" },
+  { name: "contact", href: "/contact" },
+];
 
 export const Header = () => {
   const [isMenuVisiable, setIsMenuVisible] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const pathName = usePathname()
-
+  const pathName = usePathname();
+  const router = useRouter();
   const handleOutsideClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
@@ -39,9 +37,13 @@ export const Header = () => {
     //   document.body.style.overflow = "";
     // }
   };
+
+  const handleNavLinkClick = (href: string) => {
+    setIsMenuVisible(false);
+    router.push(href);
+  };
   return (
     <header className={styles.header}>
-
       <Menu
         onClick={handleHamburgerClick}
         width={40}
@@ -49,22 +51,11 @@ export const Header = () => {
         className={styles.hamburger}
       />
 
-
-      <div className={styles.logo}>
-        <Link href={"/"}>
-          <Image
-            src={"/assets/logo-full.png"}
-            alt="Logo"
-            width={200}
-            height={200}
-          />
-        </Link>
-      </div>
-
       <div
         onClick={(e) => handleOutsideClick(e)}
-        className={`${styles.overlay} ${isMenuVisiable ? styles.overlayVisible : ""
-          }`}
+        className={`${styles.overlay} ${
+          isMenuVisiable ? styles.overlayVisible : ""
+        }`}
       >
         <nav ref={menuRef}>
           <X
@@ -74,16 +65,20 @@ export const Header = () => {
             className={styles.close}
           />
           <ul>
-            {headerItems.map(item => (
-              <Link key={item.name} className={`${styles.header_item} ${pathName === item.href && styles.invisible}`} href={item.href}>
-                <li>{item.name}</li>
-              </Link>
+            {headerItems.map((item) => (
+              <li
+                key={item.name}
+                className={`${styles.header_item} ${
+                  pathName === item.href && styles.invisible
+                }`}
+                onClick={() => handleNavLinkClick(item.href)}
+              >
+                {item.name}
+              </li>
             ))}
           </ul>
         </nav>
       </div>
-
     </header>
   );
 };
-
