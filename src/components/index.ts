@@ -15,5 +15,6 @@ export {CookieConsent} from './CookieConsent';
 export {FormInput} from './FormInput';
 export {RadioInput} from './RadioInput';
 export {SocialMedia} from './SocialMedia';
+export {Wrapper} from './Wrapper';  
 
 

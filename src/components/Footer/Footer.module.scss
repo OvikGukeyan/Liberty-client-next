@@ -12,49 +12,46 @@
   align-items: center;
   z-index: 1000;
 
-  .wrapper {
+  .main {
     width: 100%;
+    border-bottom: 1px solid #dadada;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    .main {
-      border-bottom: 1px solid #dadada;
+    .links {
+      height: 100%;
+      width: 70%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
 
-      .links {
-        height: 100%;
-        width: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+      a {
+        text-decoration: none;
+        color: #000;
+        font-size: 16px;
+        font-weight: 500;
+        li {
+          list-style-type: none;
+          cursor: pointer;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
 
-        a {
-          text-decoration: none;
-          color: #000;
-          font-size: 16px;
-          font-weight: 500;
-          li {
-            list-style-type: none;
-            cursor: pointer;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            &:hover {
-              &::after {
-                width: 35px;
-              }
-            }
-
+          &:hover {
             &::after {
-              content: "";
-              display: block;
-              width: 0px;
-              height: 3px;
-              background-color: #000;
-              transition: all 0.2s ease-in-out;
+              width: 35px;
             }
+          }
+
+          &::after {
+            content: "";
+            display: block;
+            width: 0px;
+            height: 3px;
+            background-color: #000;
+            transition: all 0.2s ease-in-out;
           }
         }
       }
@@ -71,6 +68,21 @@
         font-weight: 500;
         color: #807f7f;
       }
+    }
+  }
+
+  @media (max-width: 767px) {
+    height: 200px;
+
+    .main {
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1;
+        padding-bottom: 15px;
+
+        .links {
+            width: 100%;
+        }
     }
   }
 }
