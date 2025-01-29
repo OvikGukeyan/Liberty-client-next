@@ -4,12 +4,13 @@ import styles from "./Header.module.scss";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { google } from 'googleapis';
 
 const headerItems = [
   { name: "home", href: "/" },
   { name: "about", href: "/about" },
   { name: "karriere", href: "/career" },
-  { name: "coworking", href: "/coworking" },
+  // { name: "coworking", href: "/coworking" },
   { name: "contact", href: "/contact" },
 ];
 
@@ -42,6 +43,13 @@ export const Header = () => {
     setIsMenuVisible(false);
     router.push(href);
   };
+
+
+
+
+
+
+ 
   return (
     <header className={styles.header}>
       <Menu
@@ -60,8 +68,8 @@ export const Header = () => {
         <nav ref={menuRef}>
           <X
             onClick={handleHamburgerClick}
-            width={30}
-            height={30}
+            width={40}
+            height={40}
             className={styles.close}
           />
           <ul>

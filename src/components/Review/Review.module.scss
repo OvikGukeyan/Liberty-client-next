@@ -1,0 +1,27 @@
+.container {
+  padding: 70px 30px 30px 30px;
+
+  .head {
+    display: flex;
+    height: 50px;
+    align-items: center;
+
+    .info {
+      margin-left: 20px;
+      height: 50px;
+
+      h3 {
+        margin: 0;
+      }
+      .stars {
+        display: flex;
+        gap: 3px;
+      }
+    }
+  }
+
+  .text {
+    margin-top: 20px;
+    color: #a0a0a0;
+  }
+}

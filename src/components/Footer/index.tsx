@@ -36,38 +36,34 @@ export const Footer: FC<FooterType> = ({ isStatic }) => {
         isStatic && styles.static
       }`}
     >
-      <div className={styles.wrapper}>
-        <div className={styles.main}>
-          <div className={styles.logo}>
-            <Image
-              src={"/assets/logo-full.png"}
-              alt="Logo"
-              width={60}
-              height={60}
-            />
-          </div>
-          <ul className={styles.links}>
-            <Link href="/impressum">
-              <li>Impressum</li>
-            </Link>
-
-            <Link href="/impressum">
-              <li>Impressum</li>
-            </Link>
-
-            <Link href="/datenschutz">
-              <li>Datenschutzerklärung</li>
-            </Link>
-
-            <Link href="/contact">
-              <li>Kontakt</li>
-            </Link>
-          </ul>
-          <SocialMedia />
+      <div className={styles.main}>
+        <div className={styles.logo}>
+          <Image
+            src={"/assets/logo-full.png"}
+            alt="Logo"
+            width={60}
+            height={60}
+          />
         </div>
-        <div className={styles.copyright}>
-          <span>© 2023 Liberty Finance GmbH</span>
-        </div>
+        <ul className={styles.links}>
+          
+
+          <Link href="/impressum">
+            <li>Impressum</li>
+          </Link>
+
+          <Link href="/data-protaction">
+            <li>Datenschutzerklärung</li>
+          </Link>
+
+          <Link href="/contact">
+            <li>Kontakt</li>
+          </Link>
+        </ul>
+        <SocialMedia />
+      </div>
+      <div className={styles.copyright}>
+        <span>© 2023 Liberty Finance GmbH</span>
       </div>
     </div>
   );

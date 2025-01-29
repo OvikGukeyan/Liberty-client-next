@@ -1,54 +1,37 @@
 "use client";
-import styles from "./Map.module.scss";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { Icon } from "leaflet";
-
-import "leaflet/dist/leaflet.css";
-import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import "leaflet-defaulticon-compatibility";
-import { FC } from "react";
 import { markersType } from "@/app/(main)/contact/page";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
-type MapTypes = {
+interface Props {
   markers: markersType;
-};
-
-const Map: FC<MapTypes> = ({ markers }) => {
-  const customIcon = new Icon({
-    iconUrl: "/assets/location_map_icon.png",
-    iconSize: [42, 42],
-  });
-
-  const parkingIcon = new Icon({
-    iconUrl: "/assets/parking_location.png",
-    iconSize: [42, 42],
-  });
-
+}
+const Map: React.FC<Props> = ({ markers }) => {
   return (
-    <div className={styles.wrapper}>
-      <MapContainer
-        center={markers.Liberty.geoCode}
-        zoom={14}
-        style={{ height: "100%", width: "100%" }}
-        zoomControl={false}
+    <LoadScript
+      googleMapsApiKey={
+        process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+          ? process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+          : ""
+      }
+    >
+      <GoogleMap
+        mapContainerStyle={{
+          width: "100%",
+          height: "100%",
+        }}
+        center={markers["Liberty"].geoCode}
+        zoom={16}
       >
-        <TileLayer
-          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        />
-        <Marker position={markers.Liberty.geoCode} icon={customIcon}>
-          <Popup>
-            <h2>{markers.Liberty.popUp}</h2>
-          </Popup>
-        </Marker>
-
-        <Marker position={markers.Parking.geoCode} icon={parkingIcon}>
-          <Popup>
-            <h2>{markers.Parking.popUp}</h2>
-          </Popup>
-        </Marker>
-      </MapContainer>
-    </div>
+        {Object.keys(markers).map((marker) => (
+          <Marker
+            key={marker}
+            position={markers[marker].geoCode}
+            title={markers[marker].popUp}
+            
+          />
+        ))}
+      </GoogleMap>
+    </LoadScript>
   );
 };
 

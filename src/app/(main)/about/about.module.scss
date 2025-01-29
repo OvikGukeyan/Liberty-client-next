@@ -1,10 +1,22 @@
 .about {
   margin: 0 auto 220px;
-  max-width: 1200px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .image {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../../../../public/assets/liberty-finanz-88.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    
+  }
   .title {
     font-size: 35px;
     text-align: center;
@@ -21,6 +33,7 @@
       margin-bottom: 30px;
     }
     .manager {
+      max-width: 360px;
       margin-top: 60px;
       display: flex;
       flex-direction: column;
@@ -62,8 +75,16 @@
     }
   }
 
+  @media (max-width: 1200px) {
+    .main {
+      grid-template-columns: 1fr 1fr;
+
+    }
+  }
+
   @media (max-width: 767px) {
     .main {
+      grid-template-columns: 1fr ;
      
       .managers {
         flex-direction: column;

@@ -123,7 +123,7 @@ export const ApplicationForm = () => {
         </div>
 
 
-        <h3 className={styles.title}>Bitte kontaktieren Sie mich </h3>
+        <h3 >Bitte kontaktieren Sie mich </h3>
         <div className={styles.input_box}>
           <RadioInput name="communicationMethod" label="telefonisch" value={"telefonisch"} type="radio"/>
           <RadioInput name="communicationMethod" label="per E-Mail" value={"per E-Mail"} type="radio"/>

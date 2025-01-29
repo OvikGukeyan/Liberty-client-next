@@ -32,4 +32,8 @@
             background-color: #D87D4A;
         }
     }
+
+  @media (max-width: 767px) {
+        width: 100%;
+  }
 }

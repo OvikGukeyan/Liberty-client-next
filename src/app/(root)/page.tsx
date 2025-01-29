@@ -2,7 +2,7 @@
 import Image from "next/image";
 import styles from "../page.module.scss";
 import Slide from "@/components/Slide";
-import { Carousel, CookieConsent, Footer, Header } from "@/components";
+import { Carousel, CookieConsent, Header, Review } from "@/components";
 
 const servicesList = [
   {
@@ -70,9 +70,13 @@ export default function Home() {
           </p>
         </div>
         <div className={styles.photo_2}>
-          <Carousel auto>
-            {[...Array(5)].map((item, ind) => (
-              <div key={ind} style={{ backgroundColor: '#000', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', width: '100%' }}>Slide {ind + 1}</div>
+          <div className={styles.title}>
+            <Image src="/assets/google.png" alt="google" width={25} height={25} />
+            <span>Google Bewertungen</span>
+          </div>
+          <Carousel auto autoplaySpeed={10000}>
+            {[...Array(4)].map((item, ind) => (
+              <Review/>
             ))}
           </Carousel>
         </div>
