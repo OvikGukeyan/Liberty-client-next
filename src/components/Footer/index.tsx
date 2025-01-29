@@ -46,8 +46,6 @@ export const Footer: FC<FooterType> = ({ isStatic }) => {
           />
         </div>
         <ul className={styles.links}>
-          
-
           <Link href="/impressum">
             <li>Impressum</li>
           </Link>

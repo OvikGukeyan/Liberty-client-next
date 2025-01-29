@@ -39,7 +39,6 @@ const ContactForm: FC = () => {
     },
     mode: "onBlur",
   });
-  console.log(form.watch('address'), 111);
   useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(
