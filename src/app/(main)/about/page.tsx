@@ -22,6 +22,44 @@ const About: FC = () => {
             height={150}
           />
         </div>
+        <h2 className={styles.title}>
+          Über uns <br /> Ihre unabhängigen Experten für Versicherung &
+          Finanzierung
+        </h2>
+
+        <p className={styles.description}>
+          Wir sind freie Makler im Bereich Versicherung und Finanzierung und
+          bieten Ihnen maßgeschneiderte Lösungen, die genau auf Ihre Bedürfnisse
+          abgestimmt sind. Als unabhängige Berater sind wir nicht an bestimmte
+          Anbieter gebunden – das bedeutet für Sie eine neutrale, transparente
+          und kundenorientierte Beratung.
+        </p>
+
+        <span className={styles.list_title}>
+          Unser Leistungsspektrum umfasst:
+        </span>
+        <ul className={styles.list}>
+          <li>
+            Versicherungen: Individuelle Absicherung für Privatpersonen &
+            Unternehmen
+          </li>
+          <li>Baufinanzierung: Die beste Finanzierung für Ihr Eigenheim</li>
+          <li>
+            Modernisierungsdarlehen: Flexible Lösungen für Ihre Wohnprojekte
+          </li>
+          <li>
+            Altersvorsorge & Investment: Finanzielle Sicherheit für Ihre
+            Zukunft
+          </li>
+        </ul>
+
+        <p className={styles.description}>
+          Mit unserer Erfahrung, Marktkenntnis und persönlichem Engagement
+          begleiten wir Sie von der ersten Beratung bis zur optimalen Lösung.
+          Ihr Vorteil: Unabhängige Beratung, beste Konditionen und
+          maßgeschneiderte Konzepte!
+        </p>
+
         <h2 className={styles.title}>Unser Team</h2>
 
         <div className={styles.main}>

@@ -14,25 +14,40 @@ const Career: FC = () => {
     <Wrapper>
       <div className={styles.main}>
         <div className={styles.image}>
-          <Image className={styles.logo} src={"/assets/logo.png"} alt="logo" width={150} height={150} />
+          <Image
+            className={styles.logo}
+            src={"/assets/logo.png"}
+            alt="logo"
+            width={150}
+            height={150}
+          />
         </div>
 
         <h1 className={styles.title}>
           Ihre Karriere bei der Liberty Finance GmbH:
-          <br /> Zukunft gestalten, Erfolg sichern
+          <br /> Werde Teil unseres Teams!
         </h1>
         <div className={styles.container}>
           <div className={styles.text}>
-            <p>
-              Willkommen bei Liberty Finance, wo wir daran glauben, Menschen
-              dabei zu unterstützen, starke und sichere Zukünfte aufzubauen.
-              Unsere Mission ist es, innovative und umfassende
-              Versicherungslösungen für Privatpersonen und Unternehmen
-              bereitzustellen, während wir eine Kultur der Zusammenarbeit, des
-              Wachstums und des Respekts fördern. Wenn Sie unserem Team
-              beitreten, haben Sie die Möglichkeit, das Leben unserer Kunden
-              positiv zu beeinflussen und zur Zukunft der Versicherungsbranche
-              beizutragen.
+            <h3 className={styles.subtitle}>
+              Du suchst eine neue Herausforderung in einem dynamischen und
+              zukunftsorientierten Unternehmen? <br /> Dann bist du bei uns genau
+              richtig!
+            </h3>
+            <span className={styles.list_title}>Wir bieten dir:</span>
+            <ul className={styles.list}>
+              <li>Spannende Aufgaben & Entwicklungsmöglichkeiten</li>
+              <li>Attraktive Vergütung & Zusatzleistungen</li>
+              <li>Ein motiviertes Team & angenehmes Arbeitsklima</li>
+              <li>Flexibles Arbeiten & Work-Life-Balance</li>
+              <li>Weiterbildung & Aufstiegschancen</li>
+            </ul>
+            <p className={styles.description}>
+              Egal, ob du Berufseinsteiger bist oder bereits Erfahrung
+              mitbringst – wir freuen uns auf deine Bewerbung! Starte jetzt
+              deine Karriere bei uns und gestalte mit uns die Zukunft.
+              <br />
+              Bewirb dich noch heute!
             </p>
           </div>
           <div className={styles.form}>

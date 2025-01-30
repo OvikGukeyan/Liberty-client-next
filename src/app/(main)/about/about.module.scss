@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 
   .image {
     width: 100vw;
@@ -23,6 +24,34 @@
     margin-top: 50px;
     text-align: center;
     color: #B58730;
+  }
+
+  .description {
+    font-weight: 500;
+    font-size: 22px;
+    margin-top: 20px;
+    letter-spacing: 1.5px;
+    color: var(--text-slate);
+
+  }
+
+  .list_title {
+    margin-top: 50px;
+    font-size: 25px;
+    color: #B58730;
+  }
+
+  .list {
+    margin-left: 20px;
+    list-style: none;
+    margin-bottom: 20px;
+
+    li {
+      margin-top: 10px;
+      font-size: 19px;
+      letter-spacing: 1px;
+      
+    }
   }
   .main {
     display: grid;

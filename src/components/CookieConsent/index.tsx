@@ -5,10 +5,12 @@ import styles from './CookieConsent.module.scss';
 import { Button } from '../Button';
 import Cookies from 'js-cookie';
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 
 
 export const CookieConsent = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         const userConsent = Cookies.get('userConsent');
@@ -20,6 +22,10 @@ export const CookieConsent = () => {
     const handleAccept = () => {
         Cookies.set('userConsent', 'true', { expires: 365 });
         setIsVisible(false);
+    };
+
+    const handleLearnMoreClick = () => {
+        router.push('/data-protaction');
     };
 
     if (!isVisible) return null;
@@ -39,7 +45,7 @@ export const CookieConsent = () => {
                 </p>
                 <div className={styles.buttons}>
                     <Button onClick={handleAccept} className='pink_button'>Akzeptieren</Button>
-                    <Button className='pink_button'>Mehr erfahren</Button>
+                    <Button onClick={handleLearnMoreClick} className='pink_button'>Mehr erfahren</Button>
                 </div>
             </div>
         </div>
