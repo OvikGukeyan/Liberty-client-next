@@ -2,8 +2,8 @@ import { Wrapper } from "@/components";
 import React from "react";
 import styles from "./services.module.scss";
 import Image from "next/image";
-import { servicesList } from "@/app/(root)/page";
 import Slide from "@/components/Slide";
+import  servicesList  from "../../../../data/servicesList";
 
 const Services = () => {
   return (
