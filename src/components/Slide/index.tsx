@@ -11,17 +11,24 @@ interface Props {
     features: string[];
     cta: string;
   };
+  list?: boolean;
 }
-const Slide: FC<Props> = ({ item }) => {
+const Slide: FC<Props> = ({ item, list }) => {
   return (
     <div className={styles.slide}>
-      <h1>{item.title}</h1>
+      <Link href="/services">
+        <h1>{item.title}</h1>
+      </Link>
+
       <p> {item.text} </p>
-      <ul className={styles.features}>
-        {item.features.map((feature) => (
-          <li>{feature}</li>
-        ))}
-      </ul>
+      {list && (
+        <ul className={styles.features}>
+          {item.features.map((feature) => (
+            <li>{feature}</li>
+          ))}
+        </ul>
+      )}
+
       <p>{item.cta}</p>
       <Link href={"/formular"}>
         <button>

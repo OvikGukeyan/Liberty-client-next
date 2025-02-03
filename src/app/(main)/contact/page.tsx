@@ -14,7 +14,8 @@ export type markersType = {
   [key: string]: {
     geoCode: {
       lat: number;
-      lng: number;};
+      lng: number;
+    };
     popUp: string;
   };
 };
@@ -29,8 +30,9 @@ const markers: markersType = {
   },
   Parking: {
     geoCode: {
-      lat: 52.5221054, 
-      lng: 7.3147535},
+      lat: 52.5221054,
+      lng: 7.3147535,
+    },
     popUp: "LIBERTY Finanz Parking",
   },
 };
@@ -47,7 +49,7 @@ const Contact: FC = () => {
   return (
     <Wrapper>
       <div className={styles.wrapper}>
-      <div className={styles.image}>
+        <div className={styles.image}>
           <Image
             className={styles.logo}
             src={"/assets/logo.png"}
@@ -137,7 +139,7 @@ const Contact: FC = () => {
             </div>
           </div>
           <div className={styles.map}>
-            <Map  markers={markers} />
+            <Map markers={markers} />
           </div>
         </div>
       </div>

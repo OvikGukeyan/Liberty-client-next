@@ -3,7 +3,7 @@ import styles from "../page.module.scss";
 import Slide from "@/components/Slide";
 import { Carousel, CookieConsent, Header, Review } from "@/components";
 
-const servicesList = [
+export const servicesList = [
   {
     name: "Versicherung",
     text: "Wir bieten Ihnen maßgeschneiderte Versicherungslösungen, die genau auf Ihre Bedürfnisse abgestimmt sind. Ob Privatperson oder Unternehmen, wir finden den optimalen Schutz für Sie.",

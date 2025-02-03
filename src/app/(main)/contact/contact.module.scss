@@ -6,7 +6,7 @@
   .image {
     width: 100vw;
     height: 100vh;
-    background-image: url(../../../../public/assets/lingen.jpeg);
+    background-image: url(../../../../public/assets/career.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
@@ -158,6 +158,8 @@
   
         .opening_hours {
           width: 100%;
+          align-items: center;
+          gap: 20px;
         }
       }
   

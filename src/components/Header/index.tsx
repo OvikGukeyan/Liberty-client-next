@@ -4,11 +4,12 @@ import styles from "./Header.module.scss";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { google } from 'googleapis';
+import { google } from "googleapis";
 
 const headerItems = [
   { name: "startseite", href: "/" },
   { name: "über uns", href: "/about" },
+  { name: "leistungen", href: "/services" },
   { name: "karriere", href: "/career" },
   // { name: "coworking", href: "/coworking" },
   { name: "kontacte", href: "/contact" },
@@ -44,12 +45,6 @@ export const Header = () => {
     router.push(href);
   };
 
-
-
-
-
-
- 
   return (
     <header className={styles.header}>
       <Menu
