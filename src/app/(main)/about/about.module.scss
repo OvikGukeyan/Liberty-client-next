@@ -2,8 +2,6 @@
   margin: 0 auto 220px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
 
   .image {
     width: 100vw;
@@ -16,13 +14,12 @@
     flex-direction: column;
     align-items: center;
     padding-top: 80px;
+    align-self: center;
     
   }
   .title {
     font-size: 35px;
-    text-align: center;
     margin-top: 50px;
-    text-align: center;
     color: #B58730;
   }
 
@@ -43,7 +40,6 @@
 
   .list {
     margin-left: 20px;
-    list-style: none;
     margin-bottom: 20px;
 
     li {
@@ -68,7 +64,7 @@
       flex-direction: column;
       align-items: center;
       overflow: hidden;
-      background-color: #def0ea;
+      background-color: var(--secondary-color);
       padding: 20px;
       box-sizing: border-box;
       border-radius: 10px;
@@ -83,20 +79,20 @@
         margin-top: 20px;
         font-size: 18px;
         font-weight: 600;
-        text-align: justify;
         border-radius: 10px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
 
         h3 {
-          text-align: center;
           color: #B58730;
+          margin-bottom: 10px;
         }
+       
+
         span {
           color: #898885;
-          text-align: center;
-          margin-bottom: 10px;
+          margin-bottom: 5px;
         }
       }
 

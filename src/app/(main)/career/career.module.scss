@@ -18,13 +18,15 @@
   }
 
   .title {
-    margin: 100px 0;
-    text-align: center;
+    margin: 100px 0 50px 0;
+    // text-align: center;
     color: var(--primary-color);
+    align-self: flex-start;
   }
 
   .container {
     display: flex;
+    gap: 50px;
     .text {
       width: 100%;
       border-radius: 20px;
@@ -32,7 +34,6 @@
       padding: 40px;
 
       .subtitle {
-        text-align: center;
         font-size: 26px;
         margin-bottom: 20px;
         color: var(--text-slate);

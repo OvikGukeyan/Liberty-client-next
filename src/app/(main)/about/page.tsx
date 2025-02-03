@@ -40,15 +40,18 @@ const About: FC = () => {
         </span>
         <ul className={styles.list}>
           <li>
-            Versicherungen: Individuelle Absicherung für Privatpersonen &
+            Versicherungen <br /> Individuelle Absicherung für Privatpersonen &
             Unternehmen
           </li>
-          <li>Baufinanzierung: Die beste Finanzierung für Ihr Eigenheim</li>
           <li>
-            Modernisierungsdarlehen: Flexible Lösungen für Ihre Wohnprojekte
+            Baufinanzierung <br /> Die beste Finanzierung für Ihr Eigenheim
           </li>
           <li>
-            Altersvorsorge & Investment: Finanzielle Sicherheit für Ihre
+            Modernisierungsdarlehen <br /> Flexible Lösungen für Ihre
+            Wohnprojekte
+          </li>
+          <li>
+            Altersvorsorge & Investment <br /> Finanzielle Sicherheit für Ihre
             Zukunft
           </li>
         </ul>
@@ -72,29 +75,15 @@ const About: FC = () => {
               height={500}
             />
             <div className={styles.text}>
-              <h3>
-                David Zgibnev <br /> Ihr Experte für Kreditlösungen
-              </h3>
-              <span>Tel: +49 123 456 789</span>
-              <span>Email: 2L3ZK@example.com</span>
+              <h3>Roman Skibner</h3>
+              <h4>Geschäftsführender - Gesellschafter</h4>
+              <span>Baufinanzierungsberater</span>
+
+              <span>Tel: 0591 31526680</span>
+              <span>Email: r.skibner@libertyfinanz.de</span>
             </div>
           </div>
-          <div className={styles.manager}>
-            <Image
-              className={styles.photo}
-              src={"/assets/liberty-finanz-28.jpg"}
-              alt="manager"
-              width={320}
-              height={500}
-            />
-            <div className={styles.text}>
-              <h3>
-                David Zgibnev <br /> Ihr Experte für Kreditlösungen
-              </h3>
-              <span>Tel: +49 123 456 789</span>
-              <span>Email: 2L3ZK@example.com</span>
-            </div>
-          </div>
+
           <div className={styles.manager}>
             <Image
               className={styles.photo}
@@ -104,11 +93,13 @@ const About: FC = () => {
               height={500}
             />
             <div className={styles.text}>
-              <h3>
-                David Zgibnev <br /> Ihr Experte für Kreditlösungen
-              </h3>
-              <span>Tel: +49 123 456 789</span>
-              <span>Email: 2L3ZK@example.com</span>
+              <h3>Nikita Gordeev</h3>
+              <h4>Assistenz der Geschäftsführung</h4>
+              <span>Baufinanzierungsberater <br /> Versicherungsfachmann</span>
+
+              <span>Tel: 0591 31526680</span>
+              <span>Mobil: 0152 22961832</span>
+              <span>Email: n.gordeev@libertyfinanz.de</span>
             </div>
           </div>
         </div>

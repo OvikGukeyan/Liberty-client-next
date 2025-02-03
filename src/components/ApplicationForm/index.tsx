@@ -95,7 +95,7 @@ export const ApplicationForm = () => {
 
 
         <div className={styles.file_box}>
-          <h3>Upload your CV: <br /><span>(Only PDF, DOC, DOCX and TXT are accepted)</span></h3>
+          <h3>Lebenslauf hier hochladen: <br /><span>(Nur PDF, DOC, DOCX and TXT sind erlaubt)</span></h3>
 
           <label onClick={() => inputFileRef.current?.click()} className={styles.file_upload} htmlFor="file">
             {cv ?
@@ -106,7 +106,7 @@ export const ApplicationForm = () => {
               </>
               :
               <>
-                <span>Choose the file</span>
+                <span>Wählen Sie eine Datei</span>
                 <Image src={'/assets/file.png'} alt="file" width={30} height={30} />
               </>
             }

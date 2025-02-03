@@ -25,13 +25,13 @@ const markers: markersType = {
       lat: 52.52186030000001,
       lng: 7.3159149,
     },
-    popUp: "Liberty Finance GmBH",
+    popUp: "LIBERTY Finanz GmBH",
   },
   Parking: {
     geoCode: {
       lat: 52.5221054, 
       lng: 7.3147535},
-    popUp: "Liberty Finance Parking",
+    popUp: "LIBERTY Finanz Parking",
   },
 };
 

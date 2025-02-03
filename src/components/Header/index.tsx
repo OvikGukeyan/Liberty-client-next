@@ -7,11 +7,11 @@ import { Menu, X } from "lucide-react";
 import { google } from 'googleapis';
 
 const headerItems = [
-  { name: "home", href: "/" },
-  { name: "about", href: "/about" },
+  { name: "startseite", href: "/" },
+  { name: "über uns", href: "/about" },
   { name: "karriere", href: "/career" },
   // { name: "coworking", href: "/coworking" },
-  { name: "contact", href: "/contact" },
+  { name: "kontacte", href: "/contact" },
 ];
 
 export const Header = () => {

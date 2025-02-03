@@ -123,7 +123,7 @@ const ContactForm: FC = () => {
             <div className={styles.input_box}>
               <RadioInput name={'topic'} label={'Baufinanzierung'} value={'baufinanzierung'} type="checkbox" />
               <RadioInput name={'topic'} label={'Privatkredit'} value={'privatkredit'} type="checkbox" />
-              <RadioInput name={'topic'} label={'Autokredit'} value={'autokredit'} type="checkbox" />
+              <RadioInput name={'topic'} label={'Modernisierungsdarlehen'} value={'odernisierungsdarlehen'} type="checkbox" />
               <RadioInput name={'topic'} label={'Versicherung'} value={'versicherung'} type="checkbox" />
               <RadioInput name={'topic'} label={'Kapitalaufbau'} value={'kapitalaufbau'} type="checkbox" />
               <RadioInput name={'topic'} label={'Immobilien'} value={'immobilien'} type="checkbox" />

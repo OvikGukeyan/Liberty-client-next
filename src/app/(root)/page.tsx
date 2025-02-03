@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import styles from "../page.module.scss";
 import Slide from "@/components/Slide";
@@ -7,30 +6,80 @@ import { Carousel, CookieConsent, Header, Review } from "@/components";
 const servicesList = [
   {
     name: "Versicherung",
-    text: "Wir bieten maßgeschneiderte Versicherungslösungen für Ihr Zuhause an. Schützen Sie Ihr Eigentum vor unvorhergesehenen Ereignissen mit unseren flexiblen Versicherungsprodukten. Verlassen Sie sich auf uns, um Ihre Bedürfnisse zu verstehen und Ihnen den richtigen Schutz zu bieten.",
+    text: "Wir bieten Ihnen maßgeschneiderte Versicherungslösungen, die genau auf Ihre Bedürfnisse abgestimmt sind. Ob Privatperson oder Unternehmen, wir finden den optimalen Schutz für Sie.",
+    title: "Unsere Versicherungsleistungen – Ihr Schutz in jeder Lebenslage",
+    features: [
+      "Haftpflicht- & Sachversicherungen – Schutz für Sie, Ihr Zuhause und Ihr Eigentum",
+      "Kranken- & Pflegeversicherungen – Für Ihre Gesundheit und finanzielle Sicherheit",
+      "Altersvorsorge & Rentenversicherungen – Sichern Sie Ihre Zukunft ab",
+      "Berufsunfähigkeits- & Lebensversicherungen – Finanzielle Absicherung für Sie und Ihre Familie",
+      "Gewerbe- & Firmenversicherungen – Individuelle Lösungen für Unternehmer und Selbstständige",
+    ],
+    cta: "Profitieren Sie von unserer unabhängigen Beratung, individuellen Risikoanalyse und persönlichen Betreuung – damit Sie stets bestens abgesichert sind!",
   },
   {
     name: "Baufinanzierung",
-    text: "Sichern Sie sich Ihr Traumhaus mit unserer maßgeschneiderten Baufinanzierungslösung. Egal, ob Neubau, Kauf oder Umbau - wir bieten Ihnen flexible Finanzierungsoptionen, um Ihr Bauprojekt zu realisieren. Vertrauen Sie auf unsere langjährige Erfahrung, um Ihre individuellen Bedürfnisse zu verstehen und Ihnen die passende Baufinanzierung anzubieten.",
+    text: "Sichern Sie sich Ihr Traumhaus mit unserer maßgeschneiderten Baufinanzierungslösung. Egal, ob Neubau, Kauf oder Umbau – wir bieten Ihnen flexible Finanzierungsoptionen, um Ihr Bauprojekt zu realisieren.",
+    title: "Baufinanzierung – Ihr Weg ins Eigenheim",
+    features: [
+      "Individuelle Finanzierungskonzepte – Passend zu Ihrer finanziellen Situation",
+      "Vergleich von Top-Konditionen – Zugriff auf eine Vielzahl von Banken und Kreditinstituten",
+      "Flexible Zins- und Tilgungsmodelle – Planungssicherheit für Ihre Zukunft",
+      "Fördermittel & staatliche Zuschüsse – Wir prüfen Ihre Möglichkeiten",
+      "Persönliche Beratung & Begleitung – Von der Planung bis zur Auszahlung",
+    ],
+    cta: "Nutzen Sie unsere unabhängige Beratung und sichern Sie sich die besten Konditionen für Ihre Baufinanzierung!",
   },
   {
     name: "Privatkredit",
-    text: "Erfüllen Sie sich Ihre persönlichen Wünsche mit unserem maßgeschneiderten Privatkredit. Egal, ob Sie eine Reise planen, ein Auto kaufen oder eine Renovierung vornehmen möchten - wir bieten Ihnen flexible Kreditoptionen, um Ihre finanziellen Ziele zu erreichen. Verlassen Sie sich auf unsere Expertise, um Ihnen den richtigen Privatkredit anzubieten.",
+    text: "Erfüllen Sie sich Ihre persönlichen Wünsche mit unserem maßgeschneiderten Privatkredit. Egal, ob Sie eine Reise planen, ein Auto kaufen oder eine Renovierung vornehmen möchten – wir bieten Ihnen flexible Kreditoptionen, um Ihre finanziellen Ziele zu erreichen.",
+    title: "Privatkredit – Ihr Weg zur finanziellen Freiheit",
+    features: [
+      "Maßgeschneiderte Kreditkonditionen – auf Ihre Bedürfnisse abgestimmt",
+      "Schnelle und unkomplizierte Abwicklung – damit Sie schnell starten können",
+      "Transparente Beratung – keine versteckten Kosten",
+      "Flexible Rückzahlungsmodelle – für optimale finanzielle Planung",
+    ],
+    cta: "Informieren Sie sich über unsere Privatkreditangebote und starten Sie noch heute!",
   },
   {
-    name: "Autokredit",
-    text: "Machen Sie sich den Autokauf leicht mit unserem maßgeschneiderten Autokredit. Egal, ob Neu- oder Gebrauchtwagen - wir bieten Ihnen flexible Finanzierungsmöglichkeiten, um Ihren Autokauf zu erleichtern. Vertrauen Sie auf unsere Kompetenz, um Ihnen den passenden Autokredit anzubieten.",
+    name: "Modernisierungsdarlehen",
+    text: "Ob energetische Sanierung, neue Fenster oder ein modernes Bad – mit unserem Modernisierungsdarlehen finanzieren Sie Ihre Wohnträume einfach und flexibel.",
+    title: "Modernisierungsdarlehen – Ihr Zuhause in neuem Glanz",
+    features: [
+      "Günstige Zinsen & flexible Laufzeiten",
+      "Kein Grundbucheintrag erforderlich (je nach Darlehenshöhe)",
+      "Schnelle & unkomplizierte Abwicklung",
+      "Fördermittel & Zuschüsse möglich",
+      "Individuelle Beratung & maßgeschneiderte Finanzierung",
+    ],
+    cta: "Investieren Sie in die Zukunft Ihrer Immobilie – wir helfen Ihnen dabei, die beste Finanzierungslösung zu finden!",
   },
   {
     name: "Kapitalaufbau",
-    text: "Planen Sie Ihre finanzielle Zukunft mit unserem maßgeschneiderten Kapitalaufbau-Programm. Egal, ob Sie für den Ruhestand vorsorgen, ein finanzielles Polster schaffen oder langfristig investieren möchten - wir bieten Ihnen strategische Anlageoptionen, um Ihr Kapital aufzubauen. Verlassen Sie sich auf unsere Experten, um Ihnen dabei zu helfen, Ihre finanziellen Ziele zu erreichen.",
+    text: "Planen Sie Ihre finanzielle Zukunft mit unserem maßgeschneiderten Kapitalaufbau-Programm. Egal, ob Sie für den Ruhestand vorsorgen, ein finanzielles Polster schaffen oder langfristig investieren möchten – wir bieten Ihnen strategische Anlageoptionen, um Ihr Kapital aufzubauen.",
+    title: "Kapitalaufbau – Strategisch in Ihre Zukunft investieren",
+    features: [
+      "Individuelle Anlagestrategien – perfekt abgestimmt auf Ihre Ziele",
+      "Vielfältige Anlageoptionen – für eine ausgewogene Portfolio-Gestaltung",
+      "Langfristige Planung – für eine sichere finanzielle Zukunft",
+      "Expertenberatung – fundierte Unterstützung in allen Finanzfragen",
+    ],
+    cta: "Erfahren Sie mehr über unser Kapitalaufbau-Programm und starten Sie in eine finanziell sichere Zukunft!",
   },
   {
     name: "Immobilien",
-    text: "Investieren Sie in Ihre Zukunft mit unserer maßgeschneiderten Immobilienlösung. Egal, ob Sie kaufen, verkaufen oder investieren möchten - wir bieten Ihnen umfassende Beratung und Unterstützung, um Ihre Immobilienziele zu erreichen. Vertrauen Sie auf unsere Erfahrung, um Ihnen bei jedem Schritt des Immobilienprozesses zu helfen.",
+    text: "Investieren Sie in Ihre Zukunft mit unserer maßgeschneiderten Immobilienlösung. Egal, ob Sie kaufen, verkaufen oder investieren möchten – wir bieten Ihnen umfassende Beratung und Unterstützung, um Ihre Immobilienziele zu erreichen.",
+    title: "Immobilien – Ihr Schlüssel zum Erfolg",
+    features: [
+      "Umfassende Marktanalysen – für fundierte Entscheidungen",
+      "Individuelle Beratung – maßgeschneiderte Lösungen für Ihre Bedürfnisse",
+      "Ein breites Netzwerk – Zugang zu Experten und relevanten Kontakten",
+      "Transparente Prozesse – klare und nachvollziehbare Abläufe",
+    ],
+    cta: "Kontaktieren Sie uns und entdecken Sie Ihre Möglichkeiten im Immobilienmarkt!",
   },
 ];
-
 
 
 export default function Home() {
@@ -45,7 +94,6 @@ export default function Home() {
     <div className={styles.wrapper}>
       <div className={styles.box_1}>
         <div className={styles.main}>
-          
           <Header />
         </div>
         <div className={styles.services}>
@@ -53,7 +101,6 @@ export default function Home() {
             {servicesList.map((item, ind) => (
               <Slide key={ind} item={item} />
             ))}
-
           </Carousel>
         </div>
       </div>
@@ -62,21 +109,26 @@ export default function Home() {
         <div className={styles.about}>
           <h3>ÜBER UNSERE FIRMA</h3>
           <p>
-            Willkommen bei Liberty Finance, Ihrem zuverlässigen Partner für
-            Versicherungs- und Finanzierungslösungen. Wir bieten
-            maßgeschneiderte Produkte für Hausbesitzer an, um ihr Eigentum zu
-            schützen und ihre Wohnträume zu verwirklichen. Kontaktieren Sie uns
-            für professionelle Beratung und persönlichen Service.
+            Wir sind freie Makler im Bereich Versicherung und Finanzierung und
+            bieten Ihnen maßgeschneiderte Lösungen, die genau auf Ihre
+            Bedürfnisse abgestimmt sind. Als unabhängige Berater sind wir nicht
+            an bestimmte Anbieter gebunden – das bedeutet für Sie eine neutrale,
+            transparente und kundenorientierte Beratung.
           </p>
         </div>
         <div className={styles.photo_2}>
           <div className={styles.title}>
-            <Image src="/assets/google.png" alt="google" width={25} height={25} />
+            <Image
+              src="/assets/google.png"
+              alt="google"
+              width={25}
+              height={25}
+            />
             <span>Google Bewertungen</span>
           </div>
           <Carousel auto autoplaySpeed={10000}>
             {[...Array(4)].map((item, ind) => (
-              <Review/>
+              <Review />
             ))}
           </Carousel>
         </div>

@@ -9,7 +9,7 @@ const Impressum = () => {
         <div className={styles.box}>
           <h1>Impressum</h1>
           <p>
-            <strong>Liberty Finanz GmbH</strong>
+            <strong>LIBERTY Finanz GmbH</strong>
           </p>
           <p>Schlachterstraße 6-8, 49808 Lingen (Ems)</p>
           <p>

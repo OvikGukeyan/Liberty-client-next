@@ -24,8 +24,7 @@ const Career: FC = () => {
         </div>
 
         <h1 className={styles.title}>
-          Ihre Karriere bei der Liberty Finance GmbH:
-          <br /> Werde Teil unseres Teams!
+          Ihre Karriere bei der LIBERTY Finanz GmbH
         </h1>
         <div className={styles.container}>
           <div className={styles.text}>

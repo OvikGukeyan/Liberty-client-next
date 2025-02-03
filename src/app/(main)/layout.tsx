@@ -2,8 +2,8 @@ import { Footer, Header } from "@/components";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Liberty Finance. Formular",
-  description: "Liberty Finance Formular",
+  title: "LIBERTY Finannz. Formular",
+  description: "LIBERTY Finanz Formular",
   keywords: " ",
 };
 

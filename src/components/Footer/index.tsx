@@ -61,7 +61,7 @@ export const Footer: FC<FooterType> = ({ isStatic }) => {
         <SocialMedia />
       </div>
       <div className={styles.copyright}>
-        <span>© 2023 Liberty Finance GmbH</span>
+        <span>© 2023 LIBERTY Finanz GmbH</span>
       </div>
     </div>
   );

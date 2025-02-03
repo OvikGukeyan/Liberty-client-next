@@ -2,7 +2,7 @@ import { Footer, Header } from "@/components";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Liberty Finance",
+  title: "LIBERTY Finanz",
   description: "Home page",
   keywords: "",
 };

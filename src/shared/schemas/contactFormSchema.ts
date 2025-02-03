@@ -4,20 +4,20 @@ import { z } from "zod";
 export const contactFormSchema = z.object({
     salutation: z.string(),
     titel: z.string().optional(),
-    firstName: z.string().min(2, { message: 'First name must be at least 2 characters long' }),
-    lastName: z.string().min(2, { message: 'Last name must be at least 2 characters long' }),
-    email: z.string().email({ message: 'Enter a valid email address' }),
-    phoneNumber: z.string().min(10, { message: 'Phone number must be at least 10 characters long' }),
-    address: z.string().min(5, { message: 'Invalid address' }),
-    zipCode: z.string().min(5, { message: 'Invalid zip code' }),
-    city: z.string().min(2, { message: 'Invalid city' }),
-    country: z.string().min(2, { message: 'Invalid country' }),
-    topic: z.array(z.enum(['baufinanzierung', 'privatkredit', 'autokredit', 'versicherung', 'kapitalaufbau', 'immobilien', 'modernisierungsdarlehen', 'kapitalbeschaffung'])).min(1, {
-        message: "Please select at least one topic",
+    firstName: z.string().min(2, { message: 'Der Vorname muss mindestens 2 Zeichen lang sein' }),
+    lastName: z.string().min(2, { message: 'Der Nachname muss mindestens 2 Zeichen lang sein' }),
+    email: z.string().email({ message: 'Geben Sie eine gültige E-Mail-Adresse ein' }),
+    phoneNumber: z.string().min(10, { message: 'Die Telefonnummer muss mindestens 10 Zeichen lang sein' }),
+    address: z.string().min(5, { message: 'Ungültige Adresse' }),
+    zipCode: z.string().min(5, { message: 'Ungültige Postleitzahl' }),
+    city: z.string().min(2, { message: 'Ungültige Stadt' }),
+    country: z.string().min(2, { message: 'Ungültiges Land' }),
+    topic: z.array(z.enum(['baufinanzierung', 'privatkredit', 'modernisierungsdarlehen', 'versicherung', 'kapitalaufbau', 'immobilien', 'modernisierungsdarlehen', 'kapitalbeschaffung'])).min(1, {
+        message: "Bitte wählen Sie mindestens ein Thema aus",
     }),
     description: z.string().optional(),
     check: z.boolean().refine((value) => value, {
-        message: "You must agree to the terms",
+        message: "Sie müssen den Bedingungen zustimmen",
     }),
     manager: z.string().optional(),
 });
