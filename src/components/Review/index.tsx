@@ -1,28 +1,24 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { FC } from "react";
 import $api from "@/shared/http";
 import styles from "./Review.module.scss";
 import Image from "next/image";
+import { ReviewType } from "@/shared/models/Review";
 
-export function Review() {
-  const [reviews, setReviews] = useState([]);
+interface Props {
+  item: ReviewType
+}
+export const Review: FC<Props> = ({item}) => {
 
-  // useEffect(() => {
-  //   const fetchReview = async () => {
-  //     const data = $api.get("/reviews");
-  //     console.log(data);
-  //   };
 
-  //   fetchReviews();
-  // }, []);
   return (
     <div className={styles.container}>
       <div className={styles.head}>
-        <Image src="/assets/avatar.png" alt="avatar" width={50} height={50} />
+        <img className={styles.avatar} src={item.user.thumbnail} alt="avatar" />
         <div className={styles.info}>
-          <h3>Ivan Ivanov</h3>
+          <h3>{item.user.name}</h3>
           <div className={styles.stars}>
-            {[...Array(5)].map((_, index) => (
+            {[...Array(item.rating)].map((_, index) => (
               <Image
                 key={index}
                 src="/assets/star.png"
@@ -37,8 +33,7 @@ export function Review() {
 
       <div className={styles.text}>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-              doloribus nisi voluptas, voluptatum, eum quia officiis, natus
+              {item.snippet}
             </p>
       </div>
     </div>

@@ -3,15 +3,11 @@ import styles from "../page.module.scss";
 import Slide from "@/components/Slide";
 import { Carousel, CookieConsent, Header, Review } from "@/components";
 import servicesList from "../../../data/servicesList";
+import reviewsService from "@/shared/services/reviewsService";
 
-export default function Home() {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+export default async function Home() {
+  const reviews = await reviewsService.getReviews();
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.box_1}>
@@ -49,8 +45,8 @@ export default function Home() {
             <span>Google Bewertungen</span>
           </div>
           <Carousel auto autoplaySpeed={10000}>
-            {[...Array(4)].map((item, ind) => (
-              <Review />
+            {reviews && reviews.map((item, ind) => (
+              <Review key={ind} item={item} />
             ))}
           </Carousel>
         </div>
