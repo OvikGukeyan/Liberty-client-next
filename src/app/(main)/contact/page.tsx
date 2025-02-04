@@ -2,7 +2,7 @@ import styles from "./contact.module.scss";
 import Image from "next/image";
 import { FC, useMemo } from "react";
 import dynamic from "next/dynamic";
-import { SocialMedia, Wrapper } from "@/components";
+import { SocialMedia } from "@/components";
 
 export const metadata = {
   title: "Kontaktinformationen",
@@ -47,7 +47,6 @@ const Contact: FC = () => {
     []
   );
   return (
-    <Wrapper>
       <div className={styles.wrapper}>
         <div className={styles.image}>
           <Image
@@ -143,7 +142,6 @@ const Contact: FC = () => {
           </div>
         </div>
       </div>
-    </Wrapper>
   );
 };
 

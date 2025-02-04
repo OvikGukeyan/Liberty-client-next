@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 200px;
+  max-width: 1200px;
+  margin: 0 auto 200px auto;
+  padding: 0 20px;
   .image {
     width: 100vw;
     height: 100vh;
@@ -14,9 +16,7 @@
     flex-direction: column;
     align-items: center;
     padding-top: 80px;
-    
   }
-
 
   .contact {
     margin-top: 60px;
@@ -119,22 +119,23 @@
   @media (max-width: 1000px) {
     .contact {
       flex-direction: column;
-  
+
       .info {
         width: 100%;
         margin-bottom: 20px;
       }
-  
+
       .map {
         width: 100%;
       }
     }
   }
-  
+
   @media (max-width: 767px) {
+    padding: 0;
     .contact {
       padding: 0;
-  
+
       .info {
         height: auto;
         border-radius: 0;
@@ -142,33 +143,30 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-  
+
         .contact_info {
           width: 100%;
           display: flex;
           flex-direction: column;
           align-items: center;
-  
+
           ul {
             display: flex;
             flex-direction: column;
             align-items: center;
           }
         }
-  
+
         .opening_hours {
           width: 100%;
           align-items: center;
           gap: 20px;
         }
       }
-  
+
       .map {
         border-radius: 0;
       }
     }
   }
-  
-
 }
-
