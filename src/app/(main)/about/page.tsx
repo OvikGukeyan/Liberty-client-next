@@ -67,13 +67,15 @@ const About: FC = () => {
 
         <div className={styles.main}>
           <div className={styles.manager}>
-            <Image
-              className={styles.photo}
-              src={"/assets/liberty-finanz-44.jpg"}
-              alt="manager"
-              width={320}
-              height={500}
-            />
+            <div className={styles.photo_box}>
+              <Image
+                className={styles.photo}
+                src={"/assets/liberty-finanz-44.jpg"}
+                alt="manager"
+                width={320}
+                height={500}
+              />
+            </div>
             <div className={styles.text}>
               <h3>Roman Skibner</h3>
               <h4>Geschäftsführender - Gesellschafter</h4>
@@ -85,17 +87,22 @@ const About: FC = () => {
           </div>
 
           <div className={styles.manager}>
-            <Image
-              className={styles.photo}
-              src={"/assets/liberty-finanz-1.jpg"}
-              alt="manager"
-              width={320}
-              height={500}
-            />
+            <div className={styles.photo_box}>
+              <Image
+                className={styles.photo}
+                src={"/assets/liberty-finanz-1.jpg"}
+                alt="manager"
+                width={320}
+                height={500}
+              />
+            </div>
+
             <div className={styles.text}>
               <h3>Nikita Gordeev</h3>
               <h4>Assistenz der Geschäftsführung</h4>
-              <span>Baufinanzierungsberater <br /> Versicherungsfachmann</span>
+              <span>
+                Baufinanzierungsberater <br /> Versicherungsfachmann
+              </span>
 
               <span>Tel: 0591 31526680</span>
               <span>Mobil: 0152 22961832</span>

@@ -15,12 +15,11 @@
     align-items: center;
     padding-top: 80px;
     align-self: center;
-    
   }
   .title {
     font-size: 35px;
     margin-top: 50px;
-    color: #B58730;
+    color: #b58730;
   }
 
   .description {
@@ -29,13 +28,12 @@
     margin-top: 20px;
     letter-spacing: 1.5px;
     color: var(--text-slate);
-
   }
 
   .list_title {
     margin-top: 50px;
     font-size: 25px;
-    color: #B58730;
+    color: #b58730;
   }
 
   .list {
@@ -46,19 +44,18 @@
       margin-top: 10px;
       font-size: 19px;
       letter-spacing: 1px;
-      
     }
   }
   .main {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 30px;
-    
+
     h3 {
       margin-bottom: 30px;
     }
     .manager {
-      max-width: 360px;
+      width: 380px;
       margin-top: 60px;
       display: flex;
       flex-direction: column;
@@ -69,10 +66,16 @@
       box-sizing: border-box;
       border-radius: 10px;
 
-      .photo {
+      .photo_box {
         width: 100%;
-        border-radius: 10px;
-        overflow: hidden;
+        height: 500px;
+        .photo {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          border-radius: 10px;
+        }
       }
 
       .text {
@@ -85,32 +88,28 @@
         flex-direction: column;
 
         h3 {
-          color: #B58730;
+          color: #b58730;
           margin-bottom: 10px;
         }
-       
 
         span {
           color: #898885;
           margin-bottom: 5px;
         }
       }
-
-     
     }
   }
 
   @media (max-width: 1200px) {
     .main {
       grid-template-columns: 1fr 1fr;
-
     }
   }
 
   @media (max-width: 767px) {
     .main {
-      grid-template-columns: 1fr ;
-     
+      grid-template-columns: 1fr;
+
       .managers {
         flex-direction: column;
 
