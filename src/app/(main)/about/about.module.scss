@@ -47,6 +47,7 @@
     }
   }
   .main {
+    width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 30px;
@@ -103,30 +104,25 @@
   @media (max-width: 1200px) {
     .main {
       grid-template-columns: 1fr 1fr;
+      
     }
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 850px) {
     .main {
       grid-template-columns: 1fr;
+      gap: 0;
+      align-items: center;
 
-      .managers {
-        flex-direction: column;
+    }
+  }
 
-        &:nth-of-type(even) {
-          flex-direction: column;
-        }
-
-        .photo {
-          width: auto;
-          max-width: 100%;
-          margin-bottom: 20px;
-        }
-
-        .text {
-          width: auto;
-        }
+  @media (max-width: 450px) {
+    .main {
+      .manager {
+        width: 100%;
       }
+
     }
   }
 }
