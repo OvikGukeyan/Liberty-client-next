@@ -9,12 +9,12 @@ interface Props {
   item: ReviewType
 }
 export const Review: FC<Props> = ({item}) => {
-
+console.log(item.user.thumbnail)
 
   return (
     <div className={styles.container}>
       <div className={styles.head}>
-        <img className={styles.avatar} src={item.user.thumbnail} alt="avatar" />
+        <img className={styles.avatar} src={'/assets/avatar.png'} alt="avatar" />
         <div className={styles.info}>
           <h3>{item.user.name}</h3>
           <div className={styles.stars}>

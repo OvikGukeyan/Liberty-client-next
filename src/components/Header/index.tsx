@@ -12,7 +12,7 @@ const headerItems = [
   { name: "leistungen", href: "/services" },
   { name: "karriere", href: "/career" },
   // { name: "coworking", href: "/coworking" },
-  { name: "kontacte", href: "/contact" },
+  { name: "kontakt", href: "/contact" },
 ];
 
 export const Header = () => {

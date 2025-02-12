@@ -55,12 +55,14 @@ const Contact: FC = () => {
             alt="logo"
             width={150}
             height={150}
+
+
           />
         </div>
         <div className={styles.contact}>
           <div className={styles.info}>
             <div className={styles.contact_info}>
-              <h2>Kontact</h2>
+              <h2>Kontakt</h2>
               <address>
                 <ul>
                   <li>

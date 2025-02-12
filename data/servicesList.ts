@@ -32,7 +32,6 @@ const servicesList = [
       features: [
         "Maßgeschneiderte Kreditkonditionen – auf Ihre Bedürfnisse abgestimmt",
         "Schnelle und unkomplizierte Abwicklung – damit Sie schnell starten können",
-        "Transparente Beratung – keine versteckten Kosten",
         "Flexible Rückzahlungsmodelle – für optimale finanzielle Planung",
       ],
       cta: "Informieren Sie sich über unsere Privatkreditangebote und starten Sie noch heute!",
@@ -45,7 +44,6 @@ const servicesList = [
         "Günstige Zinsen & flexible Laufzeiten",
         "Kein Grundbucheintrag erforderlich (je nach Darlehenshöhe)",
         "Schnelle & unkomplizierte Abwicklung",
-        "Fördermittel & Zuschüsse möglich",
         "Individuelle Beratung & maßgeschneiderte Finanzierung",
       ],
       cta: "Investieren Sie in die Zukunft Ihrer Immobilie – wir helfen Ihnen dabei, die beste Finanzierungslösung zu finden!",
