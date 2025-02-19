@@ -102,7 +102,7 @@ const Contact: FC = () => {
                       width={24}
                       height={24}
                     />
-                    <a href="https://www.google.com/maps?q=52.525783,7.332966">
+                    <a href="https://www.google.com/maps?q=52.52186030000001,7.3159149">
                       Schlachterstraße 6-8, 49808 Lingen (Ems)
                     </a>
                   </li>
@@ -114,7 +114,7 @@ const Contact: FC = () => {
                       width={24}
                       height={24}
                     />
-                    <a href="https://www.google.com/maps?q=52.525783,7.332966">
+                    <a href="https://www.google.com/maps?q=52.5221054,7.3147535">
                       Kundenparkplatz
                     </a>
                   </li>
